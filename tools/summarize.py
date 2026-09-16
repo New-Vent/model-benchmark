@@ -5,7 +5,7 @@
 그대로 versions/<버전>/analysis/findings.md 에 붙여넣을 수 있습니다.
 
 실행
-    python tools/summarize.py versions/v1                 # 버전 폴더 (raw 전체)
+    python tools/summarize.py versions/v1                 # 버전 폴더 (result_csv 전체)
     python tools/summarize.py path/to/results_xxx.csv       # 단일 CSV
     python tools/summarize.py versions/v1 > /tmp/out.md
 
@@ -23,7 +23,7 @@ import sys
 from collections import defaultdict
 
 KNOWN_OPS = ["REWRITE_ALL", "GENERATE", "DELETE", "STYLE", "MOVE", "EDIT", "ADD", "ASK"]
-GROUP_ORDER = ["D", "E", "JS", "N", "S", "C", "R"]
+GROUP_ORDER = ["D", "E", "JS", "N", "S", "C", "R", "J", "K", "CHAIN"]
 
 
 def load_rows(target):

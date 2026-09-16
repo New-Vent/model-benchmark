@@ -28,7 +28,7 @@ D · E · JS · N · S · C · R 군 실행. 출력 방식은 N·S만 쓰고 J(�
 
 **모델 추가는 새 버전 사유가 아닙니다.** 프롬프트·채점·파라미터·케이스가 그대로면 기존 모델의
 행은 유효하고, 새 CSV를 이 폴더에 넣으면 `summarize.py`가 6개 모델 표로 뽑습니다.
-출력이 결정론적이라(→ [methodology §8](../../docs/methodology.md)) 다른 세션에서 돌려도
+출력이 결정론적이라(→ [methodology §9](../../docs/methodology.md)) 다른 세션에서 돌려도
 품질 지표는 안전하게 합쳐집니다. 시간 지표만 그 실행의 drift로 따로 판정하면 됩니다.
 
 모델을 **빼거나 교체**하거나, 프롬프트·채점·파라미터를 바꾸면 그때는 새 버전입니다.
@@ -46,16 +46,29 @@ SEEDS        = [42, 43, 44, 45, 46]        # 반복 5회
 ## 실행
 
 ```bash
-cd versions/v1
 export RUNNER="<본인이름>"          # Windows: set RUNNER=<본인이름>
-python benchmark_v1.py
+python base/run.py v1              # 이 폴더의 케이스 전부 (D·E·JS·N·S·C·R)
+python base/run.py v1 D            # D군만
+python base/run.py v1 N S          # 여러 군 지정 (N/S 로도 됨)
+```
+
+결과는 어느 쪽으로 돌리든 이 폴더 안으로 들어갑니다.
+
+```
+versions/v1/result_csv/results_v1_<RUNNER>_<타임스탬프>.csv
+versions/v1/result_json/env_v1_<RUNNER>_<타임스탬프>.json
+versions/v1/raw_v1/                시도별 원문 (git 제외)
 ```
 
 검증만 (LLM 호출 없이):
 
 ```bash
-python benchmark_v1.py --self-check
+python base/run.py v1 --self-check
 ```
+
+> `benchmark_v1.py`는 **아래 결과표를 만들어낸 원본 단일 스크립트**입니다.
+> 지금은 `base/` + `cases_*.py`로 쪼개져 있고, 이 파일은 그때 조건을 그대로
+> 보존하기 위해 기록용으로만 남겨둡니다 — 새로 돌릴 때는 쓰지 마세요.
 
 이미 돌린 모델은 `MODELS`에서 주석 처리하고 새로 추가한 것만 켜서 돌립니다.
 `MODELS` 외에는 아무것도 고치지 않습니다.

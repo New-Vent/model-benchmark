@@ -11,18 +11,36 @@
 | 버전 | 내용 | 상태 |
 | --- | --- | --- |
 | [v1](versions/v1/) | D·E·JS·N·S·C·R 군, 출력 방식 N·S | **4대 완료 (3362행) — 생성 모델 qwen2.5:7b 결정** |
+| [v2](versions/v2/) | J·K 군 + CHAIN(파이프라인 검증), 출력 방식 J·K | 
 
-## 폴더 하나의 구성
+## 폴더 구성
+
+공통 코드는 `base/` 한 곳에만 둡니다. 버전 폴더에는 **그 버전의 케이스와 결과만** 둡니다.
 
 ```
-versions/v1/
-  benchmark_v1.py                    스크립트 (RUNNER·MODELS 주석 외에는 고치지 않음)
-  results_v1_도하_*.csv                runner마다 CSV 하나
-  results_v1_지원_*.csv
-  env_v1_도하_*.json                   digest·drift·기기 정보
+base/                                공통 — 버전이 늘어도 복사하지 않는다
+  run.py                             진입점 (RUNNER·MODELS만 고친다)
+  engine.py                          케이스 실행·캘리브레이션·CSV 저장
+  registry.py                        블록/변형 레지스트리 + JSON Schema
+  checks.py                          채점
+  component_library.py               컴포넌트 렌더 함수
+
+versions/v1/                         D·E·JS·N·S·C·R 군
+  cases_d.py cases_e.py cases_js.py cases_ns.py cases_c.py cases_r.py
+  result_csv/results_v1_도하_*.csv     runner마다 CSV 하나
+  result_json/env_v1_도하_*.json       digest·drift·기기 정보
   raw_v1/                            시도별 원문 (git 제외, 로컬에만)
+  benchmark_v1.py                    v1 결과를 만들었던 원본 단일 스크립트 (기록용, 보존)
   README.md                          이 버전의 조건 + 실행법 + 결과 비교표 + 결론
+
+versions/v2/                         J·K·CHAIN 군
+  cases_j.py cases_k.py cases_chain.py
+  result_csv/  result_json/  raw_v2/  README.md
 ```
+
+`base/`의 파일은 **팀 합의 없이 개인이 고치지 않습니다.** 새 군을 추가할 때는
+해당 버전 폴더에 `cases_<이름>.py`를 만들면 `run.py`가 알아서 찾아냅니다
+(`CASES: list[Case]`와, 있으면 `self_check()`만 지키면 됩니다).
 
 버전 README에는 **그 버전에서만 유효한 조건**(모델 목록·digest·파라미터·케이스 수)을 적습니다.
 군이 각각 무엇을 재는지 같은 공통 정의는 `docs/methodology.md`에 한 번만 적습니다.
@@ -30,14 +48,30 @@ versions/v1/
 ## 한 사이클
 
 ```bash
-# 1. 각자 버전 폴더에서 실행 (전원 같은 스크립트, RUNNER만 다르게)
-cd versions/v1
-export RUNNER="도하"
-python benchmark_v1.py
+# 1. 각자 실행 (전원 같은 스크립트, RUNNER만 다르게)
+export RUNNER="도하"          # Windows: set RUNNER=도하
+python base/run.py v1         # v1 폴더의 케이스 전부
+python base/run.py v1 D       # v1 의 D군만
+python base/run.py v1 N S     # 여러 군 지정
+python base/run.py v2         # v2 폴더의 케이스 전부 (J·K·CHAIN)
+python base/run.py v2 K
 
-# 2. CSV가 모이면 비교표 생성 → README의 결과 섹션에 붙여넣기
-python ../../tools/summarize.py .
+# 2. CSV가 모이면 비교표 생성 → 버전 README의 결과 섹션에 붙여넣기
+python tools/summarize.py versions/v1
 ```
+
+`python base/run.py <버전>` 은 그 폴더의 `cases_*.py`를 전부 찾아 실행하고,
+뒤에 군 이름을 붙이면 **그 버전 안의 그 군만** 돕니다. 어느 쪽이든 결과는
+그 버전 폴더로만 들어갑니다.
+
+| 실행 | 결과 |
+| --- | --- |
+| `python base/run.py v1` | `versions/v1/result_csv/results_v1_*.csv` + `versions/v1/result_json/env_v1_*.json` |
+| `python base/run.py v1 D` | 같은 위치에, D군 행만 담긴 CSV 하나 |
+| `python base/run.py v2` | `versions/v2/result_csv/` + `versions/v2/result_json/` |
+
+군을 나눠 돌려도 `summarize.py`가 `result_csv/` 아래 CSV를 전부 읽어 합산합니다.
+LLM 호출 없이 케이스 정의만 검증하려면 `python base/run.py v1 --self-check`.
 
 `summarize.py`가 뽑는 비교축:
 
@@ -54,12 +88,14 @@ python ../../tools/summarize.py .
 ## 새 버전 만들기
 
 ```bash
-mkdir versions/v2
-cp versions/v1/benchmark_v1.py versions/v2/benchmark_v2.py
+mkdir -p versions/v3
+cp versions/v2/cases_*.py versions/v3/      # 이어갈 군만 골라서 복사
 ```
 
-스크립트 안의 출력 파일명(`results_v2_...`, `env_v2_...`, `raw_v2/`)도 같이 올려야 이전 결과와 안 섞입니다.
-`versions/v2/README.md`에 **직전 버전에서 무엇을 왜 바꿨는지**와 **그 버전의 조건표**를 적습니다.
+공통 코드는 복사하지 않습니다 — `base/`를 그대로 씁니다. 출력 파일명
+(`results_v3_...`, `env_v3_...`, `raw_v3/`)은 폴더 이름에서 자동으로 붙으므로
+따로 고칠 곳이 없습니다.
+`versions/v3/README.md`에 **직전 버전에서 무엇을 왜 바꿨는지**와 **그 버전의 조건표**를 적습니다.
 
 ## 사전 준비
 
