@@ -62,6 +62,10 @@ python base/run.py v2 K
 
 # 2. CSV가 모이면 비교표 생성 → 버전 README의 결과 섹션에 붙여넣기
 python tools/summarize.py versions/v1
+
+# 3. v1의 S(HTML) ↔ v2의 J(JSON)처럼 pair로 묶인 케이스만 공정하게 비교 (McNemar)
+python tools/compare_v1_v2.py                    # 기본: S(v1) ↔ J(v2), 신규 생성
+python tools/compare_v1_v2.py --pair-set e-k      # E(v1, 전체재생성) ↔ K(v2, 패치)
 ```
 
 `python base/run.py <버전>` 은 그 폴더의 `cases_*.py`를 전부 찾아 실행하고,
