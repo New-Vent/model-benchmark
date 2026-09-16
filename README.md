@@ -50,6 +50,10 @@ versions/v2/                         J·K·CHAIN 군
 ```bash
 # 1. 각자 실행 (전원 같은 스크립트, RUNNER만 다르게)
 export RUNNER="도하"          # Windows: set RUNNER=도하
+# Ollama가 localhost가 아니면(원격 서버 사용자만) 셸에 맞게 하나만:
+# export OLLAMA_HOST="http://<주소>:11434"        # bash
+# $env:OLLAMA_HOST = "http://<주소>:11434"         # PowerShell — set은 안 먹는다
+# set OLLAMA_HOST=http://<주소>:11434              # cmd.exe
 python base/run.py v1         # v1 폴더의 케이스 전부
 python base/run.py v1 D       # v1 의 D군만
 python base/run.py v1 N S     # 여러 군 지정

@@ -7,7 +7,7 @@ Case 실행, 캘리브레이션, 환경 스냅샷, CSV 저장, 메인 루프를 
 있게 설계했다. 정말 새로운 실행 방식(예: C군의 누적 체인)이
 필요하면 이 파일에 함수를 "추가"하되, 기존 함수는 건드리지 않는다.
 
-바꿔도 되는 것: RUNNER, MODELS (run.py에서 지정)
+바꿔도 되는 것: RUNNER, MODELS (run.py에서 지정), OLLAMA_HOST/base/.ollama_host (아래)
 바꾸면 안 되는 것: BASE_OPTIONS, NUM_PREDICT, SEEDS, KEEP_ALIVE
                   (아래 상수들 — 팀 합의 없이 개인이 수정 금지)
 """
@@ -25,7 +25,31 @@ from typing import Callable, Optional
 
 import requests
 
-OLLAMA = "http://192.168.0.78:11434"
+def _resolve_ollama_host():
+    """
+    우선순위: OLLAMA_HOST 환경변수 > base/.ollama_host 파일 > localhost 기본값.
+
+    환경변수는 셸을 새로 열 때마다 초기화돼서(특히 PowerShell에서
+    cmd식 set을 잘못 쓰는 실수까지 겹치면) 원격 서버 사용자가 매번
+    같은 문제를 반복해서 겪는다. .ollama_host 파일은 한 번 만들면
+    터미널을 새로 열어도 계속 적용되고, .gitignore에 있어서 개인
+    설정이 팀 공용 저장소로 새 나가지 않는다.
+    """
+    env_val = os.environ.get("OLLAMA_HOST")
+    if env_val:
+        return env_val.strip(), "환경변수 OLLAMA_HOST"
+
+    local_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".ollama_host")
+    if os.path.isfile(local_file):
+        with open(local_file, encoding="utf-8") as f:
+            file_val = f.read().strip()
+        if file_val:
+            return file_val, "base/.ollama_host 파일"
+
+    return "http://localhost:11434", "기본값"
+
+
+OLLAMA, OLLAMA_SOURCE = _resolve_ollama_host()
 
 # ── 팀 전체 고정값 — 개인이 임의로 바꾸지 않는다 ─────────────────
 BASE_OPTIONS = {
@@ -434,6 +458,41 @@ def main(models, runner, case_modules, version, version_dir, group_filter=None):
         result_json/env_<version>_<runner>_<타임스탬프>.json
         raw_<version>/                시도별 원문
     """
+    print(f"  Ollama 서버: {OLLAMA}  ({OLLAMA_SOURCE})")
+    try:
+        tags_resp = requests.get(f"{OLLAMA}/api/tags", timeout=5)
+        tags_resp.raise_for_status()
+    except Exception as e:
+        raise SystemExit(
+            f"\n  ✗ Ollama 서버에 연결할 수 없습니다: {OLLAMA}\n"
+            f"    ({type(e).__name__}: {e})\n\n"
+            f"  확인할 것:\n"
+            f"    1. 이 주소가 맞는지 — 원격 서버를 쓴다면 OLLAMA_HOST를 이 창에서\n"
+            f"       설정했는지 확인 (새 창/새 탭을 열면 초기화됨):\n"
+            f"         PowerShell: $env:OLLAMA_HOST = \"http://<주소>:11434\"\n"
+            f"         cmd.exe   : set OLLAMA_HOST=http://<주소>:11434\n"
+            f"         bash      : export OLLAMA_HOST=\"http://<주소>:11434\"\n"
+            f"    2. 그 서버에서 Ollama가 실제로 떠 있는지 — "
+            f"curl {OLLAMA}/api/tags 로 직접 확인\n"
+            f"    3. 방화벽/포트(11434)가 막혀있지 않은지\n"
+        )
+
+    # 서버는 떠 있어도 모델이 안 받아져 있으면 워밍업/캘리브레이션 단계에서
+    # /api/chat이 404를 낸다 — "주소가 틀렸다"와 똑같은 증상이라 원인을
+    # 헷갈리기 쉬우므로 여기서 미리 구분해서 알려준다.
+    pulled = {m.get("name") for m in tags_resp.json().get("models", [])}
+    missing = [m for m in models if m not in pulled]
+    if missing:
+        pulled_list = "\n".join(f"      - {m}" for m in sorted(pulled)) or "      (없음)"
+        raise SystemExit(
+            f"\n  ✗ 이 서버({OLLAMA})에 없는 모델이 있습니다: {missing}\n"
+            f"    이 서버에 실제로 받아진 모델:\n{pulled_list}\n\n"
+            f"    ollama pull {missing[0]} 로 받거나, run.py의 MODELS 목록을 "
+            f"이 서버에 있는 모델로 맞추세요.\n"
+            f"    (OLLAMA_HOST가 의도한 서버를 가리키는지도 다시 확인할 것 — "
+            f"엉뚱한 서버에 연결됐을 때도 이 증상이 납니다.)\n"
+        )
+
     self_check_all(case_modules)
 
     all_cases = collect_cases(case_modules, group_filter)

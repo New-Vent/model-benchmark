@@ -47,6 +47,10 @@ SEEDS        = [42, 43, 44, 45, 46]        # 반복 5회
 
 ```bash
 export RUNNER="<본인이름>"          # Windows: set RUNNER=<본인이름>
+# Ollama가 localhost가 아니면(원격 서버 사용자만) 셸에 맞게 하나만:
+# export OLLAMA_HOST="http://<주소>:11434"        # bash
+# $env:OLLAMA_HOST = "http://<주소>:11434"         # PowerShell — set은 안 먹는다
+# set OLLAMA_HOST=http://<주소>:11434              # cmd.exe
 python base/run.py v1              # 이 폴더의 케이스 전부 (D·E·JS·N·S·C·R)
 python base/run.py v1 D            # D군만
 python base/run.py v1 N S          # 여러 군 지정 (N/S 로도 됨)
