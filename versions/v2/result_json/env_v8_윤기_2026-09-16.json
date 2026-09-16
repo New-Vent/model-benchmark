@@ -1,0 +1,63 @@
+{
+  "runner": "윤기",
+  "run_at": "2026-09-16T13:23:42",
+  "os": "Windows-10-10.0.19045-SP0",
+  "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "gpu": "NVIDIA GeForce GTX 1070 Ti, 8192 MiB",
+  "backend": "cuda",
+  "ollama": "ollama version is 0.34.0",
+  "python": "3.12.10",
+  "base_options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repeat_penalty": 1.1,
+    "num_ctx": 8192
+  },
+  "num_predict": {
+    "html": 1536,
+    "plan": 512,
+    "patch": 256,
+    "router": 128
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "keep_alive": "30m",
+  "models": {
+    "exaone3.5:7.8b": {
+      "digest": "c7c4e3d1ca22fe92",
+      "size_bytes": 4770664857,
+      "parameters": "7.8B",
+      "quantization": "Q4_K_M",
+      "family": "exaone"
+    },
+    "qwen2.5:7b": {
+      "digest": "845dbda0ea48ed74",
+      "size_bytes": 4683087332,
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2"
+    },
+    "qwen2.5-coder:7b": {
+      "digest": "dae161e27b0e90dd",
+      "size_bytes": 4683087561,
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2"
+    }
+  },
+  "calibration_start": {
+    "eval_rate": 32.2,
+    "prompt_rate": 1381.5
+  },
+  "calibration_end": {
+    "eval_rate": 32.2,
+    "prompt_rate": 1375.5
+  },
+  "drift": 1.0
+}
