@@ -1,0 +1,68 @@
+{
+  "runner": "도하",
+  "protocol_version": "8.3",
+  "script_sha256": "73535d50bc8e50d77da4e7a082036c9aac2abbf1bc9683d3a74fdb6e9beab651",
+  "run_at": "2026-09-16T09:39:06",
+  "os": "macOS-26.6.2-arm64-arm-64bit",
+  "cpu": "arm",
+  "gpu": "Chipset Model: Apple M3 Pro",
+  "backend": "metal",
+  "ollama": "ollama version is 0.33.3",
+  "python": "3.12.2",
+  "git_commit": "65f607c",
+  "git_dirty": true,
+  "base_options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repeat_penalty": 1.1,
+    "num_ctx": 8192
+  },
+  "num_predict": {
+    "html": 1536,
+    "router": 256
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "router_seeds": [
+    42,
+    43,
+    44
+  ],
+  "keep_alive": "30m",
+  "max_retry": 3,
+  "excluded": [
+    "J(조합 계획)",
+    "K(패치)"
+  ],
+  "models": {
+    "qwen2.5-coder:7b": {
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2",
+      "digest": "dae161e27b0e90dd",
+      "size_bytes": 4683087561
+    },
+    "llama3.2:3b": {
+      "parameters": "3.2B",
+      "quantization": "Q4_K_M",
+      "family": "llama",
+      "digest": "a80c4f17acd55265",
+      "size_bytes": 2019393189
+    }
+  },
+  "calibration_start": {
+    "eval_rate": 25.5,
+    "prompt_rate": 1082.7
+  },
+  "calibration_end": {
+    "eval_rate": 24.7,
+    "prompt_rate": 1082.1
+  },
+  "drift": 0.969
+}

@@ -1,0 +1,82 @@
+{
+  "runner": "윤기",
+  "protocol_version": "8.3",
+  "script_sha256": "bfc06880c381afb4ee8c95e73c5242eb99478dba580012d5ab110fe235d0340b",
+  "run_at": "2026-09-15T15:31:05",
+  "os": "Windows-10-10.0.19045-SP0",
+  "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "gpu": "NVIDIA GeForce GTX 1070 Ti, 8192 MiB",
+  "backend": "cuda",
+  "ollama": "ollama version is 0.34.0",
+  "python": "3.12.10",
+  "git_commit": "",
+  "git_dirty": false,
+  "base_options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repeat_penalty": 1.1,
+    "num_ctx": 8192
+  },
+  "num_predict": {
+    "html": 1536,
+    "router": 256
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "router_seeds": [
+    42,
+    43,
+    44
+  ],
+  "keep_alive": "30m",
+  "max_retry": 3,
+  "excluded": [
+    "J(조합 계획)",
+    "K(패치)"
+  ],
+  "models": {
+    "exaone3.5:7.8b": {
+      "parameters": "7.8B",
+      "quantization": "Q4_K_M",
+      "family": "exaone",
+      "digest": "c7c4e3d1ca22fe92",
+      "size_bytes": 4770664857
+    },
+    "qwen2.5:7b": {
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2",
+      "digest": "845dbda0ea48ed74",
+      "size_bytes": 4683087332
+    },
+    "gemma3:4b": {
+      "parameters": "4.3B",
+      "quantization": "Q4_K_M",
+      "family": "gemma3",
+      "digest": "a2af6cc3eb7fa8be",
+      "size_bytes": 3338801804
+    },
+    "qwen3:8b": {
+      "parameters": "8.2B",
+      "quantization": "Q4_K_M",
+      "family": "qwen3",
+      "digest": "500a1f067a9f7826",
+      "size_bytes": 5225388164
+    }
+  },
+  "calibration_start": {
+    "eval_rate": 29.6,
+    "prompt_rate": 1633.2
+  },
+  "calibration_end": {
+    "eval_rate": 36.1,
+    "prompt_rate": 1556.9
+  },
+  "drift": 1.22
+}

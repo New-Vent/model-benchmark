@@ -1,0 +1,900 @@
+runner,model,digest,backend,group,prompt_id,kind,pair,repeat_no,seed,attempt,hard_ok,all_ok,fails,soft_fails,wall_sec,load_ms,prompt_ms,eval_ms,prompt_tokens,eval_count,ctx_used,prompt_rate,eval_rate,out_len,html_len,baseline_len,patch_ratio,done_reason,router_op,router_target,router_ok
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D1,기간미제공_날짜생성여부,,1,42,1,1,1,,,11.72,2,64,9571,496,274,770,7733.9,28.6,631,631,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D2,기간제공_날짜준수,,1,42,1,1,1,,,13.34,2,107,11179,527,317,844,4888.3,28.4,696,696,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D3,혜택미제공_수치창작여부,,1,42,1,1,1,,,12.53,2,72,10401,499,297,796,6868.1,28.6,680,680,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D4,자리표시자_규칙없음,,1,42,1,1,1,,,12.51,3,126,10349,474,298,772,3757.2,28.8,678,678,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D5,자리표시자_규칙있음,D4,1,42,1,1,1,,,12.32,3,178,10092,500,289,789,2807.3,28.6,662,662,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E1,전체재생성_짧은문서,,1,42,1,1,0,,code_fence,6.83,2,37,4691,279,140,419,7537.3,29.8,281,281,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E2,블록왕복_짧은문서,E1,1,42,1,1,0,,code_fence,4.07,2,540,1441,276,44,320,511.1,30.5,89,89,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,1,42,1,0,0,diff_unintended,code_fence,20.08,2,872,17116,624,495,1119,715.6,28.9,1015,1015,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,1,42,2,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.28,2,196,20041,1193,564,1757,6073.8,28.1,1222,1222,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,1,42,3,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.87,2,304,20508,1873,573,2446,6157.6,27.9,1260,1260,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E5,블록왕복_긴문서,E4,1,42,1,1,0,,code_fence,3.72,3,32,1495,276,44,320,8503.0,29.4,93,93,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,1,42,1,0,0,no_section|lost_hero|lost_benefits|lost_cta|js_missing,code_fence,22.09,2,452,19531,705,560,1265,1558.1,28.7,1446,1446,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,1,42,2,0,0,lost_cta,code_fence,22.21,2,275,19876,1382,554,1936,5016.7,27.9,1447,1447,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,1,42,3,1,0,,code_fence,23.53,3,149,21326,1999,595,2594,13377.0,27.9,1549,1549,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,1,42,1,1,0,,extra_text|code_fence,28.17,2,447,25521,694,727,1421,1549.6,28.5,1776,1776,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,1,42,1,1,0,,extra_text|code_fence,18.94,2,443,16354,682,468,1150,1537.8,28.6,898,898,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,1,42,1,0,0,empty_cta,,12.02,2,460,9446,323,270,593,701.5,28.6,626,626,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,1,42,2,0,0,placeholder,,12.94,3,192,10688,659,300,959,3416.1,28.1,702,702,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,1,42,3,0,0,empty_cta,,11.38,2,133,9190,1019,270,1289,7638.3,29.4,626,626,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,1,42,1,0,0,placeholder|empty_hero|empty_benefits|empty_cta,code_fence,8.42,2,171,6136,379,184,563,2208.7,30.0,442,442,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,1,42,2,0,0,lost_cta,code_fence,12.81,2,344,10422,723,307,1030,2098.2,29.5,651,651,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,1,42,3,0,0,lost_cta,code_fence,9.65,2,136,7480,1093,219,1312,8025.1,29.3,465,465,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S1,정보충분,,1,42,1,1,1,,,13.02,2,106,10740,527,317,844,4933.3,29.5,696,696,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S2,정보부족,N2,1,42,1,1,1,,,11.44,2,73,9317,500,277,777,6831.3,29.7,628,628,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S8,긴출력,,1,42,1,1,1,,,12.01,2,101,9861,520,293,813,5147.7,29.7,650,650,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,1,42,1,0,0,exact_benefits_3,,11.75,1,179,9511,556,280,836,3099.2,29.4,623,623,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,1,42,2,1,1,,,11.37,2,135,9190,885,259,1144,6540.8,28.2,577,577,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C0,누적_초기생성,,1,42,1,1,1,,,13.34,2,114,11121,527,317,844,4583.4,28.5,696,696,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C1,누적1_cta,,1,42,1,1,1,,,4.28,2,179,1984,305,58,363,1698.7,29.2,126,126,132,0.188,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,1,42,1,1,1,,,5.87,2,571,3234,334,94,428,584.7,29.1,192,192,168,0.277,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,1,42,1,0,0,request_not_applied|diff_unintended,code_fence,4.8,2,181,2522,304,74,378,1671.2,29.3,161,161,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,1,42,2,1,0,,code_fence,4.8,2,178,2573,452,75,527,2527.6,29.1,162,162,126,0.223,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C4,누적4_steps,,1,42,1,1,1,,,5.02,2,434,2519,244,74,318,561.9,29.4,178,178,0,0.199,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,1,42,1,0,0,diff_unintended,,4.48,2,561,1841,290,54,344,516.9,29.3,111,111,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,1,42,2,0,0,edit_block_count|diff_unintended,extra_text|code_fence,13.09,2,123,10922,400,313,713,3249.7,28.7,588,588,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,1,42,3,0,0,edit_block_count|diff_unintended,code_fence,6.57,3,216,4292,803,122,925,3705.3,28.4,250,250,108,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D1,기간미제공_날짜생성여부,,2,43,1,1,1,,,12.09,2,63,9886,496,282,778,7854.6,28.5,643,643,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D2,기간제공_날짜준수,,2,43,1,1,1,,,12.76,2,113,10584,527,299,826,4652.4,28.2,649,649,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D3,혜택미제공_수치창작여부,,2,43,1,1,1,,,11.98,3,73,9849,499,286,785,6812.5,29.0,646,646,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D4,자리표시자_규칙없음,,2,43,1,1,1,,,12.45,2,128,10267,474,289,763,3682.2,28.1,665,665,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D5,자리표시자_규칙있음,D4,2,43,1,1,1,,,12.16,2,180,9922,500,286,786,2768.2,28.8,654,654,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E1,전체재생성_짧은문서,,2,43,1,1,0,,code_fence,7.5,2,555,4858,279,140,419,502.3,28.8,281,281,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E2,블록왕복_짧은문서,E1,2,43,1,1,0,,code_fence,3.68,2,124,1466,276,44,320,2215.1,30.0,89,89,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,2,43,1,0,0,diff_unintended,code_fence,18.93,2,35,16732,624,495,1119,17528.1,29.6,1015,1015,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,2,43,2,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,21.33,2,183,19086,1193,556,1749,6489.1,29.1,1205,1205,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,2,43,3,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.77,3,266,20426,1865,572,2437,6992.6,28.0,1257,1257,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E5,블록왕복_긴문서,E4,2,43,1,1,0,,code_fence,3.71,2,35,1495,276,44,320,7856.8,29.4,89,89,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,2,43,1,0,0,no_section|lost_hero|lost_benefits|lost_cta|js_todo,extra_text|code_fence,25.97,2,34,23772,705,677,1382,20274.4,28.5,1365,1365,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,2,43,2,1,0,,extra_text|code_fence,24.93,2,289,22576,1503,606,2109,5186.4,26.8,1404,1404,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,2,43,1,1,0,,extra_text|code_fence,23.54,2,464,20928,694,590,1284,1492.5,28.2,946,946,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,2,43,1,0,0,no_section|lost_hero|lost_benefits|lost_cta,extra_text|code_fence,19.03,2,464,16451,682,470,1152,1467.5,28.6,806,806,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,2,43,2,0,0,no_section|lost_hero|lost_benefits|lost_cta|js_missing,extra_text|code_fence,13.84,2,262,11518,1259,326,1585,4793.7,28.3,696,696,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,2,43,3,0,0,no_section|lost_hero|lost_benefits|lost_cta|js_missing,extra_text|code_fence,17.12,2,334,14719,1718,411,2129,5134.1,27.9,939,939,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,2,43,1,0,0,empty_cta,,10.71,2,35,8471,323,244,567,9003.7,28.8,550,550,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,2,43,2,1,1,,,11.86,2,184,9625,633,277,910,3433.0,28.8,621,621,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,2,43,1,0,0,empty_cta,code_fence,10.01,2,180,7740,379,225,604,2094.8,29.1,503,503,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,2,43,2,1,0,,extra_text|code_fence,12.38,2,208,10113,688,287,975,3293.4,28.4,526,526,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S1,정보충분,,2,43,1,1,1,,,12.23,3,38,10047,527,290,817,13729.7,28.9,644,644,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S2,정보부족,N2,2,43,1,1,1,,,12.44,2,78,10312,500,291,791,6384.9,28.2,662,662,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S8,긴출력,,2,43,1,1,1,,,12.15,2,104,9992,520,283,803,4994.6,28.3,637,637,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,2,43,1,1,1,,,11.7,2,189,9455,556,268,824,2932.2,28.3,591,591,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C0,누적_초기생성,,2,43,1,1,1,,,12.72,3,114,10560,527,299,826,4619.1,28.3,649,649,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C1,누적1_cta,,2,43,1,1,1,,,3.49,2,128,1256,277,37,314,2161.1,29.4,90,90,74,0.142,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,2,43,1,0,0,request_not_applied,,5.91,2,179,3625,338,106,444,1882.7,29.2,221,221,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,2,43,2,0,0,request_not_applied,,6.8,2,129,4622,500,134,634,3846.9,29.0,307,307,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,2,43,3,0,0,request_not_applied,,6.5,2,134,4304,690,125,815,5118.7,29.0,274,274,179,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C4,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D1,기간미제공_날짜생성여부,,3,44,1,1,1,,,12.11,2,61,9925,496,286,782,8112.3,28.8,670,670,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D2,기간제공_날짜준수,,3,44,1,1,1,,,13.95,3,117,11788,527,334,861,4500.2,28.3,745,745,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D3,혜택미제공_수치창작여부,,3,44,1,1,1,,,12.84,2,76,10719,499,305,804,6533.9,28.5,697,697,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D4,자리표시자_규칙없음,,3,44,1,1,1,,,11.74,2,131,9572,474,272,746,3591.3,28.4,631,631,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D5,자리표시자_규칙있음,D4,3,44,1,1,1,,,12.21,2,181,9990,500,285,785,2761.0,28.5,669,669,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E1,전체재생성_짧은문서,,3,44,1,1,0,,code_fence,6.92,2,36,4764,279,140,419,7634.8,29.4,281,281,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E2,블록왕복_짧은문서,E1,3,44,1,1,0,,code_fence,3.74,2,127,1518,276,44,320,2161.0,29.0,89,89,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,3,44,1,0,0,diff_unintended,code_fence,19.48,2,36,17287,624,495,1119,17294.4,28.6,1015,1015,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,3,44,2,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.33,2,199,20074,1193,555,1748,5992.1,27.6,1202,1202,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,3,44,3,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.91,2,277,20575,1864,567,2431,6710.7,27.6,1245,1245,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E5,블록왕복_긴문서,E4,3,44,1,1,0,,code_fence,3.72,2,33,1495,276,44,320,8317.8,29.4,89,89,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,3,44,1,0,0,no_data_block,extra_text|code_fence,25.58,2,458,23008,705,647,1352,1536.6,28.1,1205,1205,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,3,44,2,1,0,,extra_text|code_fence,23.94,2,217,21663,1438,603,2041,6622.9,27.8,1378,1378,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,3,44,1,1,0,,extra_text|code_fence,20.44,2,36,18188,694,520,1214,19101.6,28.6,1116,1116,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,3,44,1,0,0,no_section|lost_hero|lost_benefits|lost_cta,extra_text|code_fence,18.36,2,454,15791,682,453,1135,1499.0,28.7,758,758,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,3,44,2,0,0,no_data_block,extra_text|code_fence,19.25,3,261,16930,1242,491,1733,4758.1,29.0,1011,1011,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,3,44,3,0,0,no_data_block|lost_cta,extra_text|code_fence,18.66,3,231,16381,1819,456,2275,7868.5,27.8,839,839,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,3,44,1,0,0,empty_cta,,11.54,2,35,9312,323,296,619,9024.4,31.8,679,679,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,3,44,2,1,1,,,12.0,2,168,9776,685,310,995,4071.3,31.7,713,713,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,7.08,2,32,4929,379,159,538,11817.5,32.3,363,363,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,3,44,2,1,0,,extra_text|code_fence,10.28,2,274,7951,679,253,932,2473.1,31.8,502,502,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S1,정보충분,,3,44,1,1,1,,,12.74,2,31,10577,527,337,864,16639.8,31.9,738,738,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S2,정보부족,N2,3,44,1,1,1,,,10.98,2,68,8864,500,283,783,7322.8,31.9,644,644,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S8,긴출력,,3,44,1,1,1,,,11.45,2,94,9326,520,297,817,5496.8,31.8,654,654,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,3,44,1,1,1,,,10.84,2,170,8601,556,274,830,3263.0,31.9,630,630,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C0,누적_초기생성,,3,44,1,1,1,,,12.67,2,102,10513,527,334,861,5125.3,31.8,745,745,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C1,누적1_cta,,3,44,1,1,1,,,3.36,2,116,1157,285,38,323,2442.9,32.8,91,91,97,0.128,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,3,44,1,1,1,,,5.38,2,165,3127,342,102,444,2063.2,32.6,211,211,187,0.287,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,3,44,1,0,0,request_not_applied|diff_unintended,code_fence,3.85,3,114,1643,284,54,338,2474.1,32.9,126,126,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,3,44,2,1,0,,code_fence,3.9,2,162,1682,412,55,467,2538.3,32.7,127,127,91,0.165,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C4,누적4_steps,,3,44,1,1,1,,,4.74,2,32,2630,244,86,330,7559.3,32.7,201,201,0,0.21,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,3,44,1,0,0,request_not_applied|diff_unintended,,4.51,2,114,2299,298,75,373,2609.5,32.6,150,150,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,3,44,2,0,0,diff_unintended,,4.07,2,113,1931,429,63,492,3779.8,32.6,131,131,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,3,44,3,0,0,diff_unintended,,3.94,2,114,1761,548,57,605,4769.0,32.4,118,118,129,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D1,기간미제공_날짜생성여부,,4,45,1,1,1,,,10.54,2,56,8366,496,268,764,8836.3,32.0,599,599,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D2,기간제공_날짜준수,,4,45,1,1,1,,,11.9,2,102,9749,527,312,839,5139.1,32.0,703,703,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D3,혜택미제공_수치창작여부,,4,45,1,1,1,,,11.03,3,67,8918,499,285,784,7421.0,32.0,651,651,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D4,자리표시자_규칙없음,,4,45,1,1,1,,,10.91,2,113,8761,474,281,755,4172.5,32.1,631,631,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D5,자리표시자_규칙있음,D4,4,45,1,1,1,,,11.32,2,162,9113,500,290,790,3075.2,31.8,653,653,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E1,전체재생성_짧은문서,,4,45,1,1,0,,code_fence,6.45,2,31,4309,279,140,419,8799.3,32.5,281,281,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E2,블록왕복_짧은문서,E1,4,45,1,1,0,,code_fence,3.54,2,115,1343,276,44,320,2384.2,32.7,93,93,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,4,45,1,0,0,diff_unintended,code_fence,17.75,2,32,15596,624,495,1119,19411.4,31.7,1015,1015,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,4,45,2,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,20.01,2,177,17766,1193,556,1749,6725.1,31.3,1205,1205,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,4,45,3,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,20.74,2,251,18412,1865,567,2432,7429.5,30.8,1245,1245,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E5,블록왕복_긴문서,E4,4,45,1,1,0,,code_fence,3.53,2,32,1337,276,44,320,8416.7,32.9,93,93,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,4,45,1,0,0,no_data_block,extra_text|code_fence,21.17,2,32,19025,705,601,1306,21381.8,31.6,1189,1189,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,4,45,2,1,0,,extra_text|code_fence,26.94,2,201,24686,1392,767,2159,6924.1,31.1,1648,1648,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,4,45,1,0,0,details_wrong_target,extra_text|code_fence,19.14,2,32,16936,694,536,1230,21496.7,31.6,1112,1112,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,4,45,2,0,0,details_wrong_target,code_fence,10.54,2,198,8290,1315,260,1575,6612.7,31.4,641,641,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,4,45,3,0,0,details_wrong_target,code_fence,10.74,2,182,8509,1644,265,1909,8994.0,31.1,659,659,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,4,45,1,0,0,no_section|lost_hero|lost_benefits|lost_cta,extra_text|code_fence,15.87,2,33,13653,682,433,1115,20646.6,31.7,792,792,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,4,45,2,1,0,,extra_text|code_fence,21.34,2,234,19028,1222,594,1816,5220.7,31.2,1267,1267,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,4,45,1,0,0,empty_cta,,10.7,2,31,8503,323,273,596,10373.8,32.1,637,637,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,4,45,2,0,0,empty_cta,,11.49,2,167,9283,662,296,958,3959.5,31.9,699,699,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,4,45,3,1,0,,extra_text,12.49,2,170,10276,1024,323,1347,5989.5,31.4,697,697,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,4,45,1,0,0,empty_cta,code_fence,9.6,2,34,7410,379,238,617,10889.6,32.1,525,525,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,4,45,2,1,0,,code_fence,10.63,2,185,8387,701,267,968,3782.5,31.8,618,618,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S1,정보충분,,4,45,1,1,1,,,11.11,2,32,8963,527,286,813,16223.9,31.9,665,665,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S2,정보부족,N2,4,45,1,1,1,,,10.93,2,69,8819,500,282,782,7223.5,32.0,654,654,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S8,긴출력,,4,45,1,1,1,,,11.44,2,91,9301,520,296,816,5687.5,31.8,655,655,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,4,45,1,0,0,exact_benefits_3,,11.21,2,168,8993,556,287,843,3290.7,31.9,644,644,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,4,45,2,1,1,,,10.3,2,122,8110,892,256,1148,7301.4,31.6,577,577,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C0,누적_초기생성,,4,45,1,1,1,,,11.96,2,101,9777,527,312,839,5178.5,31.9,703,703,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C1,누적1_cta,,4,45,1,1,1,,,3.25,2,115,1026,281,34,315,2441.3,33.1,75,75,84,0.113,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,4,45,1,1,1,,,5.57,2,177,3300,347,107,454,1950.1,32.4,227,227,203,0.33,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,4,45,1,0,0,request_not_applied|diff_unintended,code_fence,3.68,2,115,1488,279,49,328,2419.6,32.9,108,108,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,4,45,2,0,0,request_not_applied|diff_unintended,code_fence,3.72,2,164,1493,402,49,451,2447.7,32.8,109,109,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,4,45,3,1,0,,code_fence,3.74,2,167,1532,525,50,575,3140.0,32.6,109,109,73,0.151,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C4,누적4_steps,,4,45,1,1,1,,,4.82,2,31,2700,244,88,332,7666.0,32.6,197,197,0,0.217,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,4,45,1,0,0,diff_unintended,,3.84,2,115,1645,298,54,352,2590.9,32.8,111,111,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,4,45,2,0,0,diff_unintended,,5.62,2,114,3459,408,112,520,3570.4,32.4,237,237,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,4,45,3,0,0,diff_unintended,,4.21,2,118,2042,576,66,642,4860.2,32.3,143,143,127,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D1,기간미제공_날짜생성여부,,5,46,1,1,1,,,10.36,2,55,8177,496,262,758,8982.1,32.0,594,594,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D2,기간제공_날짜준수,,5,46,1,1,1,,,11.11,3,103,8987,527,287,814,5094.5,31.9,615,615,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D3,혜택미제공_수치창작여부,,5,46,1,1,1,,,11.39,2,67,9281,499,296,795,7388.9,31.9,680,680,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D4,자리표시자_규칙없음,,5,46,1,1,1,,,11.2,2,112,9044,474,289,763,4195.9,32.0,661,661,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,D,D5,자리표시자_규칙있음,D4,5,46,1,1,1,,,11.04,2,164,8822,500,281,781,3038.4,31.9,641,641,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E1,전체재생성_짧은문서,,5,46,1,1,0,,code_fence,6.5,2,32,4357,279,140,419,8569.3,32.1,281,281,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E2,블록왕복_짧은문서,E1,5,46,1,1,0,,code_fence,3.57,2,116,1350,276,44,320,2376.1,32.6,93,93,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,5,46,1,0,0,diff_unintended,code_fence,18.19,2,32,16009,624,495,1119,19115.3,30.9,1015,1015,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,5,46,2,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.06,2,197,19819,1193,555,1748,6027.6,28.0,1202,1202,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E4,전체재생성_긴문서,,5,46,3,0,0,full_doc_html|full_doc_head|full_doc_body|diff_unintended,code_fence,22.18,2,283,19832,1864,567,2431,6563.7,28.6,1245,1245,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,E,E5,블록왕복_긴문서,E4,5,46,1,1,0,,code_fence,3.62,4,33,1426,276,44,320,8327.3,30.9,93,93,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,5,46,1,0,0,lost_hero|lost_benefits,extra_text|code_fence,26.51,2,35,24331,705,720,1425,19915.8,29.6,1597,1597,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,5,46,2,0,0,empty_cta,extra_text|code_fence,25.45,2,210,23187,1513,678,2191,7175.8,29.2,1539,1539,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS1,카운트다운,,5,46,3,1,0,,extra_text|code_fence,33.23,2,274,30898,2291,874,3165,8355.2,28.3,1781,1781,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS2,접기펼치기,,5,46,1,1,0,,extra_text|code_fence,20.33,2,35,18012,694,516,1210,19283.1,28.6,974,974,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,5,46,1,0,0,no_section|lost_hero|lost_benefits|lost_cta,extra_text|code_fence,19.14,2,459,16568,682,478,1160,1482.9,28.9,790,790,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,5,46,2,0,0,lost_hero|empty_cta,extra_text|code_fence,14.68,1,250,12388,1267,351,1618,5055.3,28.3,688,688,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,JS,JS3,확인메시지,,5,46,3,1,0,,extra_text|code_fence,18.5,2,270,16157,1728,451,2179,6376.9,27.9,824,824,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,5,46,1,0,0,empty_cta,,12.26,2,76,9955,323,282,605,4195.8,28.3,658,658,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N2,정보부족_규칙없음,,5,46,2,1,1,,,13.28,2,185,11030,671,311,982,3612.0,28.2,745,745,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,5,46,1,0,0,empty_cta,code_fence,11.74,2,36,9564,379,275,654,10496.3,28.8,616,616,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,5,46,2,0,0,empty_cta,extra_text|code_fence,14.07,2,203,11811,738,331,1069,3618.7,28.0,723,723,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,N,N9,긴서술형_규칙없음,,5,46,3,0,0,empty_cta,extra_text|code_fence,14.81,3,263,12492,1169,349,1518,4431.6,27.9,766,766,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S1,정보충분,,5,46,1,1,1,,,13.27,2,35,11076,527,314,841,14847.6,28.3,676,676,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S2,정보부족,N2,5,46,1,1,1,,,12.09,2,77,9953,500,286,786,6440.8,28.7,659,659,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S8,긴출력,,5,46,1,1,1,,,12.3,2,102,10157,520,289,809,5066.1,28.5,641,641,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,S,S9,긴서술형,N9,5,46,1,1,1,,,12.05,3,194,9794,556,279,835,2852.7,28.5,610,610,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C0,누적_초기생성,,5,46,1,1,1,,,12.36,2,115,10180,527,287,814,4563.1,28.2,615,615,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C1,누적1_cta,,5,46,1,1,1,,,3.39,2,128,1138,277,34,311,2157.3,29.9,75,75,74,0.131,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,5,46,1,0,0,diff_unintended,,5.95,2,181,3690,342,107,449,1883.4,29.0,228,228,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,5,46,2,0,0,diff_unintended,,5.92,2,128,3727,505,107,612,3942.1,28.7,228,228,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C2,누적2_benefits,,5,46,3,1,1,,,6.2,2,134,4012,668,115,783,4978.0,28.7,251,251,188,0.411,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,5,46,1,0,0,request_not_applied|diff_unintended,code_fence,3.97,2,137,1744,279,49,328,2035.0,28.1,108,108,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,5,46,2,0,0,request_not_applied|diff_unintended,code_fence,3.93,2,188,1680,402,49,451,2129.2,29.2,109,109,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C3,누적3_cta,,5,46,3,1,0,,code_fence,3.98,2,186,1743,525,50,575,2816.5,28.7,109,109,73,0.169,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C4,누적4_steps,,5,46,1,1,1,,,5.62,2,239,3279,324,96,420,1350.1,29.3,227,227,199,0.341,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,5,46,1,0,0,diff_unintended,,4.02,2,115,1812,290,54,344,2521.3,29.8,111,111,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,5,46,2,0,0,diff_unintended,,4.62,2,127,2438,400,72,472,3127.4,29.5,151,151,,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,C,C5,누적5_hero,,5,46,3,0,0,diff_unintended,,4.69,2,127,2515,528,73,601,4134.1,29.0,158,158,108,,stop,,,
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,1,42,1,1,1,,,3.01,2,445,477,236,15,251,529.2,31.4,30,,,,stop,STYLE,cta,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R02,제목 글씨를 더 크게 해줘,,1,42,1,0,0,want_STYLE_hero_got_STYLE_<h1> 태그 또는 해당 영역 이름 >,,2.82,2,74,696,236,21,257,3156.5,30.1,47,,,,stop,STYLE,<h1> 태그 또는 해당 영역 이름 >,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R03,참여 단계 지워줘,,1,42,1,1,1,,,2.61,2,73,480,233,15,248,3152.6,31.2,35,,,,stop,DELETE,steps,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R04,유의사항 영역 빼줘,,1,42,1,1,1,,,2.58,2,71,469,235,15,250,3268.9,32.0,35,,,,stop,DELETE,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,1,42,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.57,2,75,447,238,14,252,3154.9,31.3,32,,,,stop,ADD,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,1,42,1,1,1,,,2.58,2,74,453,238,14,252,3200.9,30.8,33,,,,stop,EDIT,benefits,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,1,42,1,1,1,,,2.59,2,87,448,239,13,252,2739.1,29.0,29,,,,stop,EDIT,hero,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,1,42,1,1,1,,,2.63,2,86,483,239,14,253,2766.9,28.9,28,,,,stop,EDIT,cta,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,1,42,1,0,0,want_ADD_steps_got_ADD_participation-methods,,2.66,2,76,537,237,16,253,3091.5,29.8,45,,,,stop,ADD,participation-methods,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R10,유의사항 영역 만들어줘,,1,42,1,1,1,,,2.58,2,74,451,236,14,250,3177.9,31.0,31,,,,stop,ADD,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R11,혜택을 맨 위로 올려줘,,1,42,1,0,0,want_MOVE_benefits_got_MOVE_benefits<=>hero,,2.76,2,74,629,236,18,254,3169.7,28.6,40,,,,stop,MOVE,benefits<=>hero,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,1,42,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.61,2,74,484,237,15,252,3160.1,30.9,33,,,,stop,MOVE,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R13,전체적으로 톤을 밝게 해줘,,1,42,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.52,2,69,399,236,13,249,3398.2,32.6,31,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R14,전부 존댓말로 통일해줘,,1,42,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.6,3,73,461,236,14,250,3229.9,30.3,34,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,1,42,1,0,0,want_REWRITE_ALL_None_got_EDIT_null,,2.48,2,75,367,237,11,248,3137.4,30.0,27,,,,stop,EDIT,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,1,42,1,1,1,,,2.53,2,82,416,239,13,252,2886.9,31.2,31,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,1,42,1,1,1,,,2.53,2,71,407,237,13,250,3297.2,31.9,31,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R18,두 번째 버튼 바꿔줘,,1,42,1,0,0,want_ASK_None_got_EDIT_cta,,2.57,3,74,448,235,14,249,3138.0,31.2,28,,,,stop,EDIT,cta,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R19,그거 좀 고쳐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_<구체적인 영역 이름 필요>,,2.79,2,74,674,233,20,253,3110.4,29.6,43,,,,stop,EDIT,<구체적인 영역 이름 필요>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R20,아래쪽 부분을 손봐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_null,,2.48,2,71,364,236,11,247,3315.6,30.2,27,,,,stop,EDIT,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,2,43,1,0,0,want_STYLE_cta_got_STYLE_hero<button>,,2.71,2,70,579,236,17,253,3366.9,29.4,39,,,,stop,STYLE,hero<button>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R02,제목 글씨를 더 크게 해줘,,2,43,1,0,0,want_STYLE_hero_got_STYLE_<h1> 태그 또는 해당 영역 이름 >,,2.82,2,70,685,236,21,257,3368.7,30.6,47,,,,stop,STYLE,<h1> 태그 또는 해당 영역 이름 >,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R03,참여 단계 지워줘,,2,43,1,1,1,,,2.59,2,70,477,233,15,248,3286.9,31.4,35,,,,stop,DELETE,steps,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R04,유의사항 영역 빼줘,,2,43,1,1,1,,,2.6,2,68,481,235,15,250,3417.9,31.2,35,,,,stop,DELETE,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,2,43,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.57,2,70,440,238,14,252,3355.9,31.8,32,,,,stop,ADD,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,2,43,1,1,1,,,2.57,2,67,455,238,14,252,3527.3,30.8,33,,,,stop,EDIT,benefits,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,2,43,1,0,0,want_EDIT_hero_got_EDIT_hero<title>,,2.73,2,88,596,239,16,255,2699.5,26.8,36,,,,stop,EDIT,hero<title>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,2,43,1,1,1,,,2.64,2,85,483,239,14,253,2800.3,28.9,28,,,,stop,EDIT,cta,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,2,43,1,0,0,want_ADD_steps_got_ADD_participation-methods,,2.67,2,78,540,237,16,253,3021.5,29.6,45,,,,stop,ADD,participation-methods,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R10,유의사항 영역 만들어줘,,2,43,1,1,1,,,2.58,2,72,451,236,14,250,3260.7,31.0,31,,,,stop,ADD,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R11,혜택을 맨 위로 올려줘,,2,43,1,0,0,"want_MOVE_benefits_got_MOVE_benefits, above=hero:0",,2.86,2,70,751,236,21,257,3332.2,27.9,47,,,,stop,MOVE,"benefits, above=hero:0",0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,2,43,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.61,2,75,490,237,15,252,3133.8,30.6,33,,,,stop,MOVE,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R13,전체적으로 톤을 밝게 해줘,,2,43,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.52,3,70,400,236,13,249,3332.1,32.4,31,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R14,전부 존댓말로 통일해줘,,2,43,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.56,2,75,436,236,14,250,3130.6,32.1,34,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,2,43,1,0,0,want_REWRITE_ALL_None_got_EDIT_null,,2.49,3,74,361,237,11,248,3196.1,30.4,27,,,,stop,EDIT,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,2,43,1,1,1,,,2.54,2,81,396,239,13,252,2925.2,32.8,31,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,2,43,1,1,1,,,2.52,2,70,404,237,13,250,3353.1,32.1,31,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R18,두 번째 버튼 바꿔줘,,2,43,1,0,0,want_ASK_None_got_EDIT_cta,,2.58,3,74,455,235,14,249,3135.1,30.7,28,,,,stop,EDIT,cta,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R19,그거 좀 고쳐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_<구체적인 영역 이름 필요>,,2.77,2,70,647,233,20,253,3282.9,30.9,43,,,,stop,EDIT,<구체적인 영역 이름 필요>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R20,아래쪽 부분을 손봐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_hero,,2.59,2,73,458,236,14,250,3224.7,30.5,32,,,,stop,EDIT,hero,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,3,44,1,1,1,,,2.6,2,71,469,236,15,251,3307.3,32.0,30,,,,stop,STYLE,cta,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R02,제목 글씨를 더 크게 해줘,,3,44,1,0,0,want_STYLE_hero_got_STYLE_<h1> 태그 또는 해당 영역 이름 >,,2.81,2,74,681,236,21,257,3188.0,30.8,47,,,,stop,STYLE,<h1> 태그 또는 해당 영역 이름 >,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R03,참여 단계 지워줘,,3,44,1,1,1,,,2.59,4,75,472,233,15,248,3082.3,31.8,35,,,,stop,DELETE,steps,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R04,유의사항 영역 빼줘,,3,44,1,1,1,,,2.63,3,76,487,235,15,250,3062.8,30.8,35,,,,stop,DELETE,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,3,44,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.61,2,71,452,238,14,252,3340.0,30.9,32,,,,stop,ADD,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,3,44,1,1,1,,,2.56,7,74,436,238,14,252,3204.0,32.1,33,,,,stop,EDIT,benefits,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,3,44,1,0,0,want_EDIT_hero_got_EDIT_hero<title>,,2.69,2,84,553,239,16,255,2831.4,28.9,36,,,,stop,EDIT,hero<title>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,3,44,1,1,1,,,2.61,3,81,473,239,14,253,2935.8,29.6,28,,,,stop,EDIT,cta,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,3,44,1,0,0,want_ADD_steps_got_ADD_participation-methods,,2.66,2,71,519,237,16,253,3315.8,30.8,45,,,,stop,ADD,participation-methods,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R10,유의사항 영역 만들어줘,,3,44,1,1,1,,,2.59,3,77,452,236,14,250,3034.3,31.0,31,,,,stop,ADD,notices,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R11,혜택을 맨 위로 올려줘,,3,44,1,0,0,want_MOVE_benefits_got_MOVE_benefits<-->hero,,2.76,2,85,629,236,18,254,2774.9,28.6,42,,,,stop,MOVE,benefits<-->hero,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,3,44,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.6,2,71,474,237,15,252,3301.2,31.6,33,,,,stop,MOVE,benefits,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R13,전체적으로 톤을 밝게 해줘,,3,44,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.57,2,71,445,236,14,250,3314.9,31.4,32,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R14,전부 존댓말로 통일해줘,,3,44,1,0,0,want_REWRITE_ALL_None_got_GENERATE_null,,2.57,2,77,446,236,14,250,3058.3,31.4,34,,,,stop,GENERATE,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,3,44,1,0,0,want_REWRITE_ALL_None_got_EDIT_null,,2.47,2,75,350,237,11,248,3137.0,31.3,27,,,,stop,EDIT,,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,3,44,1,1,1,,,2.53,2,84,407,239,13,252,2825.6,31.9,31,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,3,44,1,1,1,,,2.56,2,73,443,237,14,251,3205.4,31.5,32,,,,stop,GENERATE,,1
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R18,두 번째 버튼 바꿔줘,,3,44,1,0,0,want_ASK_None_got_EDIT_cta,,2.59,2,75,454,235,14,249,3095.8,30.8,28,,,,stop,EDIT,cta,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R19,그거 좀 고쳐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_<구체적인 영역 이름 필요>,,2.78,2,75,650,233,20,253,3099.1,30.7,43,,,,stop,EDIT,<구체적인 영역 이름 필요>,0
+윤기,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,R,R20,아래쪽 부분을 손봐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_hero,,2.54,2,73,419,236,13,249,3190.6,31.0,30,,,,stop,EDIT,hero,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D1,기간미제공_날짜생성여부,,1,42,1,1,1,,,11.34,2,940,8362,553,246,799,588.0,29.4,500,500,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D2,기간제공_날짜준수,,1,42,1,1,1,,,9.14,2,113,6981,586,209,795,5152.8,29.9,455,455,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,1,42,1,0,0,invented_benefit,,9.55,2,74,7439,555,223,778,7409.4,30.0,476,476,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,1,42,2,1,1,,,9.69,2,101,7540,817,216,1033,8055.9,28.6,469,469,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D4,자리표시자_규칙없음,,1,42,1,1,0,,code_fence,9.9,2,131,7683,526,225,751,4009.5,29.3,487,487,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D5,자리표시자_규칙있음,D4,1,42,1,1,0,,extra_text|code_fence,10.23,2,186,8009,556,237,793,2986.6,29.6,480,480,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,1,42,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.58,2,516,1006,282,31,313,545.8,30.8,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,1,42,2,1,0,,code_fence,6.69,2,171,4460,405,133,538,2361.9,29.8,281,281,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,1,42,1,1,1,,,3.38,2,515,798,290,25,315,562.2,31.3,73,73,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E4,전체재생성_긴문서,,1,42,1,1,0,,code_fence,20.97,2,824,18055,671,522,1193,814.2,28.9,985,985,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,1,42,1,1,1,,,2.92,2,35,800,290,25,315,8161.0,31.2,73,73,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS1,카운트다운,,1,42,1,1,0,,code_fence,11.16,2,415,8676,765,255,1020,1839.5,29.4,657,657,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS2,접기펼치기,,1,42,1,1,0,,code_fence,7.76,2,419,5301,749,154,903,1784.9,29.0,351,351,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS3,확인메시지,,1,42,1,1,0,,code_fence,7.96,2,415,5491,739,160,899,1777.1,29.1,397,397,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|lost_cta,extra_text,9.35,3,512,6753,383,198,581,747.9,29.3,350,350,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,1,42,2,0,0,lost_cta,,6.24,2,217,3965,703,113,816,3225.9,28.5,237,237,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,1,42,3,0,0,empty_cta,,6.55,2,97,4404,854,126,980,8719.2,28.6,285,285,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|empty_cta,,8.07,2,176,5817,446,171,617,2523.5,29.4,382,382,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,1,42,2,1,1,,,10.08,2,269,7762,748,225,973,2771.2,29.0,503,503,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S1,정보충분,,1,42,1,1,1,,,9.33,3,129,7123,586,206,792,4511.4,28.9,439,439,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S2,정보부족,N2,1,42,1,1,0,,extra_text|code_fence,10.32,2,73,8175,556,237,793,7589.3,29.0,480,480,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S8,긴출력,,1,42,1,1,1,,,10.54,2,109,8364,581,243,824,5283.7,29.1,508,508,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S9,긴서술형,N9,1,42,1,1,1,,,8.95,3,180,6722,619,197,816,3433.1,29.3,437,437,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C0,누적_초기생성,,1,42,1,1,1,,,9.17,2,127,6988,586,206,792,4599.7,29.5,439,439,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,1,42,1,1,1,,,2.99,2,99,810,290,25,315,2914.0,30.9,73,73,70,0.179,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,누적2_benefits,,1,42,1,1,1,,,4.92,2,517,2344,340,70,410,656.4,29.9,136,136,112,0.315,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C3,누적3_cta,,1,42,1,1,1,,,3.25,2,127,1047,298,32,330,2331.6,30.5,107,107,73,0.23,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,누적4_steps,,1,42,1,0,0,exact_steps_2,,4.92,2,525,2349,315,70,385,599.4,29.8,137,137,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,누적4_steps,,1,42,2,1,1,,,3.77,3,122,1583,439,48,487,3579.5,30.3,106,106,125,0.241,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C5,누적5_hero,,1,42,1,1,1,,,4.18,3,513,1612,310,49,359,603.8,30.4,96,96,95,0.218,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D1,기간미제공_날짜생성여부,,2,43,1,1,1,,,10.18,4,72,8043,553,238,791,7608.0,29.6,505,505,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D2,기간제공_날짜준수,,2,43,1,1,1,,,6.59,2,126,4404,586,131,717,4632.4,29.7,286,286,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,2,43,1,0,0,invented_benefit,,9.31,2,73,7184,555,210,765,7520.8,29.2,455,455,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,2,43,2,1,1,,,7.05,2,98,4896,804,144,948,8180.5,29.4,309,309,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D4,자리표시자_규칙없음,,2,43,1,1,1,,,10.6,2,126,8396,526,247,773,4143.7,29.4,492,492,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D5,자리표시자_규칙있음,D4,2,43,1,1,1,,,9.11,2,184,6869,556,202,758,3005.5,29.4,440,440,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,2,43,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.59,2,516,1018,282,31,313,545.8,30.4,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,2,43,2,1,0,,code_fence,6.68,3,179,4452,405,133,538,2251.0,29.9,281,281,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,2,43,1,1,1,,,2.97,2,105,799,290,24,314,2756.1,30.0,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E4,전체재생성_긴문서,,2,43,1,1,0,,code_fence,20.21,2,32,18100,671,522,1193,20709.2,28.8,985,985,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,2,43,1,1,1,,,2.91,2,34,788,290,24,314,8511.1,30.4,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS1,카운트다운,,2,43,1,1,0,,code_fence,12.45,2,424,9948,765,288,1053,1803.6,28.9,734,734,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS2,접기펼치기,,2,43,1,1,0,,code_fence,7.77,3,415,5303,749,155,904,1801.7,29.2,354,354,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS3,확인메시지,,2,43,1,1,0,,code_fence,8.01,2,413,5542,739,162,901,1789.0,29.2,405,405,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,extra_text|code_fence,11.71,2,33,9585,383,283,666,11295.9,29.5,569,569,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,2,43,2,1,1,,,7.93,3,332,5544,831,159,990,2496.1,28.7,352,352,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,,8.23,2,34,6115,446,179,625,12839.0,29.3,400,400,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,2,43,2,1,1,,,10.82,2,278,8490,756,242,998,2718.6,28.5,529,529,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S1,정보충분,,2,43,1,1,1,,,6.77,2,129,4558,586,131,717,4511.6,28.7,286,286,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S2,정보부족,N2,2,43,1,1,1,,,10.45,2,76,8313,556,240,796,7255.8,28.9,504,504,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S8,긴출력,,2,43,1,1,1,,,10.74,2,110,8579,581,248,829,5244.3,28.9,520,520,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S9,긴서술형,N9,2,43,1,1,1,,,8.74,2,182,6502,619,187,806,3398.6,28.8,419,419,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C0,누적_초기생성,,2,43,1,1,1,,,6.68,2,126,4500,586,131,717,4650.5,29.1,286,286,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,2,43,1,0,0,request_not_applied,,2.89,2,94,711,290,22,312,3062.7,30.9,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,2,43,2,0,0,request_not_applied,,2.89,2,121,720,366,22,388,3010.9,30.6,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,2,43,3,0,0,request_not_applied,,2.87,2,121,711,442,22,464,3652.7,30.9,72,72,70,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C3,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C5,skipped_after_failure,,2,43,0,0,0,skipped_after_failure,,,,,,,,,,,,,,,,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D1,기간미제공_날짜생성여부,,3,44,1,1,1,,,10.13,2,59,7999,553,234,787,9335.4,29.3,499,499,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D2,기간제공_날짜준수,,3,44,1,1,1,,,10.49,2,126,8311,586,242,828,4627.3,29.1,489,489,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,3,44,1,1,1,,,11.0,2,76,8856,555,256,811,7283.1,28.9,535,535,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D4,자리표시자_규칙없음,,3,44,1,1,1,,,8.21,2,125,6032,526,177,703,4200.1,29.3,423,423,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D5,자리표시자_규칙있음,D4,3,44,1,1,1,,,8.77,2,185,6536,556,189,745,2994.2,28.9,438,438,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,3,44,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.15,2,30,1021,282,31,313,9386.5,30.4,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,3,44,2,1,0,,code_fence,6.83,2,180,4590,405,133,538,2240.1,29.0,281,281,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,3,44,1,0,0,request_not_applied,,2.91,2,97,732,290,22,312,2963.0,30.0,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,3,44,2,0,0,request_not_applied,,2.9,2,125,723,366,22,388,2916.4,30.4,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,3,44,3,0,0,request_not_applied,,2.89,2,125,719,442,22,464,3522.8,30.6,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E4,전체재생성_긴문서,,3,44,1,1,0,,code_fence,20.41,2,35,18301,671,522,1193,18704.9,28.5,985,985,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,3,44,1,0,0,request_not_applied,,2.85,3,33,714,290,22,312,8616.1,30.8,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,3,44,2,0,0,request_not_applied,,2.9,2,120,718,366,22,388,3040.7,30.6,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,3,44,3,0,0,request_not_applied,,2.91,3,122,712,442,22,464,3604.8,30.9,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS1,카운트다운,,3,44,1,1,0,,code_fence,16.15,2,418,13646,765,392,1157,1829.0,28.7,1035,1035,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS2,접기펼치기,,3,44,1,1,0,,code_fence,7.87,2,419,5384,749,155,904,1784.9,28.8,354,354,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS3,확인메시지,,3,44,1,1,0,,code_fence,8.03,3,418,5559,739,159,898,1765.4,28.6,396,396,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,,7.66,2,35,5545,383,163,546,10677.4,29.4,356,356,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,3,44,2,1,1,,,7.54,2,274,5228,677,151,828,2468.8,28.9,336,336,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|lost_cta,,4.79,2,36,2670,446,79,525,12281.8,29.6,136,136,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,3,44,2,0,0,empty_cta,,9.66,2,218,7400,631,214,845,2885.0,28.9,496,496,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,3,44,3,1,1,,,10.11,2,131,7931,908,225,1133,6898.7,28.4,524,524,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S1,정보충분,,3,44,1,1,1,,,9.77,2,36,7650,586,219,805,16074.2,28.6,445,445,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S2,정보부족,N2,3,44,1,1,1,,,8.42,2,76,6302,556,179,735,7252.1,28.4,420,420,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S8,긴출력,,3,44,1,1,1,,,10.57,2,110,8403,581,240,821,5274.9,28.6,498,498,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S9,긴서술형,N9,3,44,1,1,1,,,9.4,2,199,7150,619,204,823,3101.9,28.5,441,441,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C0,누적_초기생성,,3,44,1,1,1,,,6.6,2,129,4420,586,131,717,4540.7,29.6,286,286,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,3,44,1,1,1,,,3.0,3,98,818,290,25,315,2944.4,30.5,73,73,70,0.269,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,누적2_benefits,,3,44,1,1,1,,,4.47,2,100,2294,337,67,404,3352.0,29.2,127,127,103,0.431,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C3,누적3_cta,,3,44,1,1,1,,,3.22,2,124,1044,298,32,330,2396.3,30.6,107,107,73,0.325,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,누적4_steps,,3,44,1,1,1,,,3.36,2,73,1213,264,37,301,3587.5,30.5,104,104,0,0.254,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C5,누적5_hero,,3,44,1,1,1,,,3.83,2,105,1656,309,50,359,2929.2,30.2,96,96,93,0.233,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D1,기간미제공_날짜생성여부,,4,45,1,1,1,,,9.9,2,52,7780,553,223,776,10523.5,28.7,468,468,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D2,기간제공_날짜준수,,4,45,1,1,1,,,8.68,3,134,6493,586,189,775,4372.8,29.1,422,422,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,4,45,1,0,0,invented_benefit,,10.09,2,80,7953,555,229,784,6924.2,28.8,500,500,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,4,45,2,0,0,invented_benefit,,6.99,2,99,4846,823,139,962,8252.6,28.7,316,316,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,4,45,3,0,0,invented_benefit,,6.96,2,100,4802,1001,139,1140,9925.9,28.9,316,316,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D4,자리표시자_규칙없음,,4,45,1,1,1,,,8.9,2,122,6692,526,203,729,4290.0,30.3,448,448,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D5,자리표시자_규칙있음,D4,4,45,1,1,1,,,9.05,3,175,6817,556,205,761,3168.5,30.1,440,440,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,4,45,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.09,2,32,973,282,31,313,8708.5,31.9,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,4,45,2,1,0,,code_fence,6.6,2,170,4381,405,133,538,2374.8,30.4,281,281,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,4,45,1,1,1,,,2.94,2,100,786,290,25,315,2891.8,31.8,73,73,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E4,전체재생성_긴문서,,4,45,1,1,0,,code_fence,20.17,2,33,18052,671,522,1193,19918.7,28.9,985,985,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,4,45,1,1,1,,,2.96,2,36,840,290,25,315,7854.0,29.7,73,73,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS1,카운트다운,,4,45,1,1,0,,code_fence,14.57,2,33,12448,765,360,1125,22677.4,28.9,922,922,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS2,접기펼치기,,4,45,1,1,0,,code_fence,7.85,2,411,5334,749,155,904,1821.4,29.1,354,354,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS3,확인메시지,,4,45,1,1,0,,code_fence,7.95,3,411,5504,739,160,899,1796.3,29.1,397,397,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|lost_cta,extra_text|code_fence,19.98,2,37,17854,383,518,901,10217.1,29.0,951,951,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,4,45,2,0,0,empty_cta,,8.16,2,294,5834,1041,165,1206,3530.0,28.3,317,317,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,4,45,3,1,1,,,8.27,2,136,6079,1269,176,1445,9327.8,28.9,345,345,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|empty_cta,,7.08,2,31,4950,446,149,595,14356.5,30.1,357,357,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,4,45,2,1,1,,,8.92,2,271,6590,726,191,917,2671.0,29.0,458,458,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S1,정보충분,,4,45,1,1,1,,,9.77,2,35,7639,586,222,808,16703.2,29.1,479,479,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S2,정보부족,N2,4,45,1,1,1,,,9.12,2,79,7003,556,204,760,6963.9,29.1,446,446,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S8,긴출력,,4,45,1,1,1,,,10.33,2,111,8172,581,237,818,5189.3,29.0,501,501,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S9,긴서술형,N9,4,45,1,1,1,,,9.02,3,181,6785,619,199,818,3417.6,29.3,439,439,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C0,누적_초기생성,,4,45,1,1,1,,,9.51,2,129,7309,586,214,800,4538.2,29.3,468,468,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,4,45,1,1,1,,,2.99,2,107,805,292,25,317,2728.7,31.0,73,73,73,0.169,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,누적2_benefits,,4,45,1,1,1,,,4.62,2,109,2435,343,73,416,3129.8,30.0,142,142,118,0.312,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C3,누적3_cta,,4,45,1,1,1,,,3.25,2,122,1054,298,32,330,2430.4,30.3,107,107,73,0.219,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,누적4_steps,,4,45,1,1,1,,,3.73,2,157,1508,317,45,362,2014.8,29.8,104,104,135,0.227,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C5,누적5_hero,,4,45,1,1,1,,,3.87,2,102,1699,311,51,362,3034.0,30.0,98,98,102,0.216,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D1,기간미제공_날짜생성여부,,5,46,1,1,1,,,9.74,2,56,7610,553,223,776,9741.9,29.3,478,478,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D2,기간제공_날짜준수,,5,46,1,1,1,,,9.68,2,131,7468,586,220,806,4467.3,29.5,459,459,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D3,혜택미제공_수치창작여부,,5,46,1,1,1,,,8.77,3,73,6639,555,195,750,7548.4,29.4,438,438,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D4,자리표시자_규칙없음,,5,46,1,1,1,,,8.25,2,124,6077,526,178,704,4228.6,29.3,422,422,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,D,D5,자리표시자_규칙있음,D4,5,46,1,1,1,,,8.04,2,185,5806,556,166,722,3004.7,28.6,401,401,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,5,46,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.12,2,34,1012,282,31,313,8068.4,30.6,75,75,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E1,전체재생성_짧은문서,,5,46,2,1,0,,code_fence,6.83,2,182,4604,405,133,538,2215.9,28.9,281,281,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,5,46,1,0,0,request_not_applied,,2.89,2,104,712,290,22,312,2776.7,30.9,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,5,46,2,0,0,request_not_applied,,2.88,2,129,715,366,22,388,2837.0,30.8,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E2,블록왕복_짧은문서,E1,5,46,3,0,0,request_not_applied,,2.89,3,125,708,442,22,464,3534.5,31.1,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E4,전체재생성_긴문서,,5,46,1,1,0,,code_fence,20.1,2,35,17975,671,522,1193,19082.0,29.0,985,985,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,5,46,1,0,0,request_not_applied,,2.83,2,35,711,290,22,312,8125.3,30.9,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,5,46,2,0,0,request_not_applied,,2.89,2,126,710,366,22,388,2892.2,31.0,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,E,E5,블록왕복_긴문서,E4,5,46,3,0,0,request_not_applied,,2.88,2,121,708,442,22,464,3626.3,31.1,72,72,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS1,카운트다운,,5,46,1,1,0,,code_fence,14.48,2,35,12351,765,358,1123,21563.9,29.0,902,902,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS2,접기펼치기,,5,46,1,1,0,,code_fence,7.82,2,414,5314,749,155,904,1805.3,29.2,354,354,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,JS,JS3,확인메시지,,5,46,1,1,0,,code_fence,8.0,2,418,5540,739,160,899,1766.6,28.9,397,397,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,5,46,1,0,0,no_data_block|empty_hero|empty_benefits|empty_cta,extra_text|code_fence,12.74,2,35,10624,383,313,696,10886.2,29.5,605,605,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N2,정보부족_규칙없음,,5,46,2,1,1,,,9.81,2,336,7424,879,215,1094,2615.4,29.0,481,481,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,5,46,1,0,0,empty_hero|empty_benefits|empty_cta,,6.81,2,32,4695,446,140,586,13584.3,29.8,350,350,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,N,N9,긴서술형_규칙없음,,5,46,2,1,1,,,6.63,2,279,4319,717,126,843,2565.4,29.2,320,320,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S1,정보충분,,5,46,1,1,1,,,9.05,2,34,6945,586,203,789,16773.5,29.2,427,427,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S2,정보부족,N2,5,46,1,1,1,,,8.88,3,77,6748,556,199,755,7200.7,29.5,456,456,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S8,긴출력,,5,46,1,1,1,,,10.06,2,108,7880,581,230,811,5342.1,29.2,489,489,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,S,S9,긴서술형,N9,5,46,1,1,1,,,8.79,2,183,6541,619,189,808,3374.2,28.9,427,427,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C0,누적_초기생성,,5,46,1,1,1,,,9.88,2,130,7704,586,225,811,4478.4,29.2,468,468,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C1,누적1_cta,,5,46,1,1,1,,,2.99,2,104,808,293,25,318,2811.8,30.9,73,73,73,0.168,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,누적2_benefits,,5,46,1,0,0,diff_unintended,,4.62,2,104,2449,343,73,416,3284.6,29.8,143,143,,,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C2,누적2_benefits,,5,46,2,1,1,,,4.64,2,130,2456,470,73,543,3614.1,29.7,143,143,119,0.312,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C3,누적3_cta,,5,46,1,1,1,,,3.22,3,121,1034,298,32,330,2442.8,30.9,107,107,73,0.217,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C4,누적4_steps,,5,46,1,1,1,,,3.91,2,154,1682,326,51,377,2107.3,30.3,110,110,145,0.241,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,C,C5,누적5_hero,,5,46,1,1,1,,,3.65,2,107,1487,311,45,356,2889.9,30.2,91,91,94,0.2,stop,,,
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,1,42,1,0,0,want_STYLE_cta_got_STYLE_null,,2.75,3,396,306,249,10,259,627.7,32.6,28,,,,stop,STYLE,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R02,제목 글씨를 더 크게 해줘,,1,42,1,1,1,,,2.41,2,52,295,246,10,256,4687.6,33.9,30,,,,stop,STYLE,hero,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R03,참여 단계 지워줘,,1,42,1,1,1,,,2.41,2,52,298,244,10,254,4654.2,33.5,32,,,,stop,DELETE,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R04,유의사항 영역 빼줘,,1,42,1,1,1,,,2.43,2,51,332,246,11,257,4767.2,33.1,34,,,,stop,DELETE,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,1,42,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.43,2,49,329,248,11,259,4960.8,33.4,32,,,,stop,ADD,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,1,42,1,1,1,,,2.44,2,54,334,249,11,260,4543.0,32.9,33,,,,stop,EDIT,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,1,42,1,0,0,want_EDIT_hero_got_REWRITE_ALL_null,,2.49,2,72,369,251,12,263,3453.5,32.5,34,,,,stop,REWRITE_ALL,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,1,42,1,0,0,want_EDIT_cta_got_STYLE_cta,,2.44,2,69,305,250,10,260,3581.4,32.7,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,1,42,1,1,1,,,2.41,6,53,297,246,10,256,4595.0,33.6,29,,,,stop,ADD,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R10,유의사항 영역 만들어줘,,1,42,1,1,1,,,2.43,2,54,334,244,11,255,4456.9,32.8,31,,,,stop,ADD,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R11,혜택을 맨 위로 올려줘,,1,42,1,1,1,,,2.45,3,51,345,248,11,259,4785.7,31.8,33,,,,stop,MOVE,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,1,42,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.46,2,71,343,249,11,260,3471.5,32.0,33,,,,stop,MOVE,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R13,전체적으로 톤을 밝게 해줘,,1,42,1,1,1,,,2.48,2,67,369,249,12,261,3696.3,32.5,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R14,전부 존댓말로 통일해줘,,1,42,1,1,1,,,2.48,2,52,371,247,12,259,4747.1,32.3,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,1,42,1,1,1,,,2.49,2,52,382,249,12,261,4788.0,31.4,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,1,42,1,1,1,,,2.47,2,71,335,252,11,263,3541.6,32.8,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,1,42,1,1,1,,,2.42,2,52,334,246,11,257,4649.9,32.8,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R18,두 번째 버튼 바꿔줘,,1,42,1,0,0,want_ASK_None_got_STYLE_cta,,2.43,2,50,300,245,10,255,4823.1,33.3,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R19,그거 좀 고쳐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_steps,,2.4,2,51,294,243,10,253,4705.9,33.9,30,,,,stop,EDIT,steps,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R20,아래쪽 부분을 손봐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_steps,,2.4,3,50,301,246,10,256,4824.2,33.2,30,,,,stop,EDIT,steps,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,2,43,1,0,0,want_STYLE_cta_got_STYLE_null,,2.43,2,75,302,249,10,259,3287.6,33.0,28,,,,stop,STYLE,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R02,제목 글씨를 더 크게 해줘,,2,43,1,1,1,,,2.39,2,53,296,246,10,256,4605.3,33.8,30,,,,stop,STYLE,hero,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R03,참여 단계 지워줘,,2,43,1,1,1,,,2.4,2,52,300,244,10,254,4674.3,33.3,32,,,,stop,DELETE,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R04,유의사항 영역 빼줘,,2,43,1,1,1,,,2.45,2,56,330,246,11,257,4361.3,33.3,34,,,,stop,DELETE,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,2,43,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.42,2,50,316,248,11,259,4944.1,34.8,32,,,,stop,ADD,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,2,43,1,1,1,,,2.44,2,53,328,249,11,260,4667.8,33.5,33,,,,stop,EDIT,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,2,43,1,0,0,want_EDIT_hero_got_REWRITE_ALL_null,,2.48,3,73,362,251,12,263,3420.6,33.1,34,,,,stop,REWRITE_ALL,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,2,43,1,0,0,want_EDIT_cta_got_STYLE_cta,,2.43,2,74,313,250,10,260,3343.4,31.9,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,2,43,1,1,1,,,2.41,3,52,310,246,10,256,4692.0,32.2,29,,,,stop,ADD,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R10,유의사항 영역 만들어줘,,2,43,1,1,1,,,2.44,2,49,340,244,11,255,4909.4,32.3,31,,,,stop,ADD,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R11,혜택을 맨 위로 올려줘,,2,43,1,1,1,,,2.43,2,54,335,248,11,259,4552.4,32.8,33,,,,stop,MOVE,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,2,43,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.47,2,70,341,249,11,260,3529.8,32.2,33,,,,stop,MOVE,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R13,전체적으로 톤을 밝게 해줘,,2,43,1,1,1,,,2.49,2,70,373,249,12,261,3511.6,32.1,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R14,전부 존댓말로 통일해줘,,2,43,1,1,1,,,2.49,2,50,378,247,12,259,4869.5,31.7,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,2,43,1,1,1,,,2.5,2,53,372,249,12,261,4651.0,32.2,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,2,43,1,1,1,,,2.48,2,76,349,252,11,263,3291.1,31.5,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,2,43,1,1,1,,,2.44,2,55,338,246,11,257,4467.7,32.5,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R18,두 번째 버튼 바꿔줘,,2,43,1,0,0,want_ASK_None_got_STYLE_cta,,2.41,2,54,303,245,10,255,4478.1,32.9,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R19,그거 좀 고쳐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_steps,,2.4,2,54,297,243,10,253,4488.0,33.7,30,,,,stop,EDIT,steps,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R20,아래쪽 부분을 손봐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_steps,,2.41,2,53,307,246,10,256,4560.5,32.5,30,,,,stop,EDIT,steps,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,3,44,1,0,0,want_STYLE_cta_got_STYLE_null,,2.43,2,71,308,249,10,259,3501.2,32.4,28,,,,stop,STYLE,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R02,제목 글씨를 더 크게 해줘,,3,44,1,1,1,,,2.42,2,55,315,246,10,256,4465.1,31.7,30,,,,stop,STYLE,hero,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R03,참여 단계 지워줘,,3,44,1,1,1,,,2.42,2,49,313,244,10,254,4914.5,31.9,32,,,,stop,DELETE,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R04,유의사항 영역 빼줘,,3,44,1,1,1,,,2.43,2,55,330,246,11,257,4423.9,33.2,34,,,,stop,DELETE,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,3,44,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.45,2,51,342,248,11,259,4802.2,32.1,32,,,,stop,ADD,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,3,44,1,1,1,,,2.44,2,51,339,249,11,260,4797.7,32.4,33,,,,stop,EDIT,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,3,44,1,0,0,want_EDIT_hero_got_REWRITE_ALL_null,,2.45,2,67,345,251,12,263,3743.4,34.7,34,,,,stop,REWRITE_ALL,,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,3,44,1,0,0,want_EDIT_cta_got_STYLE_cta,,2.41,4,71,282,250,10,260,3509.3,35.3,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,3,44,1,1,1,,,2.38,2,48,296,246,10,256,5083.8,33.7,29,,,,stop,ADD,steps,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R10,유의사항 영역 만들어줘,,3,44,1,1,1,,,2.42,2,52,323,244,11,255,4683.3,34.0,31,,,,stop,ADD,notices,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R11,혜택을 맨 위로 올려줘,,3,44,1,1,1,,,2.44,3,54,326,248,11,259,4586.6,33.7,33,,,,stop,MOVE,benefits,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,3,44,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.44,2,66,321,249,11,260,3718.8,34.2,33,,,,stop,MOVE,benefits,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R13,전체적으로 톤을 밝게 해줘,,3,44,1,1,1,,,2.47,2,67,358,249,12,261,3678.8,33.5,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R14,전부 존댓말로 통일해줘,,3,44,1,1,1,,,2.46,2,51,357,247,12,259,4784.9,33.6,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,3,44,1,1,1,,,2.48,2,54,370,249,12,261,4541.5,32.4,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,3,44,1,1,1,,,2.44,2,71,336,252,11,263,3538.8,32.7,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,3,44,1,1,1,,,2.43,2,51,332,246,11,257,4787.9,33.1,31,,,,stop,GENERATE,,1
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R18,두 번째 버튼 바꿔줘,,3,44,1,0,0,want_ASK_None_got_STYLE_cta,,2.39,3,46,295,245,10,255,5248.8,33.8,29,,,,stop,STYLE,cta,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R19,그거 좀 고쳐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_steps,,2.4,2,50,295,243,10,253,4809.7,33.8,30,,,,stop,EDIT,steps,0
+윤기,qwen2.5:7b,845dbda0ea48ed74,cuda,R,R20,아래쪽 부분을 손봐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_steps,,2.4,3,50,302,246,10,256,4875.1,33.1,30,,,,stop,EDIT,steps,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D1,기간미제공_날짜생성여부,,1,42,1,1,0,,code_fence,5.79,2,510,3220,514,139,653,1006.4,43.2,340,340,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D2,기간제공_날짜준수,,1,42,1,1,0,,code_fence,7.16,3,554,4550,543,198,741,979.1,43.5,431,431,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,1,42,1,0,0,invented_benefit,code_fence,5.95,2,540,3355,517,147,664,956.8,43.8,349,349,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,1,42,2,0,0,invented_benefit,code_fence,5.77,2,341,3392,747,147,894,2186.6,43.3,349,349,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,1,42,3,0,0,invented_benefit,code_fence,5.79,2,361,3379,977,147,1124,2701.8,43.5,349,349,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D4,자리표시자_규칙없음,,1,42,1,1,0,,code_fence,7.42,2,491,4703,490,207,697,996.8,44.0,458,458,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D5,자리표시자_규칙있음,D4,1,42,1,1,0,,code_fence,6.28,2,538,3690,517,161,678,959.8,43.6,372,372,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,1,42,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.14,2,324,707,276,32,308,850.0,45.2,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,1,42,2,1,0,,code_fence,5.02,2,188,2783,397,122,519,2106.0,43.8,281,281,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E2,블록왕복_짧은문서,E1,1,42,1,1,0,,code_fence,3.13,2,321,690,270,31,301,839.4,44.9,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,1,42,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,3.35,2,645,592,650,27,677,1007.7,45.5,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,1,42,2,1,0,,code_fence,13.1,2,224,10816,767,471,1238,3412.0,43.5,1002,1002,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E5,블록왕복_긴문서,E4,1,42,1,1,0,,code_fence,3.04,2,88,724,270,31,301,3039.9,42.8,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS1,카운트다운,,1,42,1,1,0,,code_fence,12.91,2,753,10007,717,428,1145,952.1,42.8,953,953,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,1,42,1,0,0,empty_benefits|details_wrong_target,code_fence,6.81,2,662,4018,708,176,884,1068.3,43.8,397,397,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,1,42,2,0,0,details_wrong_target,code_fence,7.31,3,400,4861,985,211,1196,2461.4,43.4,491,491,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,1,42,3,0,0,details_wrong_target,code_fence,7.3,2,368,4888,1282,211,1493,3478.4,43.2,491,491,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS3,확인메시지,,1,42,1,1,0,,code_fence,6.75,2,678,3859,696,169,865,1025.9,43.8,432,432,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,5.85,2,374,3345,342,147,489,913.3,43.9,309,309,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,1,42,2,1,0,,code_fence,7.72,2,378,5296,622,232,854,1644.2,43.8,564,564,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,6.64,2,426,4076,403,181,584,945.5,44.4,422,422,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,1,42,2,1,0,,code_fence,7.14,2,412,4698,724,204,928,1754.0,43.4,523,523,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S1,정보충분,,1,42,1,1,0,,code_fence,7.27,2,545,4522,543,198,741,995.1,43.8,431,431,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S2,정보부족,N2,1,42,1,1,0,,code_fence,6.24,2,540,3634,517,161,678,957.3,44.3,372,372,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,1,42,1,0,0,placeholder,code_fence,8.04,3,532,5437,538,237,775,1009.7,43.6,554,554,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,1,42,2,0,0,placeholder,code_fence,8.49,3,435,5975,868,259,1127,1993.7,43.3,554,554,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,1,42,3,1,0,,code_fence,8.55,3,475,6021,1198,259,1457,2521.2,43.0,548,548,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S9,긴서술형,N9,1,42,1,1,0,,code_fence,7.53,3,559,4757,578,207,785,1033.7,43.5,486,486,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C0,누적_초기생성,,1,42,1,1,0,,code_fence,7.16,4,547,4571,543,198,741,992.0,43.3,431,431,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C1,누적1_cta,,1,42,1,1,0,,code_fence,3.14,2,333,672,271,31,302,813.5,46.1,73,73,73,0.181,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C2,누적2_benefits,,1,42,1,1,0,,code_fence,5.17,3,369,2725,366,121,487,989.6,44.4,233,233,209,0.546,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C3,누적3_cta,,1,42,1,1,0,,code_fence,3.29,2,316,873,273,40,313,863.1,45.8,109,109,73,0.236,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C4,누적4_steps,,1,42,1,1,0,,code_fence,3.28,2,260,924,245,42,287,941.1,45.4,108,108,0,0.198,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C5,누적5_hero,,1,42,1,1,0,,code_fence,3.86,2,331,1449,308,65,373,927.8,44.8,113,113,119,0.21,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D1,기간미제공_날짜생성여부,,2,43,1,1,0,,code_fence,5.77,2,481,3154,514,139,653,1068.3,44.1,340,340,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D2,기간제공_날짜준수,,2,43,1,1,0,,code_fence,7.05,1,549,4463,543,193,736,988.8,43.2,437,437,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,2,43,1,0,0,invented_benefit,code_fence,5.88,2,549,3291,517,145,662,941.3,44.1,354,354,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,2,43,2,0,0,invented_benefit,code_fence,5.69,2,316,3322,745,145,890,2352.0,43.6,354,354,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,2,43,3,0,0,invented_benefit,code_fence,5.75,2,368,3345,973,145,1118,2637.8,43.3,354,354,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D4,자리표시자_규칙없음,,2,43,1,1,0,,code_fence,7.38,3,487,4706,490,207,697,1004.7,44.0,458,458,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D5,자리표시자_규칙있음,D4,2,43,1,1,0,,code_fence,7.09,2,537,4496,517,197,714,962.0,43.8,430,430,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,2,43,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,3.11,3,317,696,276,32,308,870.2,46.0,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,2,43,2,1,0,,code_fence,4.89,3,187,2674,397,119,516,2121.1,44.5,281,281,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E2,블록왕복_짧은문서,E1,2,43,1,1,0,,code_fence,3.19,2,335,697,270,31,301,804.7,44.4,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,2,43,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,2.86,2,139,593,650,27,677,4651.4,45.5,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,2,43,2,1,0,,code_fence,13.3,2,243,11002,767,471,1238,3153.5,42.8,1002,1002,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E5,블록왕복_긴문서,E4,2,43,1,1,0,,code_fence,2.96,2,84,689,270,31,301,3194.0,45.0,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS1,카운트다운,,2,43,1,1,0,,code_fence,13.02,2,732,10137,717,439,1156,978.9,43.3,959,959,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,2,43,1,0,0,empty_benefits|details_wrong_target,code_fence,6.88,2,656,4048,708,176,884,1078.0,43.5,397,397,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,2,43,2,0,0,empty_benefits|details_wrong_target,code_fence,7.83,2,409,5382,985,231,1216,2404.5,42.9,538,538,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,2,43,3,0,0,empty_benefits|details_wrong_target,code_fence,9.49,2,431,6994,1329,296,1625,3077.4,42.3,728,728,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS3,확인메시지,,2,43,1,1,0,,code_fence,6.7,2,679,3815,696,166,862,1024.8,43.5,432,432,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,5.52,2,102,3267,342,145,487,3342.2,44.4,306,306,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,2,43,2,1,0,,code_fence,7.19,2,367,4757,620,208,828,1688.3,43.7,491,491,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,6.78,2,119,4456,403,195,598,3360.1,43.8,460,460,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,2,43,2,1,0,,code_fence,7.59,2,411,5125,737,224,961,1790.8,43.7,584,584,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S1,정보충분,,2,43,1,1,0,,code_fence,6.5,2,111,4197,543,185,728,4852.3,44.1,413,413,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S2,정보부족,N2,2,43,1,1,0,,code_fence,7.1,3,548,4506,517,197,714,943.4,43.7,430,430,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,2,43,1,1,0,,code_fence,8.35,2,545,5751,538,252,790,986.4,43.8,585,585,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S9,긴서술형,N9,2,43,1,1,0,,code_fence,7.56,2,548,4981,578,220,798,1053.6,44.2,513,513,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C0,누적_초기생성,,2,43,1,1,0,,code_fence,6.97,2,535,4374,543,193,736,1013.3,44.1,437,437,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C1,누적1_cta,,2,43,1,1,0,,code_fence,3.16,2,339,694,271,31,302,798.1,44.6,73,73,73,0.178,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C2,누적2_benefits,,2,43,1,1,0,,code_fence,4.97,2,374,2496,358,111,469,956.0,44.5,231,231,207,0.533,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C3,누적3_cta,,2,43,1,1,0,,code_fence,3.36,2,324,890,273,40,313,840.2,44.9,109,109,73,0.233,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C4,누적4_steps,,2,43,1,1,0,,code_fence,3.12,2,73,924,245,42,287,3316.7,45.4,108,108,0,0.196,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C5,누적5_hero,,2,43,1,1,0,,code_fence,3.98,2,322,1552,311,70,381,964.1,45.1,121,121,127,0.224,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D1,기간미제공_날짜생성여부,,3,44,1,1,0,,code_fence,5.55,2,475,2959,514,131,645,1081.8,44.3,320,320,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D2,기간제공_날짜준수,,3,44,1,1,0,,code_fence,7.04,2,537,4453,543,197,740,1009.4,44.2,439,439,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,3,44,1,0,0,invented_benefit,code_fence,5.92,3,527,3350,517,148,665,979.7,44.2,357,357,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,3,44,2,0,0,invented_benefit,code_fence,5.76,2,324,3387,749,148,897,2305.9,43.7,357,357,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,3,44,3,0,0,invented_benefit,code_fence,5.8,2,374,3391,981,148,1129,2619.0,43.6,357,357,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D4,자리표시자_규칙없음,,3,44,1,1,0,,code_fence,6.87,2,483,4219,490,185,675,1014.3,43.8,419,419,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D5,자리표시자_규칙있음,D4,3,44,1,1,0,,code_fence,6.97,3,547,4364,517,193,710,943.8,44.2,435,435,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,3,44,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,2.91,2,89,694,276,32,308,3073.1,46.1,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,3,44,2,1,0,,code_fence,4.98,2,189,2751,397,122,519,2097.2,44.3,281,281,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E2,블록왕복_짧은문서,E1,3,44,1,1,0,,code_fence,3.13,2,318,675,270,31,301,847.6,45.9,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,3,44,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,2.85,2,131,596,650,27,677,4942.5,45.2,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,3,44,2,1,0,,code_fence,13.15,2,233,10851,767,471,1238,3278.6,43.4,1002,1002,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E5,블록왕복_긴문서,E4,3,44,1,1,0,,code_fence,2.97,2,79,695,270,31,301,3397.8,44.6,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS1,카운트다운,,3,44,1,1,0,,code_fence,12.43,2,126,10164,717,443,1160,5654.9,43.6,1022,1022,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,3,44,1,0,0,empty_benefits|details_wrong_target,code_fence,6.55,2,153,4136,708,176,884,4622.0,42.5,397,397,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,3,44,2,0,0,empty_benefits|details_wrong_target,code_fence,7.85,2,433,5366,985,233,1218,2272.3,43.4,536,536,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,3,44,3,0,0,empty_benefits|details_wrong_target,code_fence,8.76,2,426,6286,1331,269,1600,3118.1,42.8,619,619,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS3,확인메시지,,3,44,1,1,0,,code_fence,6.15,2,125,3778,696,166,862,5532.2,43.9,432,432,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,5.64,2,106,3327,342,148,490,3207.1,44.5,311,311,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,3,44,2,1,0,,code_fence,7.76,2,362,5356,623,234,857,1718.2,43.7,566,566,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,6.8,2,104,4496,403,199,602,3864.1,44.3,473,473,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,3,44,2,1,0,,code_fence,7.59,2,422,5134,743,224,967,1759.9,43.6,569,569,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S1,정보충분,,3,44,1,1,0,,code_fence,6.62,3,114,4318,543,188,731,4750.8,43.5,418,418,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S2,정보부족,N2,3,44,1,1,0,,code_fence,7.2,2,560,4568,517,193,710,923.0,42.2,435,435,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,3,44,1,1,0,,code_fence,8.04,3,566,5414,538,227,765,950.0,41.9,543,543,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S9,긴서술형,N9,3,44,1,1,0,,code_fence,7.53,2,578,4893,578,206,784,998.9,42.1,498,498,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C0,누적_초기생성,,3,44,1,1,0,,code_fence,7.3,2,573,4691,543,197,740,946.3,42.0,439,439,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C1,누적1_cta,,3,44,1,1,0,,code_fence,3.16,2,340,706,271,31,302,796.7,43.9,73,73,73,0.178,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C2,누적2_benefits,,3,44,1,1,0,,code_fence,5.22,2,393,2752,362,117,479,919.4,42.5,233,233,209,0.536,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C3,누적3_cta,,3,44,1,1,0,,code_fence,3.34,2,318,905,273,40,313,856.7,44.2,109,109,73,0.232,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C4,누적4_steps,,3,44,1,1,0,,code_fence,3.16,2,104,962,245,42,287,2353.1,43.6,108,108,0,0.195,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C5,누적5_hero,,3,44,1,1,0,,code_fence,3.9,2,114,1627,311,70,381,2705.9,43.0,121,121,127,0.223,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D1,기간미제공_날짜생성여부,,4,45,1,1,0,,code_fence,6.21,2,506,3559,514,150,664,1014.9,42.1,356,356,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D2,기간제공_날짜준수,,4,45,1,1,0,,code_fence,7.27,2,560,4677,543,201,744,969.5,43.0,439,439,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,4,45,1,0,0,invented_benefit,code_fence,6.15,2,562,3537,517,150,667,919.7,42.4,357,357,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,4,45,2,0,0,invented_benefit,code_fence,5.91,2,321,3520,751,150,901,2334.3,42.6,357,357,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,4,45,3,0,0,invented_benefit,code_fence,5.84,2,368,3428,985,146,1131,2669.7,42.6,345,345,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D4,자리표시자_규칙없음,,4,45,1,1,0,,code_fence,7.05,2,514,4340,490,185,675,953.0,42.6,419,419,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D5,자리표시자_규칙있음,D4,4,45,1,1,0,,code_fence,7.1,2,549,4510,517,193,710,940.7,42.8,426,426,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,4,45,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,2.94,2,88,733,276,32,308,3120.8,43.6,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,4,45,2,1,0,,code_fence,4.97,3,192,2722,397,119,516,2059.4,43.7,281,281,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E2,블록왕복_짧은문서,E1,4,45,1,1,0,,code_fence,3.14,2,329,690,270,31,301,818.7,44.9,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,4,45,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,2.86,3,127,622,650,27,677,5095.7,43.4,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,4,45,2,1,0,,code_fence,13.3,2,245,11006,767,465,1232,3128.1,42.2,999,999,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E5,블록왕복_긴문서,E4,4,45,1,1,0,,code_fence,2.98,2,81,719,270,31,301,3307.1,43.1,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS1,카운트다운,,4,45,1,1,0,,code_fence,12.5,3,171,10186,717,421,1138,4180.4,41.3,1060,1060,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,4,45,1,0,0,empty_benefits|details_wrong_target,code_fence,6.78,2,174,4326,708,178,886,4052.2,41.1,400,400,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,4,45,2,0,0,empty_benefits|details_wrong_target,code_fence,8.14,2,442,5631,987,233,1220,2231.8,41.4,541,541,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,4,45,3,0,0,empty_benefits|details_wrong_target,code_fence,9.1,2,459,6587,1333,269,1602,2903.1,40.8,642,642,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS3,확인메시지,,4,45,1,1,0,,code_fence,6.45,2,152,4001,696,169,865,4571.8,42.2,432,432,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,5.82,3,107,3511,342,148,490,3173.7,42.2,311,311,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,4,45,2,1,0,,code_fence,8.07,1,378,5645,623,237,860,1645.8,42.0,569,569,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,6.83,3,105,4560,403,193,596,3820.5,42.3,449,449,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,4,45,2,1,0,,code_fence,7.91,3,434,5416,735,220,955,1691.2,40.6,564,564,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S1,정보충분,,4,45,1,1,0,,code_fence,6.81,2,114,4510,543,186,729,4752.6,41.2,409,409,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S2,정보부족,N2,4,45,1,1,0,,code_fence,7.2,2,560,4586,517,193,710,922.6,42.1,426,426,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,4,45,1,1,0,,code_fence,8.01,2,570,5398,538,227,765,942.9,42.1,526,526,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S9,긴서술형,N9,4,45,1,1,0,,code_fence,7.74,2,567,5087,578,212,790,1018.0,41.7,492,492,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C0,누적_초기생성,,4,45,1,1,0,,code_fence,7.48,2,581,4854,543,201,744,934.2,41.4,439,439,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C1,누적1_cta,,4,45,1,1,0,,code_fence,3.18,2,363,713,271,31,302,745.5,43.4,73,73,73,0.178,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C2,누적2_benefits,,4,45,1,1,0,,code_fence,5.42,3,429,2887,366,121,487,851.6,41.9,233,233,209,0.536,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C3,누적3_cta,,4,45,1,1,0,,code_fence,3.34,2,337,907,273,40,313,809.3,44.1,109,109,73,0.232,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C4,누적4_steps,,4,45,1,1,0,,code_fence,3.15,2,82,965,245,42,287,2961.2,43.5,108,108,0,0.195,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C5,누적5_hero,,4,45,1,1,0,,code_fence,3.86,2,86,1658,311,70,381,3593.8,42.2,121,121,127,0.223,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D1,기간미제공_날짜생성여부,,5,46,1,1,0,,code_fence,5.91,2,512,3270,514,139,653,1003.0,42.5,340,340,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D2,기간제공_날짜준수,,5,46,1,1,0,,code_fence,7.2,2,581,4546,543,192,735,934.2,42.2,430,430,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,5,46,1,0,0,invented_benefit,code_fence,6.24,2,555,3630,517,154,671,931.5,42.4,361,361,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,5,46,2,0,0,invented_benefit,code_fence,6.07,3,323,3678,752,154,906,2323.8,41.9,361,361,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D3,혜택미제공_수치창작여부,,5,46,3,0,0,invented_benefit,code_fence,6.23,3,402,3754,987,154,1141,2451.4,41.0,361,361,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D4,자리표시자_규칙없음,,5,46,1,1,0,,code_fence,7.3,3,523,4577,490,193,683,935.7,42.2,428,428,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,D,D5,자리표시자_규칙있음,D4,5,46,1,1,0,,code_fence,7.11,2,565,4510,517,187,704,914.6,41.5,417,417,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,5,46,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,code_fence,2.95,3,96,730,276,32,308,2861.9,43.8,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E1,전체재생성_짧은문서,,5,46,2,1,0,,code_fence,5.21,3,194,2961,397,122,519,2042.4,41.2,281,281,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E2,블록왕복_짧은문서,E1,5,46,1,1,0,,code_fence,3.24,2,342,733,270,31,301,789.3,42.3,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,5,46,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,2.91,3,150,636,650,27,677,4320.7,42.4,75,75,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E4,전체재생성_긴문서,,5,46,2,1,0,,code_fence,13.76,3,263,11452,767,472,1239,2916.2,41.2,985,985,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,E,E5,블록왕복_긴문서,E4,5,46,1,1,0,,code_fence,2.99,2,88,705,270,31,301,3052.4,43.9,73,73,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS1,카운트다운,,5,46,1,1,0,,code_fence,12.86,3,149,10566,717,425,1142,4805.4,40.2,987,987,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,5,46,1,0,0,empty_benefits|details_wrong_target,code_fence,6.64,2,153,4241,708,176,884,4610.9,41.5,397,397,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,5,46,2,0,0,empty_benefits|details_wrong_target,code_fence,8.18,3,448,5693,985,233,1218,2197.4,40.9,536,536,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS2,접기펼치기,,5,46,3,0,0,empty_benefits|details_wrong_target,code_fence,9.3,2,464,6753,1331,269,1600,2866.1,39.8,619,619,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,JS,JS3,확인메시지,,5,46,1,1,0,,code_fence,6.41,2,154,4002,696,166,862,4518.2,41.5,432,432,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,5,46,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,5.86,2,108,3560,342,149,491,3162.7,41.8,312,312,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N2,정보부족_규칙없음,,5,46,2,1,0,,code_fence,7.46,2,372,5033,624,212,836,1676.4,42.1,497,497,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,5,46,1,0,0,empty_hero|empty_benefits|empty_cta,code_fence,7.37,2,117,5070,403,218,621,3419.7,43.0,510,510,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,N,N9,긴서술형_규칙없음,,5,46,2,1,0,,code_fence,8.25,2,445,5765,760,244,1004,1704.6,42.3,620,620,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S1,정보충분,,5,46,1,1,0,,code_fence,6.85,2,108,4549,543,190,733,4997.3,41.8,420,420,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S2,정보부족,N2,5,46,1,1,0,,code_fence,7.19,6,583,4540,517,187,704,885.4,41.2,417,417,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S8,긴출력,,5,46,1,1,0,,code_fence,7.96,2,583,5319,538,225,763,921.5,42.3,525,525,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,S,S9,긴서술형,N9,5,46,1,1,0,,code_fence,7.72,2,583,5079,578,212,790,990.6,41.7,490,490,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C0,누적_초기생성,,5,46,1,1,0,,code_fence,7.13,2,557,4519,543,192,735,973.6,42.5,430,430,,,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C1,누적1_cta,,5,46,1,1,0,,code_fence,3.16,3,333,698,271,31,302,812.6,44.4,73,73,76,0.183,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C2,누적2_benefits,,5,46,1,1,0,,code_fence,5.04,2,384,2564,357,110,467,927.6,42.9,221,221,197,0.522,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C3,누적3_cta,,5,46,1,1,0,,code_fence,3.35,2,331,907,273,40,313,822.3,44.1,109,109,73,0.239,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C4,누적4_steps,,5,46,1,1,0,,code_fence,3.19,3,85,988,245,42,287,2878.0,42.5,108,108,0,0.2,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,C,C5,누적5_hero,,5,46,1,1,0,,code_fence,3.84,2,92,1632,311,70,381,3363.1,42.9,121,121,127,0.228,stop,,,
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,1,42,1,1,1,,,2.7,1,351,240,240,10,250,682.5,41.6,29,,,,stop,STYLE,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R02,제목 글씨를 더 크게 해줘,,1,42,1,1,1,,,2.6,2,345,213,238,10,248,689.5,46.9,30,,,,stop,STYLE,hero,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R03,참여 단계 지워줘,,1,42,1,1,1,,,2.57,3,303,206,236,10,246,777.5,48.5,32,,,,stop,DELETE,steps,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R04,유의사항 영역 빼줘,,1,42,1,1,1,,,2.64,2,343,245,236,11,247,686.6,44.8,34,,,,stop,DELETE,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,1,42,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.6,2,301,251,238,10,248,788.5,39.8,32,,,,stop,ADD,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,1,42,1,1,1,,,2.6,2,320,219,240,10,250,749.9,45.6,33,,,,stop,EDIT,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,1,42,1,0,0,want_EDIT_hero_got_EDIT_title,,2.58,2,308,212,242,10,252,784.3,47.0,30,,,,stop,EDIT,title,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,1,42,1,1,1,,,2.56,2,308,212,242,10,252,783.3,47.1,28,,,,stop,EDIT,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,1,42,1,0,0,want_ADD_steps_got_ADD_ участия,,2.56,2,305,205,238,10,248,780.1,48.6,32,,,,stop,ADD, участия,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R10,유의사항 영역 만들어줘,,1,42,1,1,1,,,2.6,2,307,231,236,11,247,767.8,47.4,31,,,,stop,ADD,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R11,혜택을 맨 위로 올려줘,,1,42,1,1,1,,,2.57,2,303,210,238,10,248,784.3,47.5,33,,,,stop,MOVE,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,1,42,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.58,2,309,210,240,10,250,776.6,47.4,33,,,,stop,MOVE,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R13,전체적으로 톤을 밝게 해줘,,1,42,1,0,0,want_REWRITE_ALL_None_got_STYLE_all,,2.56,2,302,210,240,10,250,793.7,47.5,29,,,,stop,STYLE,all,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R14,전부 존댓말로 통일해줘,,1,42,1,0,0,want_REWRITE_ALL_None_got_ASK_null,,2.51,2,300,152,239,6,245,794.7,39.3,12,,,,stop,ASK,,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,1,42,1,1,1,,,2.67,3,305,319,240,13,253,785.2,40.7,34,,,,stop,REWRITE_ALL,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,1,42,1,1,1,,,2.58,2,306,233,243,11,254,793.1,47.2,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,1,42,1,1,1,,,2.57,2,300,231,237,11,248,789.7,47.6,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R18,두 번째 버튼 바꿔줘,,1,42,1,0,0,want_ASK_None_got_EDIT_cta,,2.55,2,300,206,235,10,245,781.2,48.3,28,,,,stop,EDIT,cta,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R19,그거 좀 고쳐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_hero,,2.58,2,305,210,236,10,246,772.1,47.6,29,,,,stop,EDIT,hero,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R20,아래쪽 부분을 손봐줘,,1,42,1,0,0,want_ASK_None_got_EDIT_notice,,2.59,2,304,211,237,10,247,777.8,47.2,31,,,,stop,EDIT,notice,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,2,43,1,1,1,,,2.56,2,300,207,240,10,250,799.6,48.3,29,,,,stop,STYLE,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R02,제목 글씨를 더 크게 해줘,,2,43,1,1,1,,,2.57,2,314,214,238,10,248,756.6,46.6,30,,,,stop,STYLE,hero,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R03,참여 단계 지워줘,,2,43,1,1,1,,,2.56,2,304,205,236,10,246,774.7,48.7,32,,,,stop,DELETE,steps,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R04,유의사항 영역 빼줘,,2,43,1,1,1,,,2.59,2,301,228,236,11,247,783.9,48.2,34,,,,stop,DELETE,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,2,43,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.62,2,299,258,238,10,248,793.4,38.7,32,,,,stop,ADD,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,2,43,1,1,1,,,2.55,2,309,208,240,10,250,776.1,48.0,33,,,,stop,EDIT,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,2,43,1,0,0,want_EDIT_hero_got_EDIT_title,,2.56,2,304,207,242,10,252,794.6,48.2,30,,,,stop,EDIT,title,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,2,43,1,1,1,,,2.57,2,304,210,242,10,252,795.8,47.5,28,,,,stop,EDIT,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,2,43,1,0,0,want_ADD_steps_got_ADD_ участия,,2.57,2,313,214,238,10,248,759.1,46.6,32,,,,stop,ADD, участия,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R10,유의사항 영역 만들어줘,,2,43,1,1,1,,,2.6,2,316,238,236,11,247,745.8,46.2,31,,,,stop,ADD,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R11,혜택을 맨 위로 올려줘,,2,43,1,1,1,,,2.56,2,309,211,238,10,248,769.9,47.2,33,,,,stop,MOVE,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,2,43,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.57,3,306,209,240,10,250,782.5,47.8,33,,,,stop,MOVE,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R13,전체적으로 톤을 밝게 해줘,,2,43,1,0,0,want_REWRITE_ALL_None_got_STYLE_all,,2.57,2,307,211,240,10,250,780.9,47.4,29,,,,stop,STYLE,all,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R14,전부 존댓말로 통일해줘,,2,43,1,0,0,want_REWRITE_ALL_None_got_ASK_null,,2.51,2,310,156,239,6,245,769.0,38.3,12,,,,stop,ASK,,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,2,43,1,1,1,,,2.72,2,321,327,240,13,253,745.8,39.7,34,,,,stop,REWRITE_ALL,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,2,43,1,1,1,,,2.6,2,305,235,243,11,254,794.6,46.7,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,2,43,1,1,1,,,2.61,2,308,236,237,11,248,768.4,46.6,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R18,두 번째 버튼 바꿔줘,,2,43,1,0,0,want_ASK_None_got_EDIT_cta,,2.56,2,306,211,235,10,245,766.3,47.4,28,,,,stop,EDIT,cta,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R19,그거 좀 고쳐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_hero,,2.59,3,327,213,236,10,246,720.8,46.9,29,,,,stop,EDIT,hero,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R20,아래쪽 부분을 손봐줘,,2,43,1,0,0,want_ASK_None_got_EDIT_notice,,2.57,2,314,206,237,10,247,752.5,48.5,31,,,,stop,EDIT,notice,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,3,44,1,1,1,,,2.55,2,304,202,240,10,250,788.3,49.4,29,,,,stop,STYLE,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R02,제목 글씨를 더 크게 해줘,,3,44,1,0,0,want_STYLE_hero_got_STYLE_title,,2.53,2,278,190,238,10,248,855.0,52.5,31,,,,stop,STYLE,title,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R03,참여 단계 지워줘,,3,44,1,1,1,,,2.54,2,289,196,236,10,246,815.6,50.9,32,,,,stop,DELETE,steps,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R04,유의사항 영역 빼줘,,3,44,1,1,1,,,2.53,2,275,206,236,11,247,855.6,53.2,34,,,,stop,DELETE,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,3,44,1,0,0,want_EDIT_benefits_got_ADD_benefits,,2.54,2,275,222,238,10,248,863.6,44.9,32,,,,stop,ADD,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,3,44,1,1,1,,,2.51,2,272,190,240,10,250,879.2,52.6,33,,,,stop,EDIT,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,3,44,1,0,0,want_EDIT_hero_got_EDIT_title,,2.48,2,273,188,242,10,252,884.9,53.1,30,,,,stop,EDIT,title,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,3,44,1,1,1,,,2.49,2,270,190,242,10,252,894.8,52.5,28,,,,stop,EDIT,cta,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,3,44,1,0,0,want_ADD_steps_got_ADD_participate,,2.54,2,273,208,238,11,249,869.0,52.7,35,,,,stop,ADD,participate,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R10,유의사항 영역 만들어줘,,3,44,1,1,1,,,2.52,2,271,210,236,11,247,869.0,52.3,31,,,,stop,ADD,notices,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R11,혜택을 맨 위로 올려줘,,3,44,1,1,1,,,2.49,2,260,184,238,10,248,913.4,54.1,33,,,,stop,MOVE,benefits,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,3,44,1,0,0,want_MOVE_steps_got_MOVE_benefits,,2.47,2,265,183,240,10,250,903.7,54.4,33,,,,stop,MOVE,benefits,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R13,전체적으로 톤을 밝게 해줘,,3,44,1,0,0,want_REWRITE_ALL_None_got_STYLE_all,,2.49,2,263,184,240,10,250,909.5,54.2,29,,,,stop,STYLE,all,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R14,전부 존댓말로 통일해줘,,3,44,1,0,0,want_REWRITE_ALL_None_got_ASK_null,,2.44,2,263,137,239,6,245,905.6,43.7,12,,,,stop,ASK,,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,3,44,1,1,1,,,2.58,2,261,279,240,13,253,919.4,46.5,34,,,,stop,REWRITE_ALL,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,3,44,1,1,1,,,2.53,2,263,203,243,11,254,922.9,54.0,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,3,44,1,1,1,,,2.5,2,258,203,237,11,248,915.5,54.0,31,,,,stop,GENERATE,,1
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R18,두 번째 버튼 바꿔줘,,3,44,1,0,0,want_ASK_None_got_EDIT_cta,,2.5,2,266,184,235,10,245,881.2,54.3,28,,,,stop,EDIT,cta,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R19,그거 좀 고쳐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_hero,,2.48,2,261,184,236,10,246,903.8,54.2,29,,,,stop,EDIT,hero,0
+윤기,gemma3:4b,a2af6cc3eb7fa8be,cuda,R,R20,아래쪽 부분을 손봐줘,,3,44,1,0,0,want_ASK_None_got_EDIT_notice,,2.51,2,261,184,237,10,247,906.3,54.1,31,,,,stop,EDIT,notice,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D1,기간미제공_날짜생성여부,,1,42,1,1,1,,,31.76,2,1077,28623,555,646,1201,515.0,22.6,498,498,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D2,기간제공_날짜준수,,1,42,1,1,1,,,36.5,2,166,34252,588,832,1420,3538.0,24.3,518,518,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,1,42,1,0,0,invented_benefit,,19.23,2,79,17028,557,525,1082,6984.3,30.8,494,494,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,1,42,2,1,1,,,18.69,2,530,16119,826,494,1320,1556.9,30.6,483,483,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D4,자리표시자_규칙없음,,1,42,1,1,1,,,19.88,2,173,17571,528,542,1070,3044.4,30.8,502,502,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D5,자리표시자_규칙있음,D4,1,42,1,1,1,,,22.89,3,80,20636,558,634,1192,6968.6,30.7,468,468,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,1,42,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,,9.99,2,508,7364,284,231,515,558.0,31.4,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,1,42,2,1,1,,,20.9,2,224,18608,385,576,961,1717.2,31.0,281,281,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E2,블록왕복_짧은문서,E1,1,42,1,1,1,,,12.03,2,509,9400,292,293,585,573.4,31.2,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,1,42,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,12.22,2,1146,8980,673,277,950,587.2,30.8,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,1,42,2,1,1,,,28.88,2,238,26603,794,811,1605,3323.2,30.5,985,985,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E5,블록왕복_긴문서,E4,1,42,1,1,1,,,9.66,2,32,7464,292,234,526,8863.0,31.3,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,1,42,1,1,1,,,34.44,2,422,31873,767,971,1738,1817.0,30.5,1184,1184,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,1,42,1,0,0,no_html|js_missing|truncated,,53.23,2,422,50667,751,1536,2287,1776.0,30.3,0,0,,,length,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,1,42,2,1,1,,,42.47,2,234,40072,847,1214,2061,3606.3,30.3,383,383,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,1,42,1,1,1,,,35.57,2,417,32988,741,1005,1746,1774.4,30.5,439,439,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|empty_cta,,16.09,2,503,13428,385,416,801,765.1,31.0,378,378,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,1,42,2,1,1,,,19.02,2,534,16389,690,502,1192,1289.8,30.6,485,485,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,1,42,1,0,0,empty_hero|empty_benefits|empty_cta,,16.01,2,187,13717,448,423,871,2394.6,30.8,367,367,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,1,42,2,1,1,,,19.54,2,529,16979,743,520,1263,1404.4,30.6,424,424,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,1,42,1,1,1,,,29.46,2,129,27180,588,832,1420,4526.3,30.6,518,518,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S2,정보부족,N2,1,42,1,1,1,,,21.66,2,34,19479,558,599,1157,16320.6,30.8,327,327,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,1,42,1,1,1,,,21.71,2,113,19520,583,600,1183,5115.1,30.7,478,478,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S9,긴서술형,N9,1,42,1,1,1,,,21.21,2,192,18912,621,558,1179,3233.2,29.5,482,482,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C0,누적_초기생성,,1,42,1,1,1,,,37.53,2,144,35275,588,832,1420,4056.5,23.6,518,518,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C1,누적1_cta,,1,42,1,1,1,,,13.09,2,121,10893,295,305,600,2427.3,28.0,73,73,73,0.152,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C2,누적2_benefits,,1,42,1,1,1,,,17.93,2,672,15155,360,425,785,535.3,28.0,164,164,140,0.325,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C3,누적3_cta,,1,42,1,1,1,,,13.06,2,141,10789,300,303,603,2123.6,28.1,107,107,73,0.199,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,1,42,1,1,1,,,10.64,2,567,7975,326,226,552,574.1,28.3,115,115,149,0.228,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C5,누적5_hero,,1,42,1,1,1,,,14.06,2,570,11417,328,321,649,575.4,28.1,106,106,115,0.214,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D1,기간미제공_날짜생성여부,,2,43,1,1,1,,,24.07,2,91,21839,555,604,1159,6069.6,27.7,540,540,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D2,기간제공_날짜준수,,2,43,1,1,1,,,37.49,2,142,35222,588,971,1559,4112.3,27.6,477,477,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,2,43,1,0,0,invented_benefit,,26.31,2,87,24104,557,667,1224,6339.2,27.7,435,435,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,2,43,2,1,1,,,29.51,2,485,26885,796,740,1536,1638.4,27.5,431,431,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D4,자리표시자_규칙없음,,2,43,1,1,1,,,24.42,2,37,22174,528,615,1143,14251.8,27.7,556,556,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D5,자리표시자_규칙있음,D4,2,43,1,1,1,,,20.72,2,86,18453,558,513,1071,6471.3,27.8,463,463,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,2,43,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,,15.05,3,80,12831,284,358,642,3549.8,27.9,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,2,43,2,1,1,,,23.53,3,253,21188,385,587,972,1520.0,27.7,281,281,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E2,블록왕복_짧은문서,E1,2,43,1,1,1,,,9.94,2,121,7672,292,219,511,2410.1,28.5,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,2,43,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,12.12,2,79,9879,673,277,950,8472.5,28.0,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,2,43,2,1,1,,,32.3,2,260,29993,794,829,1623,3044.4,27.6,985,985,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E5,블록왕복_긴문서,E4,2,43,1,1,1,,,10.76,2,35,8582,292,245,537,8144.4,28.5,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,2,43,1,0,0,lost_benefits|lost_cta|js_missing|truncated,,58.06,2,35,55872,767,1536,2303,21871.2,27.5,55,55,,,length,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,2,43,2,1,1,,,45.3,2,318,42817,890,1048,1938,2796.6,24.5,1167,1167,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,2,43,1,0,0,empty_benefits|details_wrong_target,,56.17,2,38,53905,751,1361,2112,19668.4,25.2,515,515,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,2,43,2,0,0,details_wrong_target,,60.3,2,590,57466,1010,1402,2412,1711.8,24.4,618,618,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,2,43,3,0,0,empty_benefits|details_wrong_target,,22.34,3,618,19525,1267,531,1798,2048.3,27.2,541,541,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,2,43,1,0,0,lost_hero|lost_benefits,,29.99,2,36,27729,741,760,1501,20390.8,27.4,243,243,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,2,43,2,1,1,,,27.79,2,267,25410,853,694,1547,3191.6,27.3,447,447,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,,20.33,2,37,18104,385,504,889,10386.6,27.8,450,450,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,2,43,2,1,1,,,32.63,2,700,29820,739,823,1562,1054.3,27.6,557,557,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,2,43,1,0,0,empty_hero|empty_benefits|empty_cta,,17.94,2,75,15681,448,436,884,5966.7,27.8,351,351,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,2,43,2,1,1,,,20.89,2,589,18201,745,499,1244,1263.3,27.4,451,451,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,2,43,1,1,1,,,34.51,3,35,32275,588,890,1478,16460.9,27.6,339,339,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S2,정보부족,N2,2,43,1,1,1,,,21.38,2,37,19182,558,534,1092,14969.4,27.8,326,326,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,2,43,1,1,1,,,27.62,2,38,25427,583,704,1287,15336.1,27.7,488,488,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S9,긴서술형,N9,2,43,1,1,1,,,19.75,2,37,17562,621,485,1106,16717.4,27.6,480,480,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C0,누적_초기생성,,2,43,1,1,1,,,37.5,2,145,35250,588,971,1559,4052.9,27.5,477,477,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C1,누적1_cta,,2,43,1,1,1,,,14.64,2,123,12442,294,350,644,2378.4,28.1,73,73,73,0.165,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C2,누적2_benefits,,2,43,1,1,1,,,17.51,2,142,15228,356,421,777,2506.3,27.6,159,159,135,0.34,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C3,누적3_cta,,2,43,1,1,1,,,13.32,2,139,11072,300,308,608,2145.8,27.8,107,107,73,0.214,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,2,43,1,1,1,,,45.6,2,113,43376,303,1192,1495,2661.2,27.5,105,105,105,0.21,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C5,누적5_hero,,2,43,1,1,1,,,18.81,3,191,16432,336,455,791,1752.3,27.7,117,117,127,0.238,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D1,기간미제공_날짜생성여부,,3,44,1,1,1,,,24.32,2,87,22104,555,608,1163,6366.0,27.5,461,461,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D2,기간제공_날짜준수,,3,44,1,1,1,,,26.46,2,143,24201,588,663,1251,4106.5,27.4,331,331,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,3,44,1,1,1,,,25.47,2,38,23265,557,641,1198,14632.1,27.6,492,492,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D4,자리표시자_규칙없음,,3,44,1,1,1,,,25.86,2,41,23636,528,656,1184,12819.3,27.8,533,533,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D5,자리표시자_규칙있음,D4,3,44,1,1,1,,,24.12,2,88,21870,558,606,1164,6322.1,27.7,532,532,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,3,44,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,,10.31,2,35,8155,284,231,515,8023.7,28.3,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,3,44,2,1,1,,,22.26,3,246,19961,385,558,943,1563.4,28.0,281,281,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E2,블록왕복_짧은문서,E1,3,44,1,1,1,,,12.26,2,122,10016,292,282,574,2374.8,28.2,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,3,44,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,11.49,2,80,9247,673,258,931,8390.7,27.9,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,3,44,2,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,25.95,3,260,23643,794,653,1447,3050.9,27.6,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,3,44,3,1,1,,,30.24,2,291,27908,915,764,1679,3141.9,27.4,985,985,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E5,블록왕복_긴문서,E4,3,44,1,1,1,,,11.91,2,38,9698,292,272,564,7638.2,28.0,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,3,44,1,1,1,,,41.61,2,79,39383,767,1075,1842,9694.7,27.3,1104,1104,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,3,44,1,0,0,no_data_block|empty_benefits|lost_cta|details_wrong_target,,41.02,2,37,38721,751,1039,1790,19871.4,26.8,575,575,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,3,44,2,0,0,no_html|js_missing|truncated,,63.64,2,641,60744,1102,1536,2638,1718.9,25.3,0,0,,,length,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,3,44,3,0,0,empty_benefits|details_wrong_target,,52.99,2,291,50504,1198,774,1972,4107.0,15.3,520,520,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,3,44,1,0,0,lost_hero|lost_benefits,,21.41,2,38,19106,741,496,1237,19257.3,26.0,240,240,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,3,44,2,1,1,,,36.59,2,278,34267,855,894,1749,3067.0,26.1,446,446,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,,22.52,2,38,20304,385,520,905,9952.9,25.6,428,428,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,3,44,2,1,1,,,25.46,2,732,22642,720,591,1311,982.9,26.1,535,535,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,3,44,1,0,0,empty_hero|empty_benefits|empty_cta,,21.27,2,38,19037,448,503,951,11643.3,26.4,370,370,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,3,44,2,1,1,,,39.64,2,619,36897,748,963,1711,1206.6,26.1,466,466,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,3,44,1,0,0,no_data_block,,27.36,3,39,25083,588,664,1252,14959.9,26.5,663,663,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,3,44,2,1,1,,,25.75,2,846,22804,968,594,1562,1144.0,26.0,663,663,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S2,정보부족,N2,3,44,1,1,1,,,22.37,2,39,20123,558,528,1086,14069.2,26.2,466,466,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,3,44,1,0,0,no_data_block,,25.39,3,132,23144,583,601,1184,4384.8,26.0,527,527,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,3,44,2,1,1,,,21.24,2,633,18469,891,480,1371,1405.5,26.0,525,525,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S9,긴서술형,N9,3,44,1,1,1,,,19.31,2,39,17073,621,454,1075,15759.4,26.6,448,448,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C0,누적_초기생성,,3,44,1,1,1,,,27.51,2,151,25246,588,663,1251,3868.7,26.3,331,331,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C1,누적1_cta,,3,44,1,1,1,,,15.31,2,130,13099,295,350,645,2254.0,26.7,73,73,73,0.233,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C2,누적2_benefits,,3,44,1,1,1,,,14.16,2,143,11910,351,319,670,2453.8,26.8,148,148,124,0.439,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C3,누적3_cta,,3,44,1,1,1,,,13.15,2,146,10882,300,293,593,2049.6,26.9,107,107,73,0.288,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,3,44,1,0,0,placeholder,,33.17,2,475,30605,266,815,1081,559.6,26.6,110,110,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,3,44,2,0,0,few_steps|exact_steps_2|truncated,,61.38,2,263,58992,381,1536,1917,1445.2,26.0,38,38,,,length,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,3,44,3,1,1,,,13.77,2,267,11335,494,302,796,1848.9,26.6,106,106,0,0.222,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C5,누적5_hero,,3,44,1,1,1,,,19.02,2,146,16732,327,449,776,2231.1,26.8,104,104,114,0.223,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D1,기간미제공_날짜생성여부,,4,45,1,1,1,,,47.34,2,90,45107,555,1185,1740,6150.7,26.3,477,477,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D2,기간제공_날짜준수,,4,45,1,1,1,,,41.77,2,43,39532,588,1028,1616,13380.7,26.0,486,486,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,4,45,1,0,0,invented_benefit,,31.26,2,41,29000,557,743,1300,13521.7,25.6,397,397,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,4,45,2,1,1,,,26.5,3,2783,21572,771,540,1311,277.0,25.0,391,391,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D4,자리표시자_규칙없음,,4,45,1,1,1,,,21.38,3,38,19144,528,502,1030,13656.8,26.2,469,469,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D5,자리표시자_규칙있음,D4,4,45,1,1,1,,,32.17,2,92,29902,558,779,1337,6035.3,26.1,480,480,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,4,45,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,,10.85,2,83,8590,284,231,515,3381.2,26.9,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,4,45,2,1,1,,,22.24,3,264,19928,385,530,915,1458.1,26.6,281,281,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E2,블록왕복_짧은문서,E1,4,45,1,1,1,,,11.02,2,126,8751,292,235,527,2303.1,26.9,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,4,45,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,13.39,3,80,11139,673,295,968,8353.5,26.5,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,4,45,2,1,1,,,33.79,2,284,31446,794,814,1608,2790.5,25.9,985,985,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E5,블록왕복_긴문서,E4,4,45,1,1,1,,,15.15,2,37,12953,292,343,635,7762.7,26.5,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,4,45,1,1,1,,,58.7,2,41,56485,767,1462,2229,18372.6,25.9,1125,1125,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,4,45,1,0,0,empty_benefits|details_wrong_target,,22.34,2,39,20089,751,526,1277,19128.4,26.2,495,495,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,4,45,2,0,0,empty_benefits|details_wrong_target,,35.24,2,621,32551,1017,843,1860,1636.5,25.9,495,495,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,4,45,3,0,0,empty_benefits|details_wrong_target,,58.15,2,712,55374,1283,1411,2694,1802.0,25.5,495,495,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,4,45,1,1,1,,,31.95,5,88,29579,741,770,1511,8384.2,26.0,451,451,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|empty_cta,,23.39,2,38,21187,385,562,947,9916.3,26.5,450,450,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,4,45,2,1,1,,,23.05,3,731,20203,745,527,1272,1018.6,26.1,535,535,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,4,45,1,0,0,empty_hero|empty_benefits|empty_cta,,18.31,2,43,16074,448,419,867,10334.2,26.1,430,430,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,4,45,2,1,1,,,30.79,4,755,27987,779,724,1503,1030.6,25.9,567,567,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,4,45,1,1,1,,,42.18,2,39,39938,588,1028,1616,14848.9,25.7,486,486,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S2,정보부족,N2,4,45,1,1,1,,,23.75,2,41,21591,558,565,1123,13405.1,26.2,351,351,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,4,45,1,0,0,no_data_block,,25.27,3,135,23009,583,603,1186,4296.2,26.2,526,526,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,4,45,2,1,1,,,23.67,2,661,20896,891,538,1429,1347.0,25.7,524,524,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S9,긴서술형,N9,4,45,1,1,1,,,26.41,3,39,24164,621,624,1245,15877.5,25.8,460,460,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C0,누적_초기생성,,4,45,1,1,1,,,41.48,2,41,39262,588,1028,1616,14211.1,26.2,486,486,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C1,누적1_cta,,4,45,1,1,1,,,14.6,2,128,12376,293,326,619,2273.8,26.3,73,73,70,0.16,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C2,누적2_benefits,,4,45,1,1,1,,,18.19,2,207,15874,375,416,791,1809.8,26.2,182,182,158,0.38,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C3,누적3_cta,,4,45,1,1,1,,,12.83,2,146,10552,300,277,577,2041.1,26.2,107,107,73,0.209,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,4,45,1,1,1,,,14.17,2,150,11895,307,311,618,2036.6,26.1,112,112,112,0.218,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C5,누적5_hero,,4,45,1,1,1,,,19.51,2,151,17234,324,452,776,2136.5,26.2,103,103,109,0.203,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D1,기간미제공_날짜생성여부,,5,46,1,1,1,,,24.67,2,95,22410,555,584,1139,5838.3,26.1,485,485,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D2,기간제공_날짜준수,,5,46,1,1,1,,,29.96,2,155,27680,588,708,1296,3784.7,25.6,563,563,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,5,46,1,0,0,invented_benefit,,22.38,2,41,20170,557,530,1087,13544.1,26.3,455,455,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D3,혜택미제공_수치창작여부,,5,46,2,1,1,,,21.6,2,585,18965,812,531,1343,1387.0,28.0,412,412,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D4,자리표시자_규칙없음,,5,46,1,1,1,,,21.93,2,35,19717,528,573,1101,14855.2,29.1,475,475,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,D,D5,자리표시자_규칙있음,D4,5,46,1,1,1,,,20.95,2,78,18746,558,576,1134,7123.2,30.7,580,580,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,5,46,1,0,0,lost_hero|lost_benefits|edit_block_count|diff_unintended,,12.43,2,70,10216,284,318,602,4005.1,31.1,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E1,전체재생성_짧은문서,,5,46,2,1,1,,,18.25,2,224,15959,385,501,886,1713.8,31.4,281,281,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E2,블록왕복_짧은문서,E1,5,46,1,1,1,,,10.93,2,110,8701,292,276,568,2631.7,31.7,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,5,46,1,0,0,lost_hero|lost_benefits|lost_steps|lost_notices|edit_block_count|diff_unintended,,10.62,2,69,8430,673,257,930,9714.2,30.5,75,75,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E4,전체재생성_긴문서,,5,46,2,1,1,,,35.95,2,250,33637,794,990,1784,3175.2,29.4,985,985,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,E,E5,블록왕복_긴문서,E4,5,46,1,1,1,,,10.28,2,34,8080,292,244,536,8457.9,30.2,73,73,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,5,46,1,0,0,js_empty|truncated,extra_text,54.85,2,437,52272,767,1536,2303,1754.0,29.4,307,307,,,length,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS1,카운트다운,,5,46,2,1,1,,,32.54,2,906,29480,1223,866,2089,1349.0,29.4,1080,1080,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,5,46,1,0,0,empty_benefits|details_wrong_target,,50.6,2,75,48185,751,1426,2177,9893.8,29.6,465,465,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,5,46,2,0,0,details_wrong_target,,46.12,2,358,43569,1005,1296,2301,2805.9,29.7,495,495,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS2,접기펼치기,,5,46,3,0,0,empty_benefits|details_wrong_target,,21.29,2,461,18681,1233,547,1780,2672.4,29.3,449,449,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,JS,JS3,확인메시지,,5,46,1,1,1,,,34.33,2,74,32042,741,959,1700,9881.3,29.9,454,454,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,5,46,1,0,0,empty_hero|empty_benefits|empty_cta,,19.48,2,32,17317,385,520,905,11691.1,30.0,450,450,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N2,정보부족_규칙없음,,5,46,2,1,1,,,23.13,2,659,20356,749,603,1352,1135.2,29.6,570,570,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,5,46,1,0,0,empty_hero|empty_benefits|empty_cta,,15.58,2,71,13285,448,404,852,6282.1,30.4,351,351,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,N,N9,긴서술형_규칙없음,,5,46,2,1,1,,,21.72,2,530,19157,730,584,1314,1376.4,30.5,451,451,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S1,정보충분,,5,46,1,1,1,,,47.73,2,33,45525,588,1378,1966,17634.4,30.3,459,459,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S2,정보부족,N2,5,46,1,1,1,,,22.29,2,34,20094,558,614,1172,16391.5,30.6,496,496,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S8,긴출력,,5,46,1,1,1,,,36.78,2,34,34612,583,1091,1674,17096.8,31.5,506,506,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,S,S9,긴서술형,N9,5,46,1,1,1,,,20.08,2,32,17876,621,573,1194,19339.2,32.1,473,473,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C0,누적_초기생성,,5,46,1,1,1,,,24.32,2,123,22117,588,708,1296,4754.9,32.0,563,563,,,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C1,누적1_cta,,5,46,1,1,1,,,11.21,2,105,8989,295,293,588,2794.0,32.6,73,73,73,0.139,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C2,누적2_benefits,,5,46,1,1,1,,,13.47,2,165,11186,374,362,736,2259.5,32.4,189,189,165,0.344,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C3,누적3_cta,,5,46,1,1,1,,,10.85,2,121,8620,300,281,581,2472.7,32.6,107,107,73,0.184,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C4,누적4_steps,,5,46,1,1,1,,,13.65,2,164,11411,334,370,704,2029.8,32.4,119,119,157,0.218,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,C,C5,누적5_hero,,5,46,1,1,1,,,11.24,2,164,8972,336,292,628,2044.1,32.5,118,118,127,0.22,stop,,,
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,1,42,1,0,0,bad_json,,10.31,2,384,7842,251,256,507,652.0,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R02,제목 글씨를 더 크게 해줘,,1,42,1,0,0,bad_json,,9.97,2,61,7826,248,256,504,4013.8,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R03,참여 단계 지워줘,,1,42,1,1,1,,,5.72,2,61,3432,246,108,354,4014.3,31.5,32,,,,stop,DELETE,steps,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R04,유의사항 영역 빼줘,,1,42,1,0,0,bad_json,,9.96,2,61,7855,248,256,504,4005.0,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,1,42,1,0,0,want_EDIT_benefits_got_ADD_benefits,,7.51,2,72,5313,250,165,415,3454.9,31.1,32,,,,stop,ADD,benefits,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,1,42,1,1,1,,,8.7,2,72,6540,251,205,456,3468.5,31.3,33,,,,stop,EDIT,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,1,42,1,0,0,want_EDIT_hero_got_ASK_null,,6.84,2,72,4659,253,145,398,3474.2,31.1,26,,,,stop,ASK,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,1,42,1,1,1,,,8.96,2,72,6784,252,210,462,3465.4,31.0,28,,,,stop,EDIT,cta,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,1,42,1,0,0,bad_json,,9.9,2,61,7817,248,256,504,4009.1,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R10,유의사항 영역 만들어줘,,1,42,1,1,1,,,7.18,2,60,4990,246,156,402,4056.4,31.3,31,,,,stop,ADD,notices,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R11,혜택을 맨 위로 올려줘,,1,42,1,1,1,,,8.11,2,73,5888,250,183,433,3410.0,31.1,33,,,,stop,MOVE,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,1,42,1,0,0,bad_json,,9.96,2,72,7820,251,256,507,3451.8,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R13,전체적으로 톤을 밝게 해줘,,1,42,1,1,1,,,9.42,2,73,7246,251,225,476,3424.1,31.1,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R14,전부 존댓말로 통일해줘,,1,42,1,0,0,bad_json,,9.96,2,61,7848,249,256,505,4052.7,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,1,42,1,1,1,,,10.65,2,62,8455,251,263,514,4044.0,31.1,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,1,42,1,1,1,,,9.85,2,73,7647,254,237,491,3469.4,31.0,31,,,,stop,GENERATE,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,1,42,1,0,0,bad_json,,10.03,3,62,7888,248,256,504,3986.2,32.5,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R18,두 번째 버튼 바꿔줘,,1,42,1,0,0,want_ASK_None_got_EDIT_cta,,9.44,2,61,7259,247,224,471,4016.2,30.9,28,,,,stop,EDIT,cta,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R19,그거 좀 고쳐줘,,1,42,1,1,1,,,9.68,2,61,7500,245,232,477,3984.2,30.9,26,,,,stop,ASK,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R20,아래쪽 부분을 손봐줘,,1,42,1,1,1,,,9.45,2,61,7277,248,225,473,4022.8,30.9,26,,,,stop,ASK,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,2,43,1,0,0,bad_json,,9.98,2,31,7861,251,256,507,7936.0,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R02,제목 글씨를 더 크게 해줘,,2,43,1,0,0,bad_json,,9.99,2,31,7854,248,256,504,7878.0,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R03,참여 단계 지워줘,,2,43,1,1,1,,,5.35,2,62,3143,246,98,344,3955.3,31.2,32,,,,stop,DELETE,steps,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R04,유의사항 영역 빼줘,,2,43,1,1,1,,,8.32,2,62,6171,248,192,440,3964.2,31.1,34,,,,stop,DELETE,notices,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,2,43,1,0,0,want_EDIT_benefits_got_ADD_benefits,,7.14,2,72,4975,250,155,405,3446.7,31.2,32,,,,stop,ADD,benefits,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,2,43,1,1,1,,,9.14,2,72,6965,251,215,466,3459.5,30.9,33,,,,stop,EDIT,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,2,43,1,0,0,want_EDIT_hero_got_ASK_null,,6.25,2,72,4081,253,128,381,3480.5,31.4,12,,,,stop,ASK,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,2,43,1,0,0,bad_json,,9.96,2,72,7848,252,256,508,3463.3,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,2,43,1,0,0,bad_json,,9.97,2,61,7822,248,256,504,4054.0,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R10,유의사항 영역 만들어줘,,2,43,1,1,1,,,6.87,2,61,4678,246,146,392,4014.0,31.2,31,,,,stop,ADD,notices,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R11,혜택을 맨 위로 올려줘,,2,43,1,1,1,,,6.67,2,72,4496,250,141,391,3456.6,31.4,33,,,,stop,MOVE,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,2,43,1,0,0,bad_json,,9.95,2,72,7840,251,256,507,3457.2,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R13,전체적으로 톤을 밝게 해줘,,2,43,1,1,1,,,7.13,2,72,4926,251,154,405,3467.7,31.3,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R14,전부 존댓말로 통일해줘,,2,43,1,0,0,bad_json,,9.94,2,61,7840,249,256,505,4036.6,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,2,43,1,0,0,bad_json,,9.94,2,31,7835,251,256,507,7994.1,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,2,43,1,0,0,bad_json,,9.95,2,31,7823,254,256,510,8091.5,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,2,43,1,0,0,bad_json,,9.98,2,31,7847,248,256,504,7855.6,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R18,두 번째 버튼 바꿔줘,,2,43,1,0,0,bad_json,,9.97,2,31,7863,247,256,503,7828.8,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R19,그거 좀 고쳐줘,,2,43,1,0,0,bad_json,,9.95,2,31,7831,245,256,501,7777.0,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R20,아래쪽 부분을 손봐줘,,2,43,1,1,1,,,9.45,3,31,7298,248,227,475,7863.8,31.1,26,,,,stop,ASK,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R01,버튼 색을 노란색으로 바꿔줘,,3,44,1,0,0,bad_json,,9.92,2,31,7828,251,256,507,7968.8,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R02,제목 글씨를 더 크게 해줘,,3,44,1,0,0,bad_json,,9.96,2,31,7833,248,256,504,7876.5,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R03,참여 단계 지워줘,,3,44,1,1,1,,,5.14,2,61,2944,246,92,338,4025.9,31.2,32,,,,stop,DELETE,steps,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R04,유의사항 영역 빼줘,,3,44,1,1,1,,,8.22,2,61,6044,248,189,437,4024.7,31.3,34,,,,stop,DELETE,notices,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R05,혜택 항목을 하나 더 넣어줘,,3,44,1,0,0,want_EDIT_benefits_got_ADD_benefits,,7.15,2,72,4958,250,155,405,3456.8,31.3,32,,,,stop,ADD,benefits,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R06,혜택 문구를 더 짧게 고쳐줘,,3,44,1,1,1,,,8.75,2,72,6582,251,206,457,3473.3,31.3,33,,,,stop,EDIT,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R07,제목을 '여름 대축제'로 바꿔줘,,3,44,1,1,1,,,9.94,2,73,7790,253,243,496,3464.5,31.2,29,,,,stop,EDIT,hero,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R08,버튼 문구를 '신청하기'로 바꿔줘,,3,44,1,1,1,,,8.88,2,31,6687,252,207,459,7875.2,31.0,28,,,,stop,EDIT,cta,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R09,참여 방법 영역을 새로 만들어줘,,3,44,1,0,0,bad_json,,9.96,3,62,7848,248,256,504,3972.1,32.6,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R10,유의사항 영역 만들어줘,,3,44,1,1,1,,,6.57,2,61,4390,246,138,384,4009.6,31.4,31,,,,stop,ADD,notices,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R11,혜택을 맨 위로 올려줘,,3,44,1,1,1,,,6.66,2,73,4478,250,141,391,3385.7,31.5,33,,,,stop,MOVE,benefits,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R12,참여 방법을 혜택 아래로 내려줘,,3,44,1,1,1,,,10.67,2,72,8518,251,266,517,3446.8,31.2,30,,,,stop,MOVE,steps,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R13,전체적으로 톤을 밝게 해줘,,3,44,1,0,0,bad_json,,9.97,2,61,7823,251,256,507,4086.6,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R14,전부 존댓말로 통일해줘,,3,44,1,0,0,bad_json,,9.94,2,31,7830,249,256,505,7923.1,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R15,전체적으로 좀 더 짧게 줄여줘,,3,44,1,1,1,,,10.64,2,62,8424,251,263,514,4048.0,31.2,34,,,,stop,REWRITE_ALL,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R16,월드컵 스코어 맞추기 이벤트 페이지 만들어줘,,3,44,1,0,0,bad_json,,9.92,3,31,7823,254,256,510,8064.3,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R17,추첨 이벤트 페이지 하나 만들어줘,,3,44,1,0,0,bad_json,,9.98,2,31,7839,248,256,504,7902.9,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R18,두 번째 버튼 바꿔줘,,3,44,1,0,0,bad_json,,9.92,2,31,7821,247,256,503,7851.5,32.7,0,,,,length,,,0
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R19,그거 좀 고쳐줘,,3,44,1,1,1,,,7.95,2,31,5804,245,181,426,7807.0,31.2,12,,,,stop,ASK,,1
+윤기,qwen3:8b,500a1f067a9f7826,cuda,R,R20,아래쪽 부분을 손봐줘,,3,44,1,1,1,,,10.06,2,61,7901,248,246,494,4022.4,31.1,26,,,,stop,ASK,,1
