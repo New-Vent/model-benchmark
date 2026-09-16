@@ -1,90 +1,84 @@
 # Ollama 모델 벤치마크
 
-이벤트 페이지 생성/수정에 쓸 로컬 LLM과 출력 방식을 정하기 위한 테스트 기록입니다.
-방법론 원문은 [docs/v8-plan.md](docs/v8-plan.md)에 있습니다.
+이벤트 페이지 생성/수정에 쓸 로컬 LLM을 정하기 위한 실험 기록입니다.
+버전이 바뀌어도 변하지 않는 원칙은 [docs/methodology.md](docs/methodology.md)에 있습니다.
 
-## 진행 순서
+## 버전
+
+**프롬프트·채점·파라미터·모델·케이스 중 하나라도 달라지면 새 버전을 팝니다.**
+조건이 다르면 결과를 섞을 수 없어서, 스크립트와 결과와 분석을 한 폴더에 같이 둡니다.
+
+| 버전 | 내용 | 상태 |
+| --- | --- | --- |
+| [v1](versions/v1/) | D·E·JS·N·S·C·R 군, 출력 방식 N·S | **4대 완료 (3362행) — 생성 모델 qwen2.5:7b 결정** |
+
+## 폴더 하나의 구성
 
 ```
-Phase 1  모델 + 출력 방식(N/S) 비교, D·E·JS·C·R군      ← 지금 단계, 2대 이상 기기에서 분담 실행
-Phase 2  파라미터 미니 스윕 (repeat_penalty, temperature)  ← Phase 1 확정 후, 1대 기기로 충분
+versions/v1/
+  benchmark_v1.py                    스크립트 (RUNNER 외에는 고치지 않음)
+  results_v1_kwon_*.csv                runner마다 CSV 하나
+  results_v1_지원_*.csv
+  env_v1_kwon_*.json                   digest·drift·기기 정보
+  raw_v1/                            시도별 원문 (git 제외, 로컬에만)
+  README.md                            이 버전의 조건 + 변경점 + 실행법 + 결과 비교표 + 해석
 ```
 
-## `scripts/benchmark_v8.py` — 손대지 않는 완성본
+버전 README에는 **그 버전에서만 유효한 조건**(모델 목록·digest·파라미터·케이스 수)을 적습니다.
+군이 각각 무엇을 재는지 같은 공통 정의는 `docs/methodology.md`에 한 번만 적습니다.
 
-D·E·JS·N·S·C·R 7개 군이 전부 구현되어 있는 단일 스크립트입니다. **바꿔도 되는 건 `RUNNER` 환경변수뿐이고, `MODELS`·`BASE_OPTIONS`·`NUM_PREDICT`·`SEEDS`·프롬프트·케이스는 절대 임의로 고치지 않습니다** (스크립트 상단 주석, docs/v8-plan.md §13). 다음 라운드에 군(J/K 등)을 추가할 때는 docs/v8-plan.md의 "6-1. 다음 라운드에 군 추가하기"를 따릅니다.
-
-## Phase 1 — 여러 컴퓨터에서 분담 실행
-
-**결과 파일이 사람마다 안 섞이도록, 자기 이름의 폴더를 만들고 그 안에서 실행합니다.**
+## 한 사이클
 
 ```bash
-pip install requests beautifulsoup4
+# 1. 각자 버전 폴더에서 실행 (전원 같은 스크립트, RUNNER만 다르게)
+cd versions/v1
+export RUNNER="kwon"
+python benchmark_v1.py
+
+# 2. CSV가 모이면 비교표 생성 → README의 결과 섹션에 붙여넣기
+python ../../tools/summarize.py .
+```
+
+`summarize.py`가 뽑는 비교축:
+
+| 축 | 답하는 질문 |
+| --- | --- |
+| 모델 × 군 (1차/최종) | 어느 모델이 어느 군에서 강한가 |
+| 라우터 동작별 | 동작은 맞히는데 대상을 틀리는가 |
+| 실패 유형 분포 | 무엇 때문에 떨어지는가 (하드/소프트 분리) |
+| 회차별 생성 속도 | 발열로 느려졌는가 |
+| runner × 모델 시간 | 기기별 소요 시간 (같은 runner 안에서만 비교) |
+
+폴더 안의 CSV를 전부 읽으므로, runner가 몇 명이든 파일만 넣으면 됩니다.
+
+## 새 버전 만들기
+
+```bash
+mkdir versions/v2
+cp versions/v1/benchmark_v1.py versions/v2/benchmark_v2.py
+```
+
+스크립트 안의 출력 파일명(`results_v2_...`, `env_v2_...`, `raw_v2/`)도 같이 올려야 이전 결과와 안 섞입니다.
+`versions/v2/README.md`에 **직전 버전에서 무엇을 왜 바꿨는지**와 **그 버전의 조건표**를 적습니다.
+
+## 다음 버전 후보
+
+이미 위험 신호가 있는 파라미터만 좁게 검증합니다. 전체를 다시 스윕하지 않습니다.
+
+| 바꿀 것 | 검증값 | 가설 | 볼 것 |
+| --- | --- | --- | --- |
+| `repeat_penalty` | 1.0 / 1.1 / 1.3 | 높을수록 `<li>` 반복이 억제되어 혜택 개수가 모자람 | S군 실패율 |
+| `temperature` | 0.1 / 0.2 / 0.4 | 높을수록 문장 품질↑, 환각도 같이↑ | D군 실패율 + 블라인드 문장 품질 |
+| 출력 방식 J·K 추가 | — | 조합 계획/패치가 HTML 직접 생성보다 안정적인가 | 전 군 |
+| qwen3:8b 제외 | — | 출력 잘림 14%(전부 실패) + 3.3~6.8배 느림 → v1에서 탈락 확정 | — |
+
+`num_predict`, `top_p`/`top_k`는 바꾸지 않습니다 — 전자는 `done_reason`으로 상한 도달만 확인,
+후자는 부차 효과로 판단해 고정합니다.
+
+## 사전 준비
+
+```bash
+pip install -r requirements.txt
 for m in exaone3.5:7.8b qwen2.5:7b gemma3:4b qwen3:8b; do ollama pull "$m"; done
-ollama list   # digest가 docs/v8-plan.md §3 표와 일치하는지 확인
-
-# 컴퓨터 A
-mkdir -p results/raw/kwon_M3Pro && cd results/raw/kwon_M3Pro
-export RUNNER="kwon_M3Pro"
-python ../../../scripts/benchmark_v8.py
-```
-
-```bash
-# 컴퓨터 B (다른 사람 / 다른 기기)
-mkdir -p results/raw/joo_RTX4060 && cd results/raw/joo_RTX4060
-export RUNNER="joo_RTX4060"
-python ../../../scripts/benchmark_v8.py
-```
-
-스크립트가 실행된 폴더(현재 디렉터리) 기준으로 아래가 생성됩니다.
-
-```
-results/raw/<RUNNER>/
-  results_v8_<RUNNER>_<날짜>.csv   호출마다 한 행
-  env_v8_<RUNNER>_<날짜>.json      환경·설정·보정·드리프트
-  raw_v8/                          시도별 원문 HTML (브라우저로 열어 눈으로 확인, 특히 JS군)
-```
-
-시작 전에 `self_check()`와 `preflight()`가 자동으로 돌아 로직 결함·모델 누락을 미리 잡아줍니다. 전원이 네 모델을 다 돌리므로 기기당 2~3시간 걸리고, 무인으로 돌아갑니다.
-
-**두 컴퓨터 결과를 한곳에 모은 뒤** (git, USB, 공유 드라이브 등으로 `results/raw/` 전체를 합쳐서):
-
-```bash
-python scripts/merge_results.py
-```
-
-- digest 불일치, `base_options` 불일치, drift 이상은 자동으로 경고합니다
-- 합친 결과는 `results/merged/combined_v8_<날짜>.csv`
-- **시간(wall_sec) 비교는 반드시 같은 `runner` 안에서만** 하세요. 기기 간 절대시간 비교는 무효입니다
-
-## Phase 2 — 파라미터 미니 스윕
-
-Phase 1에서 모델이 확정된 뒤 1대에서만 실행합니다. 전체 재스윕이 아니라, 이미 위험 신호가 있는 `repeat_penalty`/`temperature` 두 개만 좁게 검증합니다 (docs/v8-plan.md §7).
-
-```bash
-export CHOSEN_MODEL="exaone3.5:7.8b"   # Phase 1에서 확정된 모델
-python scripts/param_sweep.py
-```
-
-결과는 `results/param-sweep/<날짜>/`에 쌓이고, `temperature_sweep.csv`의 원문은 `blind/` 폴더에 익명화되어 저장됩니다(문장 품질 블라인드 채점용, `blind_key.json`은 채점 끝날 때까지 열어보지 않음).
-
-## 전체 디렉터리 구조
-
-```
-model-benchmark/
-  README.md
-  docs/
-    v8-plan.md                 ← 방법론 원문 (source of truth)
-  scripts/
-    benchmark_v8.py             ← Phase 1 완성본 (손대지 않음)
-    merge_results.py            ← 여러 컴퓨터 결과 합치기
-    param_sweep.py              ← Phase 2 실행 스크립트
-  results/
-    raw/
-      <runner-1>/               ← 컴퓨터별 실행 결과 (해당 폴더 안에서 직접 실행)
-      <runner-2>/
-    merged/
-      combined_v8_<날짜>.csv    ← merge_results.py 출력
-    param-sweep/
-      <날짜>/
+ollama list   # digest가 버전 README의 표와 일치하는지 확인
 ```

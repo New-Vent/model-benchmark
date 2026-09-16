@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# 시도별 원문 HTML — 용량이 커서 git에는 안 올리고 로컬에만 둔다
+raw_v*/
