@@ -26,6 +26,23 @@ KNOWN_OPS = ["REWRITE_ALL", "GENERATE", "DELETE", "STYLE", "MOVE", "EDIT", "ADD"
 GROUP_ORDER = ["D", "E", "JS", "N", "S", "C", "R", "J", "K", "CHAIN"]
 
 
+def groups_in(rows) -> list:
+    """CSV에 실제로 들어있는 군을 표시 순서대로.
+
+    GROUP_ORDER에 없는 군은 **버리지 않고** 이름순으로 뒤에 붙인다.
+    (base/run.py 의 sort_key 와 같은 규칙)
+
+    예전에는 `[g for g in GROUP_ORDER if ...]` 로 걸러내서, 목록에 없는
+    군(v3의 JS-HTML·JS-PLAN·JS-PATCH, v4의 S-E·K-T)이 통째로 사라지고
+    통과율 표가 0/0 으로 나왔다. 새 군을 만들 때마다 이 상수를 고쳐야
+    하는 구조 자체가 사고 원인이라, 여기서는 목록을 정렬 힌트로만 쓴다.
+    """
+    seen = {r["group"] for r in rows if r.get("group")}
+    known = [g for g in GROUP_ORDER if g in seen]
+    extra = sorted(seen - set(GROUP_ORDER))
+    return known + extra
+
+
 def load_rows(target):
     """CSV 파일 하나 또는 폴더(하위 results_*.csv 전부)를 읽는다."""
     if os.path.isdir(target):
@@ -76,7 +93,7 @@ def table(headers, body):
 # ── 1. 모델 x 군 통과율 ────────────────────────────────────────────
 def section_pass_rate(rows):
     models = models_in(rows)
-    groups = [g for g in GROUP_ORDER if any(r["group"] == g for r in rows)]
+    groups = groups_in(rows)
 
     first = defaultdict(lambda: [0, 0])      # (model, group) -> [통과, 전체]
     final = defaultdict(dict)                # (model, group) -> {(pid, repeat): 성공여부}
