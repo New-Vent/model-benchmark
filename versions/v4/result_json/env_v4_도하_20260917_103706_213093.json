@@ -1,0 +1,55 @@
+{
+  "runner": "도하",
+  "run_at": "2026-09-17T10:37:06",
+  "os": "macOS-26.6.2-arm64-arm-64bit",
+  "cpu": "arm",
+  "gpu": "Chipset Model: Apple M3 Pro",
+  "backend": "metal",
+  "ollama": "ollama version is 0.34.1",
+  "python": "3.12.2",
+  "base_options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repeat_penalty": 1.1,
+    "num_ctx": 8192
+  },
+  "num_predict": {
+    "html": 1536,
+    "plan": 512,
+    "patch": 256,
+    "router": 128
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "keep_alive": "30m",
+  "models": {
+    "exaone3.5:7.8b": {
+      "digest": "c7c4e3d1ca22fe92",
+      "size_bytes": 4770664857,
+      "parameters": "7.8B",
+      "quantization": "Q4_K_M",
+      "family": "exaone"
+    }
+  },
+  "version": "v4",
+  "groups": [
+    "K-T",
+    "S-E"
+  ],
+  "partial_run": false,
+  "calibration_start": {
+    "eval_rate": 25.3,
+    "prompt_rate": 1358.6
+  },
+  "calibration_end": {
+    "eval_rate": 28.1,
+    "prompt_rate": 1146.8
+  },
+  "drift": 1.111
+}
