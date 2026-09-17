@@ -57,33 +57,56 @@ def _system(key: str, baseline: str) -> str:
     ])
 
 
-def _make_check(key: str, baseline: str, want: str = ""):
+def _make_check(key: str, baseline: str, want: str = "", expect_items=None):
     """Case.extra_check(raw, html) 시그니처에 맞춘 클로저.
 
-    engine 이 부르는 기본 채점(check_html)과 별개로, 제품 규격 보존 5종을
-    여기서 얹는다. baseline 을 클로저에 가둬 두므로 클래스 대조가 그
-    템플릿의 실제 클래스 기준으로 이뤄진다 — 테마마다 클래스가 다르기
-    때문에 고정 목록으로는 불가능하다.
+    ★ keep=() 로 두는 이유
+        engine 은 check_html(..., strict_structure=True) 를 하드코딩으로
+        부르고, 그 안에서 keep 에 든 블록마다 registry 의 must 셀렉터를
+        검사한다. 그런데 must 는 벤치마크 전용 규격(ul li / ol li / a)이라
+        **실제 제품 마크업에서는 원본을 넣어도 실패한다** — 실측으로
+        20개 중 15개가 empty_* 로 떨어지는 것을 확인했다.
+
+        그래서 keep 을 비워 그 검사를 끄고, 블록 존재·항목 수는 여기서
+        실제 템플릿 기준으로 직접 본다. check_html 의 나머지 검사(태그
+        균형, 금지 태그, no_section, placeholder 등)는 그대로 살아 있다.
+
+    expect_items: 수정 후 있어야 할 항목 개수. None 이면 검사하지 않는다.
     """
     def _check(raw, html):
+        html = html or ""
         fails, _ = checks_v4.check_product_rules(
             html, block=key, baseline_html=baseline)
-        if want and want not in (html or ""):
+
+        soup = checks_v4._soup(html)
+        el = soup.select_one(f'[data-block="{key}"]') if soup else None
+        if el is None:
+            # data_block_changed 가 이미 같은 사실을 잡았으면 중복으로 세지 않는다
+            if "data_block_changed" not in fails:
+                fails.append(f"lost_{key}")
+            return fails
+
+        if expect_items is not None and key in T.ITEM_SELECTORS:
+            n = len(el.select(T.ITEM_SELECTORS[key]))
+            if n != expect_items:
+                fails.append(f"item_count_{key}")
+
+        if want and want not in html:
             fails.append("request_not_applied")
         return fails
     return _check
 
 
-def _case(pid, kind, tpl, key, prompt, want=""):
+def _case(pid, kind, tpl, key, prompt, want="", expect_items=None):
     baseline = T.block_html(tpl, key)
     return Case(
         pid, kind, "S-E",
         _system(key, baseline),
         f"{prompt}\n\n{baseline}",
         mode="html",
-        keep=(key,),
+        keep=(),          # ← 벤치마크 전용 must 검사를 끈다 (위 주석 참고)
         forbid=tuple(k for k in T.blocks_of(tpl) if k != key),
-        extra_check=_make_check(key, baseline, want),
+        extra_check=_make_check(key, baseline, want, expect_items),
     )
 
 
@@ -97,20 +120,26 @@ CASES = [
           want="설 선물 대축제"),
 
     # ── 항목 수 바꾸기 — 반복 구조를 유지한 채 늘리고 줄여야 한다
+    #    baseline 은 셋 다 3개. 삭제면 2, 추가면 4, 문구만 고치면 3이어야 한다.
     _case("SE3", "혜택삭제_vip", 3, "benefits",
-          "이 영역의 혜택 항목 중 마지막 하나를 삭제해줘."),
+          "이 영역의 혜택 항목 중 마지막 하나를 삭제해줘.",
+          expect_items=2),
     _case("SE4", "혜택추가_sale", 4, "benefits",
           "이 영역에 혜택 항목을 하나 더 추가해줘. "
-          "기존 항목과 같은 구조로 만들어야 한다."),
+          "기존 항목과 같은 구조로 만들어야 한다.",
+          expect_items=4),
 
     # ── 가장 긴 블록에서 부분만 고치기
     _case("SE5", "단계문구수정_launch", 5, "steps",
           "이 영역의 각 단계 설명을 더 짧고 간결하게 다듬어줘. "
-          "단계 개수는 그대로 둬라."),
+          "단계 개수는 그대로 둬라.",
+          expect_items=3),
 ]
 
 
 def self_check():
+    from checks import check_html
+
     assert len(CASES) == 5, f"케이스 수가 {len(CASES)}개"
     seen = set()
     for c in CASES:
@@ -119,17 +148,28 @@ def self_check():
         assert c.group == "S-E"
         assert c.mode == "html"
         assert c.extra_check is not None, f"{c.pid} extra_check 누락"
-        assert len(c.keep) == 1, f"{c.pid} 는 블록 하나만 다뤄야 한다"
-        key = c.keep[0]
-        assert f'data-block="{key}"' in c.prompt, f"{c.pid} 프롬프트에 baseline 없음"
-        assert key not in c.forbid, f"{c.pid} keep/forbid 충돌"
+        assert c.keep == (), (
+            f"{c.pid}: keep 이 비어 있어야 한다. 비우지 않으면 engine 이 registry 의 "
+            f"must(ul li / ol li / a)로 검사해서 실제 제품 마크업이 오탐으로 떨어진다")
+        assert c.forbid, f"{c.pid} forbid 가 비었다 — 다른 블록 생성을 못 막는다"
 
-    # 실제 baseline 을 그대로 되돌려주면 규격 검사를 통과해야 한다
-    for tpl in T.NAMES:
-        for key in ("hero", "benefits", "steps", "cta"):
-            h = T.block_html(tpl, key)
-            f, _ = checks_v4.check_product_rules(h, block=key, baseline_html=h)
-            assert not f, f"template_{tpl} {key} 원본이 규격 검사에 걸림: {f}"
+    # ★ 회귀 — 실제 템플릿 원본을 그대로 되돌려주면 전부 통과해야 한다.
+    #   (이 검사가 없어서 1차 실행의 S-E 결과를 통째로 버렸다)
+    for c, (tpl, key) in zip(CASES, [(1, "cta"), (2, "hero"), (3, "benefits"),
+                                     (4, "benefits"), (5, "steps")]):
+        h = T.block_html(tpl, key)
+
+        base_fails, _ = check_html(raw=h, html=h, keep=c.keep, forbid=c.forbid,
+                                   strict_structure=True)
+        assert not base_fails, (
+            f"{c.pid}: template_{tpl} {key} 원본이 기본 채점에 걸림: {base_fails}")
+
+        extra = c.extra_check(h, h)
+        # 항목 수를 바꾸라고 한 케이스는 원본이 걸리는 게 정상이다
+        expected = {"SE3": [f"item_count_{key}"], "SE4": [f"item_count_{key}"],
+                    "SE1": ["request_not_applied"], "SE2": ["request_not_applied"]}
+        assert sorted(extra) == sorted(expected.get(c.pid, [])), (
+            f"{c.pid}: 원본에 대한 extra_check 가 예상과 다름 {extra}")
 
     # 클래스를 지우면 잡혀야 한다
     base = T.block_html(1, "benefits")
