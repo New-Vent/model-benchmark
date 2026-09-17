@@ -63,6 +63,7 @@ import cases_js_html
 V3_NUM_PREDICT = 3072
 MAX_RETRY = 3
 FENCE = re.compile(r"```")
+GEN_FORBID = ["notices", "steps", "countdown", "faq", "tabs"]
 
 CHAIN_CTA_REQUEST = "CTA 버튼 문구를 '지금 신청하기'로 바꿔줘."
 EDIT_REQUEST_TEXT = "버튼 문구만 '지금 신청하기'로 바꿔줘."
@@ -549,7 +550,7 @@ def custom_run_chain2(model, case, runner, digest, backend, repeat_no, seed, row
         model, runner, digest, backend, repeat_no, seed, rows, out_dir,
         pid="CHAIN2_GEN", kind="1_생성_J", pair=case.pid,
         system=cases_js_plan.GEN_SYSTEM, prompt=cases_js_plan.GEN_P1, mode="plan",
-        keep=list(REQUIRED), forbid=["notices"],
+        keep=list(REQUIRED), forbid=GEN_FORBID,
         json_schema=cases_js_plan.PLAN_SCHEMA, num_predict=V3_NUM_PREDICT)
     if plan is None:
         for pid, kind in [("CHAIN2_PATCH", "2_수정_K"), ("CHAIN2_JSADD", "3_JS추가"),
@@ -605,7 +606,7 @@ def custom_run_chain3(model, case, runner, digest, backend, repeat_no, seed, row
         model, runner, digest, backend, repeat_no, seed, rows, out_dir,
         pid="CHAIN3_GEN", kind="1_생성_S", pair=case.pid,
         system=SYSTEM_SHAPE, prompt=GEN_P1_HTML, mode="html",
-        keep=list(REQUIRED), forbid=["notices"])
+        keep=list(REQUIRED), forbid=GEN_FORBID)
     if doc is None:
         for pid, kind in [("CHAIN3_EDIT", "2_수정_E"), ("CHAIN3_JSADD", "3_JS추가"),
                            ("CHAIN3_JSMOD", "4_JS수정")]:
@@ -664,7 +665,7 @@ def custom_run_chain4(model, case, runner, digest, backend, repeat_no, seed, row
         model, runner, digest, backend, repeat_no, seed, rows, out_dir,
         pid="CHAIN4_GEN", kind="1_생성_J", pair=case.pid,
         system=cases_js_plan.GEN_SYSTEM, prompt=cases_js_plan.GEN_P1, mode="plan",
-        keep=list(REQUIRED), forbid=["notices"],
+        keep=list(REQUIRED), forbid=GEN_FORBID,
         json_schema=cases_js_plan.PLAN_SCHEMA, num_predict=V3_NUM_PREDICT)
     if plan is None:
         _blocked_row(runner, model, digest, backend, repeat_no, seed,
@@ -708,7 +709,7 @@ def custom_run_chain5(model, case, runner, digest, backend, repeat_no, seed, row
         model, runner, digest, backend, repeat_no, seed, rows, out_dir,
         pid="CHAIN5_GEN", kind="1_생성_J", pair=case.pid,
         system=cases_js_plan.GEN_SYSTEM, prompt=cases_js_plan.GEN_P1, mode="plan",
-        keep=list(REQUIRED), forbid=["notices"],
+        keep=list(REQUIRED), forbid=GEN_FORBID,
         json_schema=cases_js_plan.PLAN_SCHEMA, num_predict=V3_NUM_PREDICT)
     if plan is None:
         for pid, kind in [("CHAIN5_PATCH", "2_수정_K"), ("CHAIN5_JSADD", "3_JS추가"),
@@ -766,7 +767,7 @@ def custom_run_chain6(model, case, runner, digest, backend, repeat_no, seed, row
         model, runner, digest, backend, repeat_no, seed, rows, out_dir,
         pid="CHAIN6_GEN", kind="1_생성_S", pair=case.pid,
         system=SYSTEM_SHAPE, prompt=GEN_P1_HTML, mode="html",
-        keep=list(REQUIRED), forbid=["notices"])
+        keep=list(REQUIRED), forbid=GEN_FORBID)
     if doc is None:
         for pid, kind in [("CHAIN6_EDIT", "2_수정_E"), ("CHAIN6_JSADD", "3_JS추가"),
                            ("CHAIN6_JSMOD", "4_JS수정")]:
