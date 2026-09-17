@@ -75,8 +75,24 @@ v1·v2의 K3/K9(steps 블록 `add_block`)가 지금까지 "성공"으로 보였�
 JS-PATCH는 "블록이 실제로 동작 콘텐츠와 함께 렌더지는가"가 핵심이라 이 문제를 피해갈 수
 없었고, `cases_js_patch.py`에 `add_block`에 한해 콘텐츠 필드까지 포함하는 확장 스키마를
 새로 만들어 썼다(`registry.build_patch_json_schema()` 자체는 v1·v2가 그대로 쓰므로 건드리지
-않음). **K3/K9류 케이스의 이 gap 자체를 고치는 건 이번 v3 범위 밖이다** — §6에 다음 할 일로
-남긴다.
+않음).
+
+### 2-1. K3/K9 재측정 — 스키마 수정 하나의 효과만 분리해서 본다
+
+**구현 완료** — `versions/v3/cases_k_content.py`(그룹 `K-CONTENT`, 케이스 `K3FIX`/`K9FIX`).
+v2 `cases_k.py`의 K3/K9과 **baseline·요청 문구가 글자 그대로 동일**하고, 스키마만
+`cases_js_patch.py`가 이미 만들어둔 콘텐츠 필드 포함 확장 스키마로 바꿨다 — `keep`에
+`steps`를 추가해서 `check_html`이 이제 `steps`의 `must="ol li"`·`min_items=2`까지
+실제로 검증한다.
+
+원본 스키마(`additionalProperties:false`, `op`/`type`/`variant`만 허용)로 grammar-제약
+디코딩을 쓰면 모델은 애초에 `items` 필드를 낼 수 있는 문법 자체가 없다 — 즉 원본 K3의
+"성공"은 **항상 빈 `steps` 블록**이었다는 뜻이다(가능성이 아니라 스키마 구조상 확정).
+K9(`remove_block`)은 콘텐츠 필드가 필요 없는 오퍼레이션이라 이 gap의 영향을 받지 않는다
+— K3FIX/K9FIX를 실제로 돌려서 v2 README의 K3(9/10)·K9(10/10)과 비교하면, K9은 거의
+그대로 나오고 K3만 떨어질 것으로 예상된다(아직 실행 전 — §8 참고).
+`versions/v2/README.md`에도 이 사실을 caveat로 남겨뒀다(v2 코드 자체는 그 버전의 실행
+조건을 보존하기 위해 건드리지 않았다).
 
 ## 3. CHAIN 확장 — 생성 × 수정 × JS 축을 4가지 조합으로 전부 이어 붙인다
 
@@ -226,8 +242,10 @@ v1·v2 케이스는 이 필드를 아예 안 쓴다.
   검토가 더 필요해서 v3 범위에서 뺐습니다.
 - **콘텐츠 필드 안의 HTML 태그 주입 검사** — §1의 네 번째 구멍. `check_plan`/`check_html`에
   텍스트 필드 안의 `<strong>`/`<span>` 같은 태그를 잡는 로직이 아직 없습니다.
-- **K3/K9류 add_block의 "내용 없이 성공 처리"되는 gap** — §2에서 발견한 것. JS-PATCH만
-  콘텐츠 필드 스키마로 우회했고, `registry.build_patch_json_schema()` 자체는 안 고쳤습니다.
+- **`registry.build_patch_json_schema()` 자체의 add_block 콘텐츠 필드 gap** — §2에서
+  발견한 것. **K3/K9 자체는 §2-1에서 v3 안에서 재측정하는 방식으로 해결했지만**,
+  공용 함수 자체(v1·v2가 그대로 쓰는 것)는 안 고쳤습니다 — 고치면 v1·v2가 원래 조건
+  그대로 재현 불가능해지기 때문에 의도적으로 그대로 뒀습니다.
 - **§3-1의 "남아있는 진짜 혼합 노선 문제"**(CHAIN-혼합A/B) — 범용 HTML→JSON 역변환 파서가
   필요한 큰 작업입니다.
 - **라우터가 축 선택을 직접 하게 하기**(우선순위 스트레치) — CHAIN1~6 결과를 본 뒤 v4 후보.
@@ -275,10 +293,12 @@ v1·v2 CSV를 다시 훑어서, **6개 모델 전부에서 흔들림 없이 결�
 
 ```bash
 export RUNNER="<본인이름>"          # Windows: set RUNNER=<본인이름>
-python base/run.py v3              # 전체 (JS-HTML · JS-PLAN · JS-PATCH · CHAIN)
+python base/run.py v3              # 전체 (JS-HTML · JS-PLAN · JS-PATCH · K-CONTENT · SEC · CHAIN)
 python base/run.py v3 JS-HTML      # JS-HTML군만 (JSHTML1~3)
 python base/run.py v3 JS-PLAN      # JS-PLAN군만 (JSPLAN1~3)
 python base/run.py v3 JS-PATCH     # JS-PATCH군만 (KPATCH1~3)
+python base/run.py v3 K-CONTENT    # K3/K9 재측정만 (K3FIX·K9FIX) — v2 README와 직접 비교용
+python base/run.py v3 SEC          # 속성 기반 인젝션 적대적 케이스만 (SEC1~3)
 python base/run.py v3 CHAIN        # CHAIN2~6 전부
 
 python base/run.py v3 --self-check # LLM 호출 없이 검증만
