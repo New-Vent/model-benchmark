@@ -62,10 +62,10 @@ import engine  # noqa: E402  (sys.path 세팅 후에 import해야 한다)
 # ── 여기 두 개만 본인 환경에 맞게 바꾸세요 ───────────────────────
 RUNNER = os.environ.get("RUNNER", "주호")
 MODELS = [
-    "exaone3.5:7.8b",   # 전원 공통(보정 기준) — 반드시 포함
-    "qwen2.5:7b",
-    "gemma3:4b",
-    #"qwen2.5-coder:7b",
+    # "exaone3.5:7.8b",   # 전원 공통(보정 기준) — 반드시 포함
+    # "qwen2.5:7b",
+    # "gemma3:4b",
+    "qwen2.5-coder:7b",
     # "qwen3:8b",       # 추론 모델, 별도 축
 ]
 # ──────────────────────────────────────────────────────────────

@@ -271,9 +271,38 @@ def snapshot_env(models, runner):
     return env
 
 
+def _write_with_retry(write_fn, what, _sleep=time.sleep):
+    delay = 0.15
+    for attempt in range(8):
+        try:
+            write_fn()
+            return
+        except PermissionError as e:
+            if attempt == 7:
+                print(f"  [WARN] {what} 저장 실패(파일이 잠겨 있어 이번 저장은 건너뜀): {e}")
+                return
+            _sleep(delay)
+            delay *= 2
+
+
 def save_env(env, path):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(env, f, ensure_ascii=False, indent=2)
+    def _write():
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(env, f, ensure_ascii=False, indent=2)
+    _write_with_retry(_write, path)
+
+
+def save_results(rows, path):
+    if not rows:
+        return
+    def _write():
+        tmp_path = path + ".tmp"
+        with open(tmp_path, "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
+            w.writeheader()
+            w.writerows(rows)
+        os.replace(tmp_path, path)
+    _write_with_retry(_write, path)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -521,42 +550,43 @@ def main(models, runner, case_modules, version, version_dir, group_filter=None):
         os.makedirs(d, exist_ok=True)
 
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    results_path = os.path.join(csv_dir, f"results_{version}_{runner}_{stamp}.csv")
+    env_path = os.path.join(json_dir, f"env_{version}_{runner}_{stamp}.json")
 
     env = snapshot_env(models, runner)
     env["version"] = version
     env["groups"] = sorted({c.group for c in all_cases})
     env["partial_run"] = group_filter is not None
     env["calibration_start"] = calibrate()
+    save_env(env, env_path)  # ★ 여기서 한 번 — 실행이 끝나기 전에 죽어도 조건은 남는다
 
     rows = []
     for model in models:
         digest = env["models"].get(model, {}).get("digest", "")
         backend = env["backend"]
         print(f"\n{'=' * 74}\n  {model}  (digest={digest})\n{'=' * 74}")
-        warmup(model)
+        try:
+            warmup(model)
 
-        # ★ 핵심: 바깥 루프가 회차(seed), 안쪽 루프가 케이스.
-        for repeat_no, seed in enumerate(SEEDS, 1):
-            print(f"\n  -- 회차 {repeat_no}/{len(SEEDS)} (seed={seed}) --")
-            for case in all_cases:
-                print(f"    [{case.group}] {case.pid}")
-                run_one(model, case, runner, digest, backend, repeat_no, seed,
-                        rows, out_dir)
-
-        unload(model)  # ★ 다음 모델 전에 반드시
+            # ★ 핵심: 바깥 루프가 회차(seed), 안쪽 루프가 케이스.
+            for repeat_no, seed in enumerate(SEEDS, 1):
+                print(f"\n  -- 회차 {repeat_no}/{len(SEEDS)} (seed={seed}) --")
+                for case in all_cases:
+                    print(f"    [{case.group}] {case.pid}")
+                    run_one(model, case, runner, digest, backend, repeat_no, seed,
+                            rows, out_dir)
+                save_results(rows, results_path)  # ★ 회차마다 중간 저장 — 끊겨도 여기까진 남음
+        finally:
+            # 이 모델 도중 어디서 죽든(예외·Ctrl+C) 그때까지의 rows는 반드시 남긴다.
+            save_results(rows, results_path)
+            unload(model)  # ★ 다음 모델 전에 반드시
 
     env["calibration_end"] = calibrate()
     start_rate = env["calibration_start"]["eval_rate"]
     end_rate = env["calibration_end"]["eval_rate"]
     env["drift"] = round(end_rate / start_rate, 3) if start_rate else None
 
-    results_path = os.path.join(csv_dir, f"results_{version}_{runner}_{stamp}.csv")
-    env_path = os.path.join(json_dir, f"env_{version}_{runner}_{stamp}.json")
-
-    with open(results_path, "w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
-        w.writeheader()
-        w.writerows(rows)
+    save_results(rows, results_path)
     save_env(env, env_path)
 
     print("\n" + "=" * 74)
