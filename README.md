@@ -12,7 +12,7 @@
 | --- | --- | --- |
 | [v1](versions/v1/) | D·E·JS·N·S·C·R 군, 출력 방식 N·S | **4대 완료 (3362행) — 생성 모델 qwen2.5:7b 결정** |
 | [v2](versions/v2/) | J·K 군 + CHAIN(파이프라인 검증), 출력 방식 J·K | 4대 실행 중 — exaone 92%·qwen 계열 88%·gemma3:4b는 K군 0/150 |
-| [v3](versions/v3/) | JS군(HTML/JSON 방식 비교)·CHAIN 확장·모델 확대·`NUM_PREDICT` 3072 통일 | **설계 단계 — 코드 미착수, README만 있음** |
+| [v3](versions/v3/) | JS군(HTML/JSON 방식 비교)·CHAIN 확장·모델 확대·`NUM_PREDICT` 3072 통일 | **구현 완료(JS-HTML/JS-PLAN/JS-PATCH·CHAIN2~6), 실행 대기 — 아직 실제 모델로 안 돌림** |
 
 ## 폴더 구성
 

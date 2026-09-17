@@ -123,6 +123,69 @@ def section_pass_rate(rows):
             + table(headers, body_final))
 
 
+# ── 1-1. CHAIN 파이프라인 전체 통과율 ──────────────────────────────
+# CHAIN 그룹은 GEN/PATCH/JSADD/JSMOD처럼 여러 단계(prompt_id)가 한
+# 파이프라인을 이루는데, 위 section_pass_rate()의 CHAIN 열은 이 단계들을
+# 서로 독립된 케이스처럼 그냥 더한 값이다 — GEN 5/5·PATCH 5/5·JSADD 5/5·
+# JSMOD 0/5면 "15/20(75%)"로 보이지만 docs/methodology.md §4("성공 판정은
+# 체인 전체가 기준")대로면 끝까지 이어진 체인은 실제로 0개(0%)다. 이 섹션은
+# 각 단계 행에 이미 붙어 있는 pair 필드(체인 ID)로 같은 체인의 단계를 묶어
+# "체인 전체가 끝까지 성공했는가"를 따로 집계한다.
+CHAIN_FALLBACK_RULES = {
+    # K가 실패했을 때만 E로 우회하는 설계(cases_chain.py의 CHAIN4)라
+    # "모든 단계 통과"가 아니라 "GEN 통과 AND (K 통과 OR E 통과)"가 맞다.
+    "CHAIN4": {"require": {"CHAIN4_GEN"}, "any_of": [{"CHAIN4_K"}, {"CHAIN4_E"}]},
+}
+
+
+def section_chain_pipeline(rows):
+    chain_rows = [r for r in rows if r["group"] == "CHAIN" and r.get("pair")]
+    if not chain_rows:
+        return ""
+
+    # 단계 하나의 통과 여부 = (runner, model, prompt_id, repeat_no)에서
+    # 재시도(attempt) 중 하나라도 hard_ok=1이면 통과 — section_pass_rate의
+    # final 집계와 동일한 규칙.
+    stage_passed = {}
+    for r in chain_rows:
+        key = (r["runner"], r["model"], r["prompt_id"], r["repeat_no"])
+        stage_passed[key] = stage_passed.get(key, 0) or as_int(r["hard_ok"])
+
+    # 체인 인스턴스 하나 = (runner, model, pair, repeat_no). 그 안에서
+    # 실제로 기록된 단계(prompt_id) 집합을 모은다.
+    instances = defaultdict(set)
+    for r in chain_rows:
+        instances[(r["runner"], r["model"], r["pair"], r["repeat_no"])].add(r["prompt_id"])
+
+    tally = defaultdict(lambda: [0, 0])  # (model, pair) -> [완주, 전체]
+    for (runner, model, pair, repeat_no), pids in instances.items():
+        rule = CHAIN_FALLBACK_RULES.get(pair)
+        if rule:
+            ok = (all(stage_passed.get((runner, model, p, repeat_no), 0) for p in rule["require"])
+                  and any(all(stage_passed.get((runner, model, p, repeat_no), 0) for p in grp)
+                          for grp in rule["any_of"]))
+        else:
+            ok = all(stage_passed.get((runner, model, p, repeat_no), 0) for p in pids)
+        tally[(model, pair)][0] += int(bool(ok))
+        tally[(model, pair)][1] += 1
+
+    models = models_in(chain_rows)
+    pairs = sorted({p for (_, p) in tally})
+    body = []
+    for m in models:
+        line = [m]
+        for p in pairs:
+            hit, total = tally.get((m, p), [0, 0])
+            line.append(f"{hit}/{total}" if total else "-")
+        body.append(line)
+
+    return ("## CHAIN 파이프라인 전체 통과율 (모든 단계가 이어져야 성공 — "
+            "위 '모델 x 군' 표의 CHAIN 열과는 다른 수치)\n\n"
+            + table(["모델"] + pairs, body)
+            + "\n\n> CHAIN4는 설계상 K 성공 또는(K 실패 시) E 성공 중 하나면 통과로 봅니다. "
+              "나머지 체인은 기록된 모든 단계가 전부 통과해야 성공입니다.")
+
+
 # ── 2. 라우터 동작별 정확도 ─────────────────────────────────────────
 def expected_op(row):
     """정답이면 router_op 이 곧 정답. 틀렸으면 fails 의 want_ 에서 뽑는다."""
@@ -247,8 +310,8 @@ def main():
     print(f"- runner: {', '.join(sorted({r['runner'] for r in rows if r.get('runner')}))}")
     print(f"- 모델: {', '.join(models_in(rows))}\n")
 
-    for section in (section_pass_rate(rows), section_router(rows), section_fails(rows),
-                    section_drift(rows), section_time(rows)):
+    for section in (section_pass_rate(rows), section_chain_pipeline(rows), section_router(rows),
+                    section_fails(rows), section_drift(rows), section_time(rows)):
         if section:
             print(section + "\n")
 

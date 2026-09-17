@@ -106,6 +106,14 @@ class Case:
     # missing_필드 같은 실패가 훨씬 잦아진다(실측으로 확인됨). 가능하면
     # registry.build_plan_json_schema() / build_patch_json_schema()로
     # 만든 값을 반드시 넣을 것.
+    num_predict: Optional[int] = None
+    # 이 케이스만 NUM_PREDICT[mode] 기본값 대신 이 값을 쓴다. None이면
+    # 기존과 동일(전역 NUM_PREDICT 사용) — v1·v2 케이스는 전부 그대로다.
+    # v3에서 "truncated 실패가 캡 부족 때문"임을 실측으로 확인했는데
+    # (docs/methodology.md 원칙상 전역 NUM_PREDICT 변경은 새 버전 사유),
+    # 전역 상수를 건드리면 v1·v2를 재실행할 때도 값이 바뀌어버려
+    # "예전 버전은 그 조건 그대로 재현 가능해야 한다"는 원칙과 충돌한다.
+    # 케이스 단위 오버라이드로 이 충돌을 피한다(v3 README §5 참고).
 
 
 # ══════════════════════════════════════════════════════════════
@@ -113,7 +121,8 @@ class Case:
 # ══════════════════════════════════════════════════════════════
 
 def call(model, messages, mode="html", as_json=False, seed=None, timeout=900,
-         max_network_retry=2, retry_backoff_sec=5, json_schema=None):
+         max_network_retry=2, retry_backoff_sec=5, json_schema=None,
+         num_predict_override=None):
     """
     max_network_retry: 네트워크 계층 실패(타임아웃/연결끊김/서버다운)일 때
     재시도할 횟수. run_one()의 max_retry(LLM 출력이 검증에 실패했을 때
@@ -127,9 +136,14 @@ def call(model, messages, mode="html", as_json=False, seed=None, timeout=900,
     폴백한다 — "그냥 유효한 JSON이면 통과"라는 매우 약한 조건이라,
     unknown_type/unknown_variant류 실패가 훨씬 잦아진다는 게 실측으로
     확인됐다. 가능하면 항상 json_schema를 넘길 것.
+
+    num_predict_override: 넘기면 NUM_PREDICT[mode] 대신 이 값을 쓴다.
+    Case.num_predict를 통해 케이스 단위로만 캡을 올리기 위한 통로
+    (전역 NUM_PREDICT를 바꾸면 v1·v2 재실행 조건까지 바뀌어버림).
     """
     options = dict(BASE_OPTIONS)
-    options["num_predict"] = NUM_PREDICT.get(mode, 512)
+    options["num_predict"] = (num_predict_override if num_predict_override is not None
+                               else NUM_PREDICT.get(mode, 512))
     if seed is not None:
         options["seed"] = seed
     body = {
@@ -311,7 +325,8 @@ def run_one(model, case: Case, runner, digest, backend, repeat_no, seed, rows,
         try:
             res = call(model, messages, mode=case.mode,
                        as_json=(case.mode in ("plan", "patch", "router")), seed=seed,
-                       json_schema=case.json_schema)
+                       json_schema=case.json_schema,
+                       num_predict_override=case.num_predict)
         except Exception as e:
             rows.append(_empty_row(
                 runner=runner, model=model, digest=digest, backend=backend,
