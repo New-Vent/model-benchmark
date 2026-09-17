@@ -44,7 +44,15 @@ def groups_in(rows) -> list:
 
 
 def load_rows(target):
-    """CSV 파일 하나 또는 폴더(하위 results_*.csv 전부)를 읽는다."""
+    """CSV 파일 하나 또는 폴더(하위 results_*.csv 전부)를 읽는다.
+
+    여러 실행분을 손으로 합치거나 스프레드시트 프로그램으로 열었다 저장하면
+    헤더·값에 정렬용 공백이 끼어든다("group    ," 처럼) — DictReader는 그
+    공백까지 키의 일부로 취급해서 r["group"] 같은 접근이 전부 KeyError로
+    죽는다. 값이 깨진 게 아니라 공백만 낀 것이므로, 읽는 시점에 키·값
+    양쪽 다 strip해서 흡수한다(v1 README가 경고한 "실행 중 엑셀로 열어두지
+    마세요"가 실제로 발생했을 때도 이걸로 복구된다).
+    """
     if os.path.isdir(target):
         paths = sorted(glob.glob(os.path.join(target, "**", "results_*.csv"), recursive=True))
     else:
@@ -55,7 +63,9 @@ def load_rows(target):
     rows = []
     for p in paths:
         with open(p, encoding="utf-8-sig") as f:
-            rows.extend(csv.DictReader(f))
+            for row in csv.DictReader(f):
+                rows.append({(k or "").strip(): (v or "").strip() if v is not None else v
+                             for k, v in row.items()})
     return rows, paths
 
 
