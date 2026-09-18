@@ -1,4 +1,4 @@
-runner,model,digest,backend,group,prompt_id,kind,pair,repeat_no,seed,attempt,hard_ok,all_ok,fails,soft_fails,wall_sec,load_ms,prompt_ms,eval_ms,prompt_tokens,eval_count,ctx_used,prompt_rate,eval_rate,out_len,html_len,baseline_len,patch_ratio,done_reason
+﻿runner,model,digest,backend,group,prompt_id,kind,pair,repeat_no,seed,attempt,hard_ok,all_ok,fails,soft_fails,wall_sec,load_ms,prompt_ms,eval_ms,prompt_tokens,eval_count,ctx_used,prompt_rate,eval_rate,out_len,html_len,baseline_len,patch_ratio,done_reason
 주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,CHAIN,CHAIN7J_GEN,1_생성_JT,CHAIN7J,1,42,1,0,0,placeholder,,6.77,2,107,6644,252,328,580,2344.5,49.4,771,2435,,,stop
 주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,CHAIN,CHAIN7J_GEN,1_생성_JT,CHAIN7J,1,42,2,0,0,placeholder,,6.8,2,151,6609,594,334,928,3926.4,50.5,800,2464,,,stop
 주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cuda,CHAIN,CHAIN7J_GEN,1_생성_JT,CHAIN7J,1,42,3,0,0,placeholder,,6.77,2,159,6591,954,332,1286,5981.6,50.4,798,2465,,,stop
