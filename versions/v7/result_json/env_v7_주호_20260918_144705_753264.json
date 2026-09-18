@@ -1,0 +1,75 @@
+{
+  "runner": "주호",
+  "run_at": "2026-09-18T14:47:05",
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+  "gpu": "cuda RTX 4060 8GB",
+  "backend": "cuda",
+  "ollama": "ollama version is 0.34.0\nWarning: client version is 0.34.2",
+  "python": "3.13.2",
+  "base_options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repeat_penalty": 1.1,
+    "num_ctx": 8192
+  },
+  "num_predict": {
+    "html": 1536,
+    "plan": 512,
+    "patch": 256,
+    "router": 128
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "keep_alive": "30m",
+  "models": {
+    "exaone3.5:7.8b": {
+      "digest": "c7c4e3d1ca22fe92",
+      "size_bytes": 4770664857,
+      "parameters": "7.8B",
+      "quantization": "Q4_K_M",
+      "family": "exaone"
+    },
+    "qwen2.5:7b": {
+      "digest": "845dbda0ea48ed74",
+      "size_bytes": 4683087332,
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2"
+    },
+    "gemma3:4b": {
+      "digest": "a2af6cc3eb7fa8be",
+      "size_bytes": 3338801804,
+      "parameters": "4.3B",
+      "quantization": "Q4_K_M",
+      "family": "gemma3"
+    },
+    "qwen2.5-coder:7b": {
+      "digest": "dae161e27b0e90dd",
+      "size_bytes": 4683087561,
+      "parameters": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2"
+    }
+  },
+  "version": "v7",
+  "groups": [
+    "CHAIN"
+  ],
+  "partial_run": false,
+  "calibration_start": {
+    "eval_rate": 52.5,
+    "prompt_rate": 2866.5
+  },
+  "calibration_end": {
+    "eval_rate": 52.3,
+    "prompt_rate": 2555.7
+  },
+  "drift": 0.996
+}
