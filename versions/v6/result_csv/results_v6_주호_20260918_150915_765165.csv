@@ -1,0 +1,4 @@
+﻿runner,model,digest,backend,group,prompt_id,kind,pair,repeat_no,seed,attempt,hard_ok,all_ok,fails,soft_fails,wall_sec,load_ms,prompt_ms,eval_ms,prompt_tokens,eval_count,ctx_used,prompt_rate,eval_rate,out_len,html_len,baseline_len,patch_ratio,done_reason
+주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cpu,J-STRUCT-V,STRUCTV1,구조결정_variant_스포츠응원,STRUCT1,1,42,1,0,0,unexpected_block_countdown,,2.83,2,347,2464,849,120,969,2440.2,48.7,315,315,,,stop
+주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cpu,J-STRUCT-V,STRUCTV1,구조결정_variant_스포츠응원,STRUCT1,1,42,2,1,1,,,2.16,1,88,2038,1010,102,1112,11358.7,50.0,263,263,,,stop
+주호,exaone3.5:7.8b,c7c4e3d1ca22fe92,cpu,J-STRUCT-V,STRUCTV2,구조결정_variant_명절선물,STRUCT2,1,42,1,0,0,unexpected_block_countdown,,2.56,2,39,2508,846,120,966,21669.0,47.8,315,315,,,stop
