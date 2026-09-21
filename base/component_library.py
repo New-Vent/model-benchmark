@@ -282,6 +282,363 @@ TAB_SWITCHER_SCRIPT = """<script>
 </script>"""
 
 
+def carousel_slides(d):
+    """이미지 캐러셀 — LLM은 슬라이드 캡션(items, 2~4개)만 낸다. 실제
+    이미지는 이 벤치마크에서 생성할 수 없으므로 hero_flowbite_split과
+    동일한 관례(회색 자리표시자 박스)를 쓴다. 이전/다음·점 네비게이션은
+    CAROUSEL_SCRIPT가 담당."""
+    items = d.get("items", [])
+    slides = "\n".join(
+        f'    <div class="carousel-slide{" active" if i == 0 else ""}" data-carousel-slide="{i}">'
+        f'<div class="carousel-placeholder" aria-hidden="true"></div>'
+        f'<p class="carousel-caption">{esc(x)}</p></div>'
+        for i, x in enumerate(items)
+    )
+    dots = "\n".join(
+        f'    <button class="carousel-dot{" active" if i == 0 else ""}" data-carousel-dot="{i}"></button>'
+        for i in range(len(items))
+    )
+    return f"""<section data-block="carousel">
+  <div class="carousel-track">
+{slides}
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-prev" data-carousel-prev aria-label="이전 슬라이드">‹</button>
+    <div class="carousel-dots">
+{dots}
+    </div>
+    <button class="carousel-next" data-carousel-next aria-label="다음 슬라이드">›</button>
+  </div>
+</section>"""
+
+
+CAROUSEL_SCRIPT = """<script>
+(function(){
+  document.querySelectorAll('[data-block="carousel"]').forEach(function(container){
+    var slides = Array.prototype.slice.call(container.querySelectorAll('[data-carousel-slide]'));
+    var dots = Array.prototype.slice.call(container.querySelectorAll('[data-carousel-dot]'));
+    var current = 0;
+
+    function show(idx){
+      current = (idx + slides.length) % slides.length;
+      slides.forEach(function(s, i){ s.classList.toggle('active', i === current); });
+      dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+    }
+
+    var prev = container.querySelector('[data-carousel-prev]');
+    var next = container.querySelector('[data-carousel-next]');
+    if (prev) prev.addEventListener('click', function(){ show(current - 1); });
+    if (next) next.addEventListener('click', function(){ show(current + 1); });
+    dots.forEach(function(dot, i){
+      dot.addEventListener('click', function(){ show(i); });
+    });
+  });
+})();
+</script>"""
+
+
+def carousel_flowbite_fade(d):
+    """Flowbite풍 — 전체 폭 페이드 캐러셀, 하단 숫자 뱃지 인디케이터.
+    data-* 계약(data-carousel-slide/dot/prev/next)은 slides 변형과
+    동일하다 — CAROUSEL_SCRIPT 하나가 두 변형 모두를 그대로 제어한다."""
+    items = d.get("items", [])
+    slides = "\n".join(
+        f'    <div class="carousel-slide carousel-fade{" active" if i == 0 else ""}" '
+        f'data-carousel-slide="{i}">'
+        f'<div class="carousel-placeholder h-56 w-full rounded-xl bg-gray-200" aria-hidden="true"></div>'
+        f'<p class="carousel-caption mt-2 text-center text-sm text-gray-600">{esc(x)}</p></div>'
+        for i, x in enumerate(items)
+    )
+    badges = "\n".join(
+        f'    <button class="carousel-dot carousel-badge{" active" if i == 0 else ""}" '
+        f'data-carousel-dot="{i}">{i + 1}</button>'
+        for i in range(len(items))
+    )
+    return f"""<section data-block="carousel" class="mx-auto max-w-screen-md px-4 py-10">
+  <div class="carousel-track relative">
+{slides}
+  </div>
+  <div class="carousel-controls mt-3 flex items-center justify-center gap-3">
+    <button class="carousel-prev rounded-full border px-3 py-1" data-carousel-prev aria-label="이전 슬라이드">‹</button>
+    <div class="carousel-dots flex gap-2">
+{badges}
+    </div>
+    <button class="carousel-next rounded-full border px-3 py-1" data-carousel-next aria-label="다음 슬라이드">›</button>
+  </div>
+</section>"""
+
+
+def poll_vote(d):
+    """투표 — LLM은 질문과 옵션 이름(items, 2~4개)만 낸다. 득표율은
+    전부 클라이언트에서 계산하므로 LLM이 가짜 숫자를 지어낼 필요가
+    (지어낼 수) 없다. 실제 클릭·집계·재투표 방지는 POLL_SCRIPT가 담당."""
+    items = d.get("items", [])
+    options = "\n".join(
+        f'    <li><button class="poll-option" data-poll-option>{esc(x)}'
+        f'<span class="poll-bar" data-poll-bar></span>'
+        f'<span class="poll-pct" data-poll-pct></span></button></li>'
+        for x in items
+    )
+    return f"""<section data-block="poll">
+  <h2>{esc(d["question"])}</h2>
+  <ul class="poll-options" data-poll-group>
+{options}
+  </ul>
+  <p class="poll-note" data-poll-note hidden>투표해 주셔서 감사합니다.</p>
+</section>"""
+
+
+def poll_flowbite_pills(d):
+    """Flowbite풍 — 알약(pill) 버튼 옵션 + 오른쪽 배지형 퍼센트 표시.
+    data-* 계약(data-poll-group/option/bar/pct/note)은 vote 변형과
+    동일하다 — POLL_SCRIPT 하나가 두 변형 모두를 그대로 제어한다."""
+    items = d.get("items", [])
+    options = "\n".join(
+        f'    <li><button class="poll-option poll-pill flex items-center justify-between '
+        f'rounded-full border px-4 py-2" data-poll-option>'
+        f'<span>{esc(x)}</span>'
+        f'<span class="poll-bar" data-poll-bar></span>'
+        f'<span class="poll-pct rounded-full bg-gray-100 px-2 text-xs" data-poll-pct></span>'
+        f'</button></li>'
+        for x in items
+    )
+    return f"""<section data-block="poll" class="mx-auto max-w-screen-md px-4 py-10">
+  <h2 class="mb-4 text-xl font-bold">{esc(d["question"])}</h2>
+  <ul class="poll-options space-y-2" data-poll-group>
+{options}
+  </ul>
+  <p class="poll-note mt-3 text-sm text-gray-500" data-poll-note hidden>투표해 주셔서 감사합니다.</p>
+</section>"""
+
+
+POLL_SCRIPT = """<script>
+(function(){
+  document.querySelectorAll('[data-block="poll"]').forEach(function(container, pollIdx){
+    var group = container.querySelector('[data-poll-group]');
+    var buttons = Array.prototype.slice.call(group.querySelectorAll('[data-poll-option]'));
+    var storeKey = 'poll-votes-' + pollIdx;
+    var votedKey = 'poll-voted-' + pollIdx;
+    var counts = JSON.parse(localStorage.getItem(storeKey) || 'null') || buttons.map(function(){ return 0; });
+
+    function render(){
+      var total = counts.reduce(function(a,b){ return a+b; }, 0) || 1;
+      buttons.forEach(function(btn, i){
+        var pct = Math.round(counts[i] / total * 100);
+        btn.querySelector('[data-poll-bar]').style.width = pct + '%';
+        btn.querySelector('[data-poll-pct]').textContent = pct + '%';
+      });
+    }
+
+    if (localStorage.getItem(votedKey)) {
+      render();
+      container.querySelector('[data-poll-note]').hidden = false;
+      buttons.forEach(function(btn){ btn.disabled = true; });
+    }
+
+    buttons.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if (localStorage.getItem(votedKey)) return;
+        counts[i] += 1;
+        localStorage.setItem(storeKey, JSON.stringify(counts));
+        localStorage.setItem(votedKey, '1');
+        render();
+        container.querySelector('[data-poll-note]').hidden = false;
+        buttons.forEach(function(b){ b.disabled = true; });
+      });
+    });
+  });
+})();
+</script>"""
+
+
+def rating_stars(d):
+    """별점 — LLM은 질문 문구 하나만 낸다. 별 5개·클릭 처리·감사 메시지는
+    전부 고정 마크업+RATING_SCRIPT가 담당(별 개수를 LLM이 정하지 않음)."""
+    stars = "\n".join(
+        f'    <button class="star" data-star-value="{i}" aria-label="{i}점">★</button>'
+        for i in range(1, 6)
+    )
+    return f"""<section data-block="rating">
+  <h2>{esc(d["prompt"])}</h2>
+  <div class="star-rating" data-star-group role="radiogroup">
+{stars}
+  </div>
+  <p class="star-thanks" data-star-thanks hidden>평가해 주셔서 감사합니다!</p>
+</section>"""
+
+
+def rating_numbered_scale(d):
+    """MerakiUI풍 — 별 대신 1~5 원형 숫자 배지로 된 척도.
+    data-* 계약(data-star-group/data-star-value/data-star-thanks)은
+    stars 변형과 동일하다 — RATING_SCRIPT 하나가 두 변형 모두를 그대로
+    제어한다(script는 문자 내용이 아니라 속성만 본다)."""
+    scale = "\n".join(
+        f'    <button class="star star-num flex h-9 w-9 items-center justify-center '
+        f'rounded-full border" data-star-value="{i}" aria-label="{i}점">{i}</button>'
+        for i in range(1, 6)
+    )
+    return f"""<section data-block="rating" class="mx-auto max-w-screen-md px-4 py-10 text-center">
+  <h2 class="mb-4 text-xl font-bold">{esc(d["prompt"])}</h2>
+  <div class="star-rating flex justify-center gap-2" data-star-group role="radiogroup">
+{scale}
+  </div>
+  <p class="star-thanks mt-3 text-sm text-gray-500" data-star-thanks hidden>평가해 주셔서 감사합니다!</p>
+</section>"""
+
+
+RATING_SCRIPT = """<script>
+(function(){
+  document.querySelectorAll('[data-block="rating"]').forEach(function(container, idx){
+    var group = container.querySelector('[data-star-group]');
+    var stars = Array.prototype.slice.call(group.querySelectorAll('[data-star-value]'));
+    var thanks = container.querySelector('[data-star-thanks]');
+    var storeKey = 'rating-value-' + idx;
+
+    function paint(value){
+      stars.forEach(function(s){
+        s.classList.toggle('selected', Number(s.getAttribute('data-star-value')) <= value);
+      });
+    }
+
+    var saved = localStorage.getItem(storeKey);
+    if (saved) { paint(Number(saved)); thanks.hidden = false; }
+
+    stars.forEach(function(star){
+      star.addEventListener('click', function(){
+        var value = Number(star.getAttribute('data-star-value'));
+        localStorage.setItem(storeKey, String(value));
+        paint(value);
+        thanks.hidden = false;
+      });
+    });
+  });
+})();
+</script>"""
+
+
+def coupon_copy(d):
+    """쿠폰 코드 복사 — LLM은 코드 문자열과 설명 문구만 낸다. 클립보드
+    복사·"복사됨" 피드백은 COUPON_SCRIPT가 담당(Clipboard API 직접 호출을
+    LLM이 만들 필요 없음)."""
+    return f"""<section data-block="coupon">
+  <p>{esc(d["desc"])}</p>
+  <div class="coupon-box">
+    <span class="coupon-code" data-coupon-code>{esc(d["code"])}</span>
+    <button class="coupon-copy-btn" data-coupon-copy>코드 복사</button>
+  </div>
+</section>"""
+
+
+def coupon_flowbite_banner(d):
+    """Flowbite풍 — 중앙 정렬 배너형, 코드가 큰 글씨로 강조되고 버튼이 아래.
+    data-* 계약(data-coupon-code/data-coupon-copy)은 copy 변형과
+    동일하다 — COUPON_SCRIPT 하나가 두 변형 모두를 그대로 제어한다."""
+    return f"""<section data-block="coupon" class="bg-blue-50 py-10 text-center">
+  <div class="mx-auto max-w-screen-sm px-4">
+    <p class="mb-3 text-gray-700">{esc(d["desc"])}</p>
+    <span class="coupon-code inline-block rounded-lg border-2 border-dashed border-blue-400 px-6 py-3 text-2xl font-bold tracking-widest text-blue-700" data-coupon-code>{esc(d["code"])}</span>
+    <div class="mt-3">
+      <button class="coupon-copy-btn rounded-lg bg-blue-700 px-6 py-2 text-sm font-medium text-white" data-coupon-copy>코드 복사</button>
+    </div>
+  </div>
+</section>"""
+
+
+COUPON_SCRIPT = """<script>
+(function(){
+  document.querySelectorAll('[data-block="coupon"]').forEach(function(container){
+    var btn = container.querySelector('[data-coupon-copy]');
+    var code = container.querySelector('[data-coupon-code]');
+    var original = btn.textContent;
+    btn.addEventListener('click', function(){
+      var text = code.textContent;
+      function done(){
+        btn.textContent = '복사됨!';
+        setTimeout(function(){ btn.textContent = original; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        done();
+      }
+    });
+  });
+})();
+</script>"""
+
+
+def checklist_progress(d):
+    """참여 체크리스트 — LLM은 항목(items, 2~4개)만 낸다. 체크 시 진행률
+    바 갱신·로컬 저장은 CHECKLIST_SCRIPT가 담당."""
+    items = d.get("items", [])
+    li = "\n".join(
+        f'    <li><label><input type="checkbox" data-checklist-item> {esc(x)}</label></li>'
+        for x in items
+    )
+    return f"""<section data-block="checklist">
+  <h2>참여 체크리스트</h2>
+  <ul class="checklist-items">
+{li}
+  </ul>
+  <div class="checklist-progress-track">
+    <div class="checklist-progress-bar" data-checklist-progress style="width:0%"></div>
+  </div>
+</section>"""
+
+
+def checklist_cards(d):
+    """HyperUI풍 — 항목마다 카드로 분리, 진행률은 바 대신 "N/M 완료" 뱃지.
+    data-* 계약(data-checklist-item/data-checklist-progress)은 progress
+    변형과 동일하다 — 단, 진행률 표시가 width%가 아니라 텍스트이므로
+    CHECKLIST_SCRIPT가 data-checklist-progress 요소의 종류(div vs span)를
+    안 가리고 textContent와 style.width를 둘 다 시도하도록 만든다."""
+    items = d.get("items", [])
+    cards = "\n".join(
+        f'    <li class="rounded-lg border p-3"><label class="flex items-center gap-2">'
+        f'<input type="checkbox" data-checklist-item> {esc(x)}</label></li>'
+        for x in items
+    )
+    return f"""<section data-block="checklist" class="mx-auto max-w-screen-md px-4 py-10">
+  <h2 class="mb-4 text-xl font-bold">참여 체크리스트</h2>
+  <ul class="checklist-items grid gap-2 sm:grid-cols-2">
+{cards}
+  </ul>
+  <p class="checklist-progress-badge mt-3 text-sm text-gray-600" data-checklist-progress></p>
+</section>"""
+
+
+CHECKLIST_SCRIPT = """<script>
+(function(){
+  document.querySelectorAll('[data-block="checklist"]').forEach(function(container, idx){
+    var boxes = Array.prototype.slice.call(container.querySelectorAll('[data-checklist-item]'));
+    var bar = container.querySelector('[data-checklist-progress]');
+    var storeKey = 'checklist-state-' + idx;
+
+    function update(save){
+      var checked = boxes.filter(function(b){ return b.checked; }).length;
+      // progress 변형(바)·cards 변형(텍스트 뱃지) 둘 다 같은 data-checklist-progress
+      // 요소를 쓰므로 두 표현을 모두 갱신한다 — 태그 종류를 안 가린다.
+      bar.style.width = Math.round(checked / boxes.length * 100) + '%';
+      bar.textContent = checked + '/' + boxes.length + ' 완료';
+      if (save) {
+        localStorage.setItem(storeKey, JSON.stringify(boxes.map(function(b){ return b.checked; })));
+      }
+    }
+
+    var saved = JSON.parse(localStorage.getItem(storeKey) || 'null');
+    if (saved) {
+      boxes.forEach(function(b, i){ b.checked = !!saved[i]; });
+    }
+    update(false);
+
+    boxes.forEach(function(box){
+      box.addEventListener('change', function(){ update(true); });
+    });
+  });
+})();
+</script>"""
+
+
 # ══════════════════════════════════════════════════════════════
 #  각 함수를 model_test_v7.py의 BLOCKS 레지스트리에 그대로 꽂을 수 있도록
 #  (variant_name, desc, fields, render_fn) 튜플 목록으로 노출한다.
@@ -322,4 +679,29 @@ FAQ_VARIANTS = [
 
 TABS_VARIANTS = [
     ("js_switcher", "JS로 전환되는 탭 (순수 JS 상태 토글 필요)", ("items",), tab_switcher),
+]
+
+POLL_VARIANTS = [
+    ("vote", "클릭 투표 + 실시간 득표율 (JS로 집계·재투표 방지)", ("question", "items"), poll_vote),
+    ("flowbite_pills", "Flowbite풍 — 알약 버튼 옵션 + 배지형 퍼센트", ("question", "items"), poll_flowbite_pills),
+]
+
+RATING_VARIANTS = [
+    ("stars", "5점 별점 평가 (JS로 클릭 처리·로컬 저장)", ("prompt",), rating_stars),
+    ("merakiui_numbered", "MerakiUI풍 — 별 대신 1~5 숫자 원형 배지", ("prompt",), rating_numbered_scale),
+]
+
+COUPON_VARIANTS = [
+    ("copy", "쿠폰 코드 클립보드 복사 (JS로 Clipboard API 호출)", ("code", "desc"), coupon_copy),
+    ("flowbite_banner", "Flowbite풍 — 중앙 정렬 배너형 쿠폰", ("code", "desc"), coupon_flowbite_banner),
+]
+
+CHECKLIST_VARIANTS = [
+    ("progress", "체크박스 + 진행률 바 (JS로 진행률 갱신·로컬 저장)", ("items",), checklist_progress),
+    ("hyperui_cards", "HyperUI풍 — 카드형 항목 + 'N/M 완료' 텍스트 뱃지", ("items",), checklist_cards),
+]
+
+CAROUSEL_VARIANTS = [
+    ("slides", "이전/다음·점 네비게이션 캐러셀 (JS로 슬라이드 전환)", ("items",), carousel_slides),
+    ("flowbite_fade", "Flowbite풍 — 페이드 캐러셀 + 숫자 뱃지 인디케이터", ("items",), carousel_flowbite_fade),
 ]

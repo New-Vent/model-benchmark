@@ -8,3 +8,6 @@ raw_v*/
 
 # 개인 Ollama 서버 주소
 base/.ollama_host
+
+# playground의 생성/수정 결과물 — 실행할 때마다 새로 생기는 개인 산출물
+playground/output/*

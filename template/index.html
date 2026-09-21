@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewVent 이벤트 템플릿 5종 쇼케이스 & event.css 테스트</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Pretendard", -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Top Bar */
+    header {
+      background: #1e293b;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    /* Template Selector Tabs */
+    .tab-group {
+      display: flex;
+      gap: 6px;
+      background: #0f172a;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    /* Controls (Viewport Toggle & Info) */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .view-btn {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .view-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+    .view-btn.active {
+      background: #334155;
+      color: #fff;
+      border-color: #64748b;
+    }
+    .view-btn.toggle-admin {
+      border-color: #f59e0b;
+      color: #fbbf24;
+    }
+    .view-btn.toggle-admin.on {
+      background: #b45309;
+      color: #fff;
+    }
+    /* Main Preview Container */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090d16;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .preview-wrapper {
+      width: 720px;
+      height: 100%;
+      max-height: 92vh;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .preview-wrapper.mobile {
+      width: 375px;
+      border-radius: 36px;
+      box-shadow: 0 0 0 8px #1e293b, 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+    .meta-bar {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(30, 41, 59, 0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .meta-bar b { color: #fff; }
+    .status-badge {
+      background: #10b981;
+      color: #fff;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-area">
+      <span class="logo-badge">NEWVENT</span>
+      <h1>이벤트 템플릿 5종 쇼케이스</h1>
+    </div>
+
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="loadTemplate('template_1_sports_cheer.html', this, '스포츠 응원 (월드컵)', 'theme-sports', '정답자 80명 추첨 & 참가자 전원 5,000P')">① 스포츠 응원</button>
+      <button class="tab-btn" onclick="loadTemplate('template_2_holiday_gift.html', this, '명절/선물 (추석)', 'theme-holiday', '한우/상품권 & 데이터 5GB 즉시지급')">② 한가위 선물</button>
+      <button class="tab-btn" onclick="loadTemplate('template_3_member_appreciation.html', this, '회원감사 (VIP)', 'theme-vip', 'VIP/FAMILY 30% 쿠폰 & 무료배송')">③ 회원 감사</button>
+      <button class="tab-btn" onclick="loadTemplate('template_4_flash_sale.html', this, '플래시 세일 (특가)', 'theme-sale', '72시간 한정 패딩 78% OFF')">④ 72h 특가</button>
+      <button class="tab-btn" onclick="loadTemplate('template_5_pre_registration.html', this, '사전예약 (런칭)', 'theme-launch', '사전예약 Pro 1년 무료권 & 굿즈')">⑤ 사전예약</button>
+    </div>
+
+    <div class="controls">
+      <button class="view-btn toggle-admin" id="btn-admin" onclick="toggleAdminMode()" title="관리자 전용 문구(공통 승인 문구 배지 등) 표시 토글">
+        🛡️ 관리자 뷰 토글: <span id="adminStatus">OFF (사용자 모드)</span>
+      </button>
+      <button class="view-btn active" id="btn-pc" onclick="setMode('pc')">
+        🖥️ 데스크톱 (720px)
+      </button>
+      <button class="view-btn" id="btn-mo" onclick="setMode('mo')">
+        📱 모바일 (375px)
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="preview-wrapper" id="previewWrap">
+      <iframe id="previewFrame" src="./template_1_sports_cheer.html"></iframe>
+    </div>
+
+    <div class="meta-bar">
+      <span>현재 템플릿: <b id="metaTitle">스포츠 응원 (월드컵)</b></span>
+      <span>적용 테마: <b id="metaTheme">theme-sports</b></span>
+      <span>혜택 요약: <b id="metaBenefit">정답자 80명 추첨 & 참가자 전원 5,000P</b></span>
+      <span class="status-badge">375px 미리보기</span>
+    </div>
+  </main>
+
+  <script>
+    let isAdminMode = false;
+
+    function loadTemplate(file, btn, title, theme, benefit) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const frame = document.getElementById('previewFrame');
+      frame.src = './' + file;
+      document.getElementById('metaTitle').textContent = title;
+      document.getElementById('metaTheme').textContent = theme;
+      document.getElementById('metaBenefit').textContent = benefit;
+
+      frame.onload = () => {
+        applyAdminModeToFrame();
+      };
+    }
+
+    function setMode(mode) {
+      const wrap = document.getElementById('previewWrap');
+      const btnPc = document.getElementById('btn-pc');
+      const btnMo = document.getElementById('btn-mo');
+
+      if (mode === 'mo') {
+        wrap.classList.add('mobile');
+        btnMo.classList.add('active');
+        btnPc.classList.remove('active');
+      } else {
+        wrap.classList.remove('mobile');
+        btnPc.classList.add('active');
+        btnMo.classList.remove('active');
+      }
+    }
+
+    function toggleAdminMode() {
+      isAdminMode = !isAdminMode;
+      const btn = document.getElementById('btn-admin');
+      const statusText = document.getElementById('adminStatus');
+
+      if (isAdminMode) {
+        btn.classList.add('on');
+        statusText.textContent = 'ON (관리자 모드)';
+      } else {
+        btn.classList.remove('on');
+        statusText.textContent = 'OFF (사용자 모드)';
+      }
+      applyAdminModeToFrame();
+    }
+
+    function applyAdminModeToFrame() {
+      try {
+        const frame = document.getElementById('previewFrame');
+        if (frame.contentDocument && frame.contentDocument.body) {
+          if (isAdminMode) {
+            frame.contentDocument.body.classList.add('admin-preview');
+          } else {
+            frame.contentDocument.body.classList.remove('admin-preview');
+          }
+        }
+      } catch (e) {
+        console.warn('Cross-origin frame styling limitation in direct file mode');
+      }
+    }
+  </script>
+
+</body>
+</html>

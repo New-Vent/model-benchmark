@@ -13,7 +13,11 @@ from dataclasses import dataclass
 from component_library import (
     HERO_VARIANTS, BENEFITS_VARIANTS, STEPS_VARIANTS, CTA_VARIANTS,
     COUNTDOWN_VARIANTS, FAQ_VARIANTS, TABS_VARIANTS,
+    POLL_VARIANTS, RATING_VARIANTS, COUPON_VARIANTS, CHECKLIST_VARIANTS,
+    CAROUSEL_VARIANTS,
     COUNTDOWN_SCRIPT, TAB_SWITCHER_SCRIPT,
+    POLL_SCRIPT, RATING_SCRIPT, COUPON_SCRIPT, CHECKLIST_SCRIPT,
+    CAROUSEL_SCRIPT,
 )
 
 LLM, SERVER, MIXED = "llm", "server", "mixed"
@@ -93,6 +97,36 @@ BLOCKS = [
           shape="버튼은 [data-tab-index], 내용은 [data-tab-panel] 속성으로 짝짓는다",
           must="[data-tab-index]", min_items=2, count_selector="[data-tab-index]",
           variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in TABS_VARIANTS)),
+
+    Block("poll", False, LLM,
+          "클릭 투표 — 질문 하나 + 옵션 2~4개",
+          shape="옵션마다 [data-poll-option] 버튼으로 감싼다",
+          must="[data-poll-option]", min_items=2, count_selector="[data-poll-option]",
+          variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in POLL_VARIANTS)),
+
+    Block("rating", False, LLM,
+          "5점 별점 평가 — 질문 문구 하나",
+          shape="<div data-star-group> 안에 별 5개([data-star-value])를 둔다",
+          must="[data-star-value]",
+          variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in RATING_VARIANTS)),
+
+    Block("coupon", False, LLM,
+          "쿠폰 코드 복사 — 코드 문자열 + 설명 문구",
+          shape="코드는 [data-coupon-code], 복사 버튼은 [data-coupon-copy]로 감싼다",
+          must="[data-coupon-code]",
+          variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in COUPON_VARIANTS)),
+
+    Block("checklist", False, LLM,
+          "참여 체크리스트 — 항목 2~4개",
+          shape="항목마다 [data-checklist-item] 체크박스로 감싼다",
+          must="[data-checklist-item]", min_items=2, count_selector="[data-checklist-item]",
+          variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in CHECKLIST_VARIANTS)),
+
+    Block("carousel", False, LLM,
+          "이미지 캐러셀 — 슬라이드 캡션 2~4개(이미지는 자리표시자)",
+          shape="슬라이드마다 [data-carousel-slide]로 감싼다",
+          must="[data-carousel-slide]", min_items=2, count_selector="[data-carousel-slide]",
+          variants=tuple(Variant(n, d, f, fn) for n, d, f, fn in CAROUSEL_VARIANTS)),
 ]
 
 BY_KEY = {b.key: b for b in BLOCKS}
@@ -162,7 +196,7 @@ def build_patch_json_schema() -> dict:
     patch일 때의 오퍼레이션 종류를 문법적으로 강제한다.
     """
     block_keys = [b.key for b in LLM_BLOCKS]
-    theme_fields = ["primaryColor", "buttonColor", "fontFamily", "headlineWeight"]
+    theme_fields = ["primaryColor", "buttonColor", "fontFamily", "headlineWeight", "baseFontSize"]
     preset_names = ["vivid", "cool", "minimal", "warm"]
 
     op_variants = [
@@ -248,6 +282,7 @@ THEME_DEFAULTS = {
     "buttonColor": "#2d6cdf",
     "fontFamily": "Pretendard, sans-serif",
     "headlineWeight": "700",
+    "baseFontSize": "16px",
 }
 
 THEME_FIELDS = {
@@ -260,6 +295,8 @@ THEME_FIELDS = {
                     and bool(CSS_SAFE_IDENT.match(v))),
     "headlineWeight": ("제목 굵기 (400/500/600/700/800 중 하나)",
                         lambda v: v in {"400", "500", "600", "700", "800"}),
+    "baseFontSize": ("본문 기본 글자 크기 (14px/16px/18px/20px 중 하나)",
+                      lambda v: v in {"14px", "16px", "18px", "20px"}),
 }
 
 STYLE_PRESETS = {
@@ -273,7 +310,9 @@ STYLE_PRESETS = {
 def render_theme_style(theme: dict) -> str:
     t = {**THEME_DEFAULTS, **(theme or {})}
     return ("<style>\n"
-            f"  :root {{ --primary-color: {t['primaryColor']}; --font-family: {t['fontFamily']}; }}\n"
+            f"  :root {{ --primary-color: {t['primaryColor']}; --font-family: {t['fontFamily']}; "
+            f"--base-font-size: {t['baseFontSize']}; }}\n"
+            f"  body {{ font-size: var(--base-font-size); }}\n"
             f"  h1, h2 {{ font-family: var(--font-family); font-weight: {t['headlineWeight']}; }}\n"
             f"  .btn {{ background: {t['buttonColor']}; }}\n"
             "</style>")
@@ -287,4 +326,14 @@ def assemble_page(plan: dict) -> str:
         scripts += "\n" + COUNTDOWN_SCRIPT
     if "tabs" in types_present:
         scripts += "\n" + TAB_SWITCHER_SCRIPT
+    if "poll" in types_present:
+        scripts += "\n" + POLL_SCRIPT
+    if "rating" in types_present:
+        scripts += "\n" + RATING_SCRIPT
+    if "coupon" in types_present:
+        scripts += "\n" + COUPON_SCRIPT
+    if "checklist" in types_present:
+        scripts += "\n" + CHECKLIST_SCRIPT
+    if "carousel" in types_present:
+        scripts += "\n" + CAROUSEL_SCRIPT
     return render_theme_style(plan.get("theme")) + "\n" + render_plan(plan) + scripts

@@ -1,0 +1,2566 @@
+/* NewVent merged event.css
+ * Sources: event헌진.css (rich components + five themes),
+ *          event수현.css (semantic data-block + ul/ol/a.btn fallbacks).
+ * Supported roots: .ev-container or .event-page. Load this file only once.
+ * Theme class: put theme-sports/holiday/vip/sale/launch on body or event root.
+ * Detailed sp-/hl-/vp-/fs-/lc- styles require corresponding HTML classes;
+ * CSS alone does not create that markup or implement API/game behavior.
+ * Legacy --brand/--ink/etc. may be overridden on the event root.
+ */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+:root {
+  /* Core Color Palette */
+  --ev-font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --ev-bg: #f8fafc;
+  --ev-surface: #ffffff;
+  --ev-surface-subtle: #f1f5f9;
+  --ev-border: #e2e8f0;
+  --ev-border-focus: #94a3b8;
+  
+  --ev-text-main: #0f172a;
+  --ev-text-muted: #64748b;
+  --ev-text-light: #94a3b8;
+  --ev-text-inverse: #ffffff;
+
+  /* Theme Defaults (Indigo / Standard) */
+  --ev-primary: #4f46e5;
+  --ev-primary-hover: #4338ca;
+  --ev-primary-light: #eef2ff;
+  --ev-primary-glow: rgba(79, 70, 229, 0.25);
+  --ev-gradient-hero: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  --ev-accent-tag: #f43f5e;
+
+  /* Sizing & Radius */
+  --ev-radius-sm: 8px;
+  --ev-radius-md: 14px;
+  --ev-radius-lg: 20px;
+  --ev-radius-full: 9999px;
+
+  /* Shadows */
+  --ev-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ev-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --ev-shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --ev-shadow-float: 0 20px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Legacy variable vocabulary, resolved inside each themed root. */
+:where(.event-page, .ev-container) {
+  --brand: var(--ev-primary);
+  --brand-dark: var(--ev-primary-hover);
+  --ink: var(--ev-text-main);
+  --muted: var(--ev-text-muted);
+  --line: var(--ev-border);
+  --paper: var(--ev-surface);
+  --bg: var(--ev-bg);
+  --notice: #fef3c7;
+  --notice-ink: #78350f;
+  color: var(--ink);
+  font-family: var(--ev-font);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* Semantic HTML fallback (low specificity). */
+:where(.event-page) {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="hero"]:not(.ev-block)) {
+  background: var(--ev-gradient-hero);
+  color: #fff;
+  border-radius: 20px;
+  padding: 48px 28px;
+  margin-bottom: 20px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="hero"]:not(.ev-block) .badge) {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="hero"]:not(.ev-block) h1) {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+:where(.event-page, .ev-container) :where([data-block="hero"]:not(.ev-block) p) {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.92;
+}
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block), [data-block="steps"]:not(.ev-block), [data-block="notices"]:not(.ev-block)) {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 22px 10px;
+  margin-bottom: 16px;
+}
+
+:where(.event-page, .ev-container) :where([data-block]:not(.ev-block) h2) {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block) ul) {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block) li) {
+  border-left: 3px solid var(--brand);
+  padding: 10px 0 10px 14px;
+  margin-bottom: 8px;
+  background: var(--ev-primary-light);
+  border-radius: 0 10px 10px 0;
+}
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block).cards ul) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block).cards li) {
+  border-left: none;
+  border-top: 3px solid var(--brand);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 0;
+}
+
+:where(.event-page, .ev-container) :where([data-block="steps"]:not(.ev-block) ol) {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="steps"]:not(.ev-block) li) {
+  margin-bottom: 10px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="notices"]:not(.ev-block)) {
+  background: var(--notice);
+  border-color: #fde68a;
+}
+
+:where(.event-page, .ev-container) :where([data-block="notices"]:not(.ev-block) h2, [data-block="notices"]:not(.ev-block) li) {
+  color: var(--notice-ink);
+}
+
+:where(.event-page, .ev-container) :where([data-block="cta"]:not(.ev-block)) {
+  text-align: center;
+  margin-top: 8px;
+}
+
+:where(.event-page, .ev-container) :where([data-block="cta"]:not(.ev-block) .btn) {
+  display: inline-block;
+  min-width: 0;
+  min-height: 44px;
+  max-width: 100%;
+  text-align: center;
+  background: var(--brand);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+:where(.event-page, .ev-container) :where([data-block="cta"]:not(.ev-block) .btn.wide) {
+  display: block;
+  width: 100%;
+}
+
+:where(.event-page, .ev-container) :where([data-block="cta"]:not(.ev-block) .btn:hover) {
+  background: var(--brand-dark);
+}
+
+:where(.event-page, .ev-container) :where(.period) {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+@media (max-width: 560px) {
+:where(.event-page, .ev-container) :where([data-block="hero"]:not(.ev-block) h1) {
+    font-size: 1.55rem;
+  }
+
+:where(.event-page, .ev-container) :where([data-block="benefits"]:not(.ev-block).cards ul) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Themes (동적 테마 클래스)
+   ========================================================================== */
+
+/* 1. 스포츠 / 승부예측 (Dynamic Red & Navy) */
+.theme-sports {
+  --ev-primary: #dc2626;
+  --ev-primary-hover: #b91c1c;
+  --ev-primary-light: #fef2f2;
+  --ev-primary-glow: rgba(220, 38, 38, 0.28);
+  --ev-gradient-hero: linear-gradient(135deg, #090d16 0%, #1e293b 60%, #991b1b 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  --ev-accent-tag: #f59e0b;
+}
+
+/* 2. 명절 / 시즌 선물 (Warm Gold & Crimson) */
+.theme-holiday {
+  --ev-primary: #d97706;
+  --ev-primary-hover: #b45309;
+  --ev-primary-light: #fffbeb;
+  --ev-primary-glow: rgba(217, 119, 6, 0.25);
+  --ev-gradient-hero: linear-gradient(135deg, #2b1055 0%, #591a3a 50%, #832729 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --ev-accent-tag: #ef4444;
+}
+
+/* 3. 회원 감사 / VIP 프로모션 (Luxury Champagne Gold & Dark Indigo) */
+.theme-vip {
+  --ev-primary: #ca8a04;
+  --ev-primary-hover: #a16207;
+  --ev-primary-light: #fefce8;
+  --ev-primary-glow: rgba(202, 138, 4, 0.3);
+  --ev-gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+  --ev-accent-tag: #38bdf8;
+}
+
+/* 4. 타임 세일 / 플래시 세일 (Vibrant Coral & Sunset Gradient) */
+.theme-sale {
+  --ev-primary: #ff4757;
+  --ev-primary-hover: #e0404f;
+  --ev-primary-light: #fff0f1;
+  --ev-primary-glow: rgba(255, 71, 87, 0.3);
+  --ev-gradient-hero: linear-gradient(135deg, #2f3542 0%, #ff4757 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+  --ev-accent-tag: #ffa502;
+}
+
+/* 5. 신규 런칭 / 사전예약 (Cyber Neon Cyan & Electric Violet) */
+.theme-launch {
+  --ev-primary: #06b6d4;
+  --ev-primary-hover: #0891b2;
+  --ev-primary-light: #ecfeff;
+  --ev-primary-glow: rgba(6, 182, 212, 0.35);
+  --ev-gradient-hero: linear-gradient(135deg, #050515 0%, #1e1035 60%, #083344 100%);
+  --ev-gradient-cta: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --ev-accent-tag: #a855f7;
+}
+
+/* ==========================================================================
+   CSS Reset & Base Structure
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+:where(.ev-container, .event-page) :where(h1, h2, h3, p) { margin-top: 0; }
+.ev-container :where(h1, h2, h3, p, ul, ol) { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--ev-font);
+  background-color: var(--ev-bg);
+  color: var(--ev-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main Container (사용자 조회 화면 & iframe 양쪽 일관 크기) */
+.ev-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background-color: var(--ev-surface);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Standard Block Wrapper */
+.ev-block {
+  width: 100%;
+  position: relative;
+  padding: 36px 24px;
+}
+
+/* ==========================================================================
+   BLOCK 1: HERO
+   ========================================================================== */
+.block-hero {
+  background: var(--ev-gradient-hero);
+  color: var(--ev-text-inverse);
+  text-align: center;
+  padding: 56px 24px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.block-hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-badge-wrap {
+  margin-bottom: 16px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--ev-radius-full);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.hero-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--ev-accent-tag);
+  box-shadow: 0 0 8px var(--ev-accent-tag);
+  animation: ev-pulse 2s infinite;
+}
+
+.hero-title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  word-break: keep-all;
+}
+
+.hero-title span.highlight {
+  color: var(--ev-accent-tag);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.hero-period-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 18px;
+  border-radius: var(--ev-radius-full);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================================================
+   BLOCK 2: BENEFITS
+   ========================================================================== */
+.block-benefits {
+  background-color: var(--ev-surface);
+}
+
+.block-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.block-header .sub-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ev-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.block-header .title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ev-text-main);
+  letter-spacing: -0.3px;
+}
+
+.benefits-grid,
+.benefits-list-default {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* 공통 식별 클래스 (Identification): 레이아웃·배경을 강제하지 않음 */
+.benefits-list {
+  box-sizing: border-box;
+}
+
+.benefit-card {
+  box-sizing: border-box;
+}
+
+/* 카드 기본 표현 클래스 (데스크톱): 세로형 레이아웃 */
+.benefit-card-default,
+:where(.benefit-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])) {
+  background: var(--ev-surface);
+  border: 1px solid var(--ev-border);
+  border-radius: var(--ev-radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--ev-shadow-sm);
+}
+
+.benefit-card-default:hover,
+:where(.benefit-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])):hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ev-shadow-lg);
+  border-color: var(--ev-primary);
+}
+
+.benefit-tag {
+  position: static;
+  align-self: flex-start;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--ev-radius-full);
+  background: var(--ev-primary-light);
+  color: var(--ev-primary);
+  z-index: 2;
+  white-space: normal;
+}
+
+.benefit-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--ev-radius-md);
+  background: var(--ev-primary-light);
+  color: var(--ev-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+/* 이름과 설명을 하나의 바디 묶음으로 감싸 레이아웃 안정성 확보 */
+.benefit-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+}
+
+.benefit-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ev-text-main);
+  margin-bottom: 6px;
+  word-break: keep-all;
+  /* Tags occupy their own layout space. */
+}
+
+.benefit-desc {
+  font-size: 12px;
+  color: var(--ev-text-muted);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  word-break: keep-all;
+}
+
+.benefit-value {
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ev-primary);
+  white-space: normal;
+}
+
+/* ==========================================================================
+   BLOCK 3: STEPS
+   ========================================================================== */
+.block-steps {
+  background-color: var(--ev-surface-subtle);
+  border-top: 1px solid var(--ev-border);
+  border-bottom: 1px solid var(--ev-border);
+}
+
+/* 공통 식별 클래스 (Identification): 레이아웃·배경을 강제하지 않음 */
+.steps-list {
+  box-sizing: border-box;
+}
+
+.step-card {
+  box-sizing: border-box;
+}
+
+/* 기본 단계 목록 및 카드 표현 클래스 */
+.steps-list-default,
+:where(.steps-list:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])) {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.step-card-default,
+:where(.step-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])) {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--ev-surface);
+  border: 1px solid var(--ev-border);
+  border-radius: var(--ev-radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--ev-shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.step-card-default:hover,
+:where(.step-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])):hover {
+  transform: translateX(4px);
+}
+
+.step-badge {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ev-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px var(--ev-primary-glow);
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ev-text-main);
+  margin-bottom: 4px;
+  word-break: keep-all;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: var(--ev-text-muted);
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* ==========================================================================
+   BLOCK 4: NOTICES (서버 소유 블록)
+   - LLM이 임의로 생성/수정하지 않으며, 서버가 승인된 공통 문구만 삽입
+   - 관리자 배지(.server-badge)는 관리자 화면에서만 노출
+   ========================================================================== */
+.block-notices {
+  background-color: var(--ev-surface);
+  padding: 32px 24px;
+}
+
+.notice-box {
+  background: var(--ev-surface-subtle);
+  border: 1px dashed var(--ev-border-focus);
+  border-radius: var(--ev-radius-md);
+  padding: 20px 22px;
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ev-text-main);
+  margin-bottom: 12px;
+}
+
+/* 관리자용 배지: 사용자 화면에서는 숨김 처리 */
+.server-badge {
+  display: none;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  background: #e2e8f0;
+  color: #475569;
+  border-radius: 4px;
+}
+
+/* 관리자 미리보기 컨테이너 내에서만 노출 */
+.admin-preview .server-badge,
+[data-view="admin"] .server-badge {
+  display: inline-block;
+}
+
+.notice-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notice-list li {
+  font-size: 12px;
+  color: var(--ev-text-muted);
+  line-height: 1.55;
+  position: relative;
+  padding-left: 14px;
+  word-break: keep-all;
+}
+
+.notice-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--ev-text-light);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   BLOCK 5: CTA (Call to Action)
+   ========================================================================== */
+.block-cta {
+  background-color: var(--ev-surface);
+  text-align: center;
+  padding: 28px 24px 48px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+  padding: 16px 28px;
+  border-radius: var(--ev-radius-lg);
+  background: var(--ev-gradient-cta);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px var(--ev-primary-glow);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.3px;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px var(--ev-primary-glow);
+  filter: brightness(1.05);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}
+
+.cta-subtext {
+  font-size: 12px;
+  color: var(--ev-text-light);
+  margin-top: 12px;
+  word-break: keep-all;
+}
+
+/* ==========================================================================
+   UI 데모 안내 및 토스트 알림
+   ========================================================================== */
+.demo-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.ev-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: var(--ev-radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  white-space: normal;
+  max-width: calc(100vw - 40px);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ev-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Micro-animations
+   ========================================================================== */
+@keyframes ev-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.7; }
+}
+
+/* ==========================================================================
+   Mobile Responsive Media Queries (<= 640px & 375px 모바일 뷰)
+   - 375px 폭에서도 긴 문구/뱃지/가격이 겹치거나 잘리지 않도록 2열 그리드 배치
+   ========================================================================== */
+@media (max-width: 640px) {
+  .ev-block {
+    padding: 28px 16px;
+  }
+
+  .block-hero {
+    padding: 40px 16px 30px;
+  }
+
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+  }
+
+  .hero-period-box {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+
+  .block-header .title {
+    font-size: 19px;
+  }
+
+  /* 혜택 카드 1열 배치 */
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /*
+   * 모바일 카드: grid-template-areas로 태그를 normal flow에 배치
+   * [ .    tag  ]
+   * [ icon body ]
+   * [ icon value]
+   * → benefit-tag가 절대 위치에서 벗어나 텍스트와 충돌하지 않음
+   */
+  .benefit-card-default,
+  :where(.benefit-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])),
+  .theme-sports .sp-prize-sub {
+    display: grid;
+    grid-template-areas:
+      ".    tag  "
+      "icon body "
+      "icon value";
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    column-gap: 14px;
+    row-gap: 4px;
+    align-items: start;
+    text-align: left;
+    padding: 16px 14px;
+  }
+
+  .benefit-tag {
+    position: static;
+    grid-area: tag;
+    justify-self: start;
+    font-size: 9px;
+    padding: 2px 7px;
+    margin: 0;
+  }
+
+  .benefit-icon {
+    grid-area: icon;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    margin-bottom: 0;
+  }
+
+  .benefit-body {
+    grid-area: body;
+    align-items: flex-start;
+    text-align: left;
+    min-width: 0;
+  }
+
+  .benefit-name {
+    font-size: 14px;
+    margin-bottom: 4px;
+    /* padding-right 불필요 — tag가 grid-area로 분리됨 */
+  }
+
+  .benefit-desc {
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 1.4;
+  }
+
+  .benefit-value {
+    grid-area: value;
+    margin-top: 2px;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .step-card-default,
+  :where(.step-card:not([class*="sp-"]):not([class*="hl-"]):not([class*="vp-"]):not([class*="fs-"]):not([class*="lc-"])) {
+    padding: 14px 14px;
+    gap: 12px;
+  }
+
+  .step-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    flex: 0 0 30px;
+  }
+
+  .step-title {
+    font-size: 14px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+  }
+
+  .cta-btn {
+    font-size: 15px;
+    padding: 14px 20px;
+    border-radius: var(--ev-radius-md);
+  }
+}
+
+/* ==========================================================================
+   TEMPLATE 1: SPORTS CHEER (스포츠 포스터형)
+   ========================================================================== */
+.theme-sports .sp-hero {
+  padding: 42px 24px;
+  background: radial-gradient(circle at 85% 20%, rgba(220, 38, 38, 0.22) 0%, transparent 60%),
+              linear-gradient(145deg, #090e17 0%, #111827 50%, #1e1b4b 100%);
+}
+
+.theme-sports .sp-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.theme-sports .sp-hero-left {
+  flex: 1;
+  text-align: left;
+}
+
+.theme-sports .sp-title {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 14px 0 10px;
+  text-transform: uppercase;
+}
+
+.theme-sports .sp-title .highlight {
+  color: #ef4444;
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.theme-sports .sp-desc {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* Scoreboard Card */
+.theme-sports .sp-scoreboard {
+  flex: 0 0 230px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid #dc2626;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(220, 38, 38, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.theme-sports .sp-sb-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ef4444;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.theme-sports .sp-sb-teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+
+.theme-sports .sp-sb-vs {
+  font-size: 11px;
+  color: #ef4444;
+  font-weight: 900;
+}
+
+.theme-sports .sp-sb-divider {
+  height: 1px;
+  background: #334155;
+  margin: 10px 0;
+}
+
+.theme-sports .sp-sb-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #cbd5e1;
+}
+
+.theme-sports .sp-sb-row strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.theme-sports .sp-sb-note {
+  font-size: 10px;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 8px;
+  background: rgba(220, 38, 38, 0.12);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+/* Featured Prize (Large 1st) */
+.theme-sports .sp-prize-main {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #ef4444;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.theme-sports .sp-prize-main-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.theme-sports .sp-icon-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 34px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.theme-sports .sp-name-lg {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.theme-sports .sp-value-lg {
+  font-size: 17px;
+  font-weight: 900;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+.theme-sports .sp-prize-sub-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.theme-sports .sp-prizes-wrap {
+  display: block;
+}
+
+.theme-sports .sp-prize-sub {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--ev-radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--ev-shadow-sm);
+}
+
+.theme-sports .sp-prize-sub:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ev-shadow-lg);
+  border-color: #ef4444;
+}
+
+/* Steps: Ticket Style */
+.theme-sports .sp-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.theme-sports .sp-ticket {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-left: 6px solid #dc2626;
+  border-radius: 10px;
+  padding: 16px 18px;
+  position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.theme-sports .sp-ticket:hover {
+  transform: translateX(4px);
+  border-color: #ef4444;
+}
+
+.theme-sports .sp-ticket-num {
+  font-size: 20px;
+  font-weight: 900;
+  color: #dc2626;
+  font-family: monospace, sans-serif;
+  letter-spacing: -1px;
+  flex: 0 0 32px;
+  text-align: center;
+}
+
+.theme-sports .sp-ticket-divider {
+  width: 1px;
+  height: 36px;
+  background: #e2e8f0;
+}
+
+.theme-sports .sp-cta-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+}
+
+
+/* ==========================================================================
+   TEMPLATE 2: HOLIDAY GIFT (따뜻한 선물 안내형)
+   ========================================================================== */
+.theme-holiday {
+  --ev-bg: #faf6f0;
+  --ev-surface: #fdfbf7;
+  --ev-border: #f0e6d6;
+}
+
+.theme-holiday .hl-hero {
+  padding: 52px 24px 40px;
+  background: radial-gradient(circle at 50% 10%, rgba(245, 158, 11, 0.18) 0%, transparent 65%),
+              linear-gradient(180deg, #3d1627 0%, #2c1220 100%);
+  position: relative;
+  border-radius: 0 0 24px 24px;
+  text-align: center;
+}
+
+.theme-holiday .hl-title {
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #fff;
+  margin: 14px 0 10px;
+  word-break: keep-all;
+}
+
+.theme-holiday .hl-desc {
+  font-size: 14px;
+  color: #fde68a;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.theme-holiday .hl-period-ribbon {
+  display: inline-block;
+  margin-top: 16px;
+  background: rgba(253, 230, 138, 0.15);
+  border: 1px solid rgba(253, 230, 138, 0.35);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fef08a;
+}
+
+/* Featured Gift Wide with Ribbon decoration */
+.theme-holiday .hl-gift-featured {
+  background: #ffffff;
+  border: 2px solid #f59e0b;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(217, 119, 6, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.theme-holiday .hl-gift-featured-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.theme-holiday .hl-gift-ribbon {
+  position: absolute;
+  top: 0;
+  right: 28px;
+  width: 24px;
+  height: 38px;
+  background: #dc2626;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+.theme-holiday .hl-icon-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 16px;
+}
+
+.theme-holiday .hl-name-lg {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.theme-holiday .hl-gift-sub-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.theme-holiday .hl-gift-sub {
+  border-radius: 16px;
+  border: 1px solid #f0e6d6;
+  background: #ffffff;
+}
+
+/* Steps: Vertical Timeline Flow */
+.theme-holiday .hl-steps-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.theme-holiday .hl-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  position: relative;
+  padding-bottom: 22px;
+}
+
+.theme-holiday .hl-step-num-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 34px;
+}
+
+.theme-holiday .hl-step-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1b4332;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(27, 67, 50, 0.25);
+  flex-shrink: 0;
+}
+
+.theme-holiday .hl-step-line {
+  width: 2px;
+  flex: 1;
+  background: #cbd5e1;
+  margin-top: 6px;
+  min-height: 32px;
+}
+
+.theme-holiday .hl-step-item:last-child .hl-step-line {
+  display: none;
+}
+
+
+/* ==========================================================================
+   TEMPLATE 3: MEMBER APPRECIATION (프리미엄 초대장형)
+   ========================================================================== */
+.theme-vip {
+  --ev-bg: #f9f9f8;
+  --ev-surface: #ffffff;
+  --ev-border: #e8e6e1;
+}
+
+.theme-vip .vp-hero {
+  padding: 48px 24px 36px;
+  background: #1c1917;
+  color: #f5f5f4;
+  border-bottom: 1px solid #44403c;
+  text-align: center;
+}
+
+.theme-vip .vp-grade-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #cca43b;
+  border: 1px solid #cca43b;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.theme-vip .vp-title {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fafaf9;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.theme-vip .vp-desc {
+  font-size: 13px;
+  color: #a8a29e;
+  line-height: 1.6;
+}
+
+.theme-vip .vp-period {
+  font-size: 12px;
+  color: #cca43b;
+  margin-top: 14px;
+}
+
+/* Benefits: Horizontal Long Coupons */
+.theme-vip .vp-coupons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.theme-vip .vp-coupon {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  position: relative;
+  padding: 0;
+}
+
+.theme-vip .vp-coupon-left {
+  flex: 0 0 105px;
+  background: #292524;
+  color: #cca43b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.theme-vip .vp-coupon-icon {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.theme-vip .vp-coupon-value {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+  color: #fef08a;
+  letter-spacing: -0.5px;
+}
+
+.theme-vip .vp-coupon-unit {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a8a29e;
+  margin-top: 2px;
+}
+
+.theme-vip .vp-coupon-divider {
+  width: 0;
+  border-right: 2px dashed #d6d3d1;
+  position: relative;
+}
+
+.theme-vip .vp-coupon-right {
+  flex: 1;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.theme-vip .vp-coupon-right .benefit-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1917;
+  margin-bottom: 4px;
+}
+
+.theme-vip .vp-coupon-right .benefit-desc {
+  font-size: 12px;
+  color: #78716c;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.theme-vip .vp-coupon-condition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Steps: Card-less Elegant Editorial List */
+.theme-vip .vp-steps-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.theme-vip .vp-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 4px;
+}
+
+.theme-vip .vp-step-num {
+  font-size: 15px;
+  font-weight: 800;
+  color: #b45309;
+  font-family: serif, sans-serif;
+  flex: 0 0 24px;
+}
+
+.theme-vip .vp-step-divider {
+  height: 1px;
+  background: #e7e5e4;
+  width: 100%;
+}
+
+.theme-vip .vp-cta-btn {
+  background: #1c1917;
+  color: #cca43b;
+  border: 1px solid #cca43b;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ==========================================================================
+   TEMPLATE 4: FLASH SALE (가격 강조형)
+   ========================================================================== */
+.theme-sale {
+  --ev-bg: #09090b;
+  --ev-surface: #121215;
+  --ev-text-main: #f4f4f5;
+  --ev-text-muted: #a1a1aa;
+  --ev-border: #27272a;
+}
+
+.theme-sale .fs-hero {
+  padding: 36px 20px 28px;
+  background: #000000;
+  border-bottom: 2px solid #ccff00;
+  text-align: center;
+}
+
+.theme-sale .fs-top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.theme-sale .fs-deal-badge {
+  background: #ccff00;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+.theme-sale .fs-title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.theme-sale .fs-title .highlight {
+  color: #ccff00;
+}
+
+.theme-sale .fs-desc {
+  font-size: 13px;
+  color: #a1a1aa;
+  margin-bottom: 16px;
+}
+
+/* Segmented Digital Timer Panel */
+.theme-sale .fs-timer-panel {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: #18181b;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-top: 4px;
+}
+
+.theme-sale .fs-timer-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.theme-sale .fs-timer-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e4e4e7;
+  letter-spacing: 0.5px;
+}
+
+.theme-sale .fs-timer-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.theme-sale .fs-timer-digit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  color: #ccff00;
+  font-family: monospace, sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #52525b;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.theme-sale .fs-timer-sep {
+  color: #ccff00;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.theme-sale .fs-period-sub {
+  font-size: 11px;
+  color: #71717a;
+  margin-top: 8px;
+}
+
+/* Benefits: Deal List Format */
+.theme-sale .fs-deal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.theme-sale .fs-deal-item {
+  display: flex;
+  align-items: center;
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 6px;
+  padding: 14px 18px;
+  gap: 16px;
+  transition: border-color 0.2s;
+}
+
+.theme-sale .fs-deal-item:hover {
+  border-color: #ccff00;
+}
+
+.theme-sale .fs-deal-icon {
+  font-size: 28px;
+  flex: 0 0 44px;
+  height: 44px;
+  background: #27272a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-sale .fs-deal-info {
+  flex: 1;
+  text-align: left;
+}
+
+.theme-sale .fs-deal-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f4f4f5;
+  margin-bottom: 2px;
+}
+
+.theme-sale .fs-deal-desc {
+  font-size: 11px;
+  color: #71717a;
+  margin-bottom: 0;
+}
+
+.theme-sale .fs-deal-pricing {
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+.theme-sale .fs-deal-tag {
+  display: inline-block;
+  background: #ccff00;
+  color: #000;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-bottom: 2px;
+}
+
+.theme-sale .fs-deal-original {
+  font-size: 11px;
+  color: #71717a;
+  text-decoration: line-through;
+}
+
+.theme-sale .fs-deal-final {
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+/* Steps: Compact Strip */
+.theme-sale .fs-steps-compact {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.theme-sale .fs-step-compact-item {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 6px;
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.theme-sale .fs-step-compact-num {
+  font-size: 11px;
+  font-weight: 900;
+  color: #ccff00;
+  margin-bottom: 4px;
+}
+
+.theme-sale .fs-step-compact-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f4f4f5;
+  margin-bottom: 2px;
+}
+
+.theme-sale .fs-step-compact-desc {
+  font-size: 10px;
+  color: #71717a;
+  line-height: 1.35;
+}
+
+/* Rectangular CTA */
+.theme-sale .fs-cta-btn {
+  background: #ccff00;
+  color: #000000;
+  border-radius: 2px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  border: none;
+  box-shadow: 0 6px 20px rgba(204, 255, 0, 0.35);
+}
+
+.theme-sale .fs-cta-btn:hover {
+  background: #b8e600;
+}
+
+
+/* ==========================================================================
+   TEMPLATE 5: PRE-REGISTRATION (서비스 소개형)
+   ========================================================================== */
+.theme-launch {
+  --ev-bg: #f8fafc;
+  --ev-surface: #ffffff;
+  --ev-border: #e2e8f0;
+}
+
+.theme-launch .lc-hero {
+  padding: 44px 24px 36px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #172554 100%);
+  color: #ffffff;
+}
+
+.theme-launch .lc-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.theme-launch .lc-hero-left {
+  flex: 1;
+  text-align: left;
+}
+
+.theme-launch .lc-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #ffffff;
+  margin: 12px 0 10px;
+}
+
+.theme-launch .lc-title .highlight {
+  color: #38bdf8;
+}
+
+.theme-launch .lc-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.theme-launch .lc-period {
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* Service UI Mockup (Decorative CSS-only App Window) */
+.theme-launch .lc-mockup {
+  flex: 0 0 240px;
+  background: #090d16;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
+.theme-launch .lc-mockup-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.theme-launch .lc-mockup-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.theme-launch .lc-mockup-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #475569;
+}
+
+.theme-launch .lc-mockup-dot:nth-child(1) { background: #ef4444; }
+.theme-launch .lc-mockup-dot:nth-child(2) { background: #f59e0b; }
+.theme-launch .lc-mockup-dot:nth-child(3) { background: #10b981; }
+
+.theme-launch .lc-mockup-title {
+  font-size: 9px;
+  color: #94a3b8;
+  font-family: monospace;
+}
+
+.theme-launch .lc-mockup-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-launch .lc-mockup-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 9px;
+  color: #38bdf8;
+}
+
+.theme-launch .lc-mockup-preview-card {
+  background: #0f172a;
+  border: 1px dashed #38bdf8;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+}
+
+.theme-launch .lc-mockup-preview-card strong {
+  display: block;
+  font-size: 10px;
+  color: #f8fafc;
+}
+
+.theme-launch .lc-mockup-preview-card span {
+  font-size: 8px;
+  color: #94a3b8;
+}
+
+.theme-launch .lc-mockup-caption {
+  font-size: 9px;
+  color: #64748b;
+  text-align: center;
+  padding: 4px;
+  background: #090d16;
+  border-top: 1px solid #1e293b;
+}
+
+/* Benefits: 1 Featured Wide + 2 Sub */
+.theme-launch .lc-prize-featured {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #2563eb;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.theme-launch .lc-prize-featured-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.theme-launch .lc-icon-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 34px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.theme-launch .lc-name-lg {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.theme-launch .lc-value-lg {
+  font-size: 17px;
+  font-weight: 900;
+  color: #2563eb;
+  margin-top: 4px;
+}
+
+.theme-launch .lc-prize-sub-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Steps: Timeline Flow */
+.theme-launch .lc-timeline {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+  gap: 12px;
+}
+
+.theme-launch .lc-timeline-node {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.theme-launch .lc-timeline-node-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.theme-launch .lc-timeline-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-launch .lc-timeline-phase {
+  font-size: 11px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.theme-launch .lc-timeline-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.theme-launch .lc-timeline-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.theme-launch .lc-cta-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+}
+
+
+/* ==========================================================================
+   THEME-SPECIFIC RESPONSIVE OVERRIDES (<= 640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* Template 1 Mobile */
+  .theme-sports .sp-hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .theme-sports .sp-hero-left {
+    text-align: center;
+  }
+  .theme-sports .sp-scoreboard {
+    width: 100%;
+    flex: none;
+    max-width: 320px;
+    margin: 10px auto 0;
+  }
+  .theme-sports .sp-prize-sub-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Template 2 Mobile */
+  .theme-holiday .hl-gift-sub-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Template 3 Mobile: Coupon Layout */
+  .theme-vip .vp-coupon {
+    flex-direction: row;
+  }
+  .theme-vip .vp-coupon-left {
+    flex: 0 0 85px;
+    padding: 12px 6px;
+  }
+  .theme-vip .vp-coupon-value {
+    font-size: 19px;
+  }
+  .theme-vip .vp-coupon-right {
+    padding: 12px 14px;
+  }
+  .theme-vip .vp-coupon-right .benefit-name {
+    font-size: 13px;
+  }
+  .theme-vip .vp-coupon-right .benefit-desc {
+    font-size: 11px;
+  }
+
+  /* Template 4 Mobile */
+  .theme-sale .fs-steps-compact {
+    grid-template-columns: 1fr;
+  }
+  .theme-sale .fs-deal-item {
+    padding: 12px;
+    gap: 10px;
+  }
+  .theme-sale .fs-deal-final {
+    font-size: 14px;
+  }
+
+  /* Template 5 Mobile */
+  .theme-launch .lc-hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .theme-launch .lc-hero-left {
+    text-align: center;
+  }
+  .theme-launch .lc-mockup {
+    width: 100%;
+    max-width: 280px;
+    margin: 10px auto 0;
+  }
+  .theme-launch .lc-prize-sub-row {
+    grid-template-columns: 1fr;
+  }
+  .theme-launch .lc-timeline {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+/* Shared usability and compatibility refinements. */
+:where(.ev-container, .event-page) :where(img, video, svg, canvas) { max-width: 100%; }
+:where(.ev-container, .event-page) img { height: auto; }
+:where(.ev-container, .event-page) :where(button, input, select, textarea) { font: inherit; }
+:where(.ev-container, .event-page) :where(.benefit-body, .step-content,
+  .sp-hero-left, .lc-hero-left, .vp-coupon-right, .fs-deal-info,
+  .sp-prize-main-inner > *, .lc-timeline-node) { min-width: 0; }
+.hero-period-box, .notice-header { flex-wrap: wrap; max-width: 100%; }
+:where(.ev-container, .event-page) [data-block="hero"] .period { color: inherit; }
+.cta-btn, :where(.ev-container, .event-page) [data-block="cta"] .btn {
+  min-height: 44px; white-space: normal; overflow-wrap: anywhere;
+}
+:where(.ev-container, .event-page) :where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #2563eb; outline-offset: 4px;
+}
+:where(.ev-container, .event-page) :where(button:disabled, .btn[aria-disabled="true"], .cta-btn[aria-disabled="true"]) {
+  opacity: .55; cursor: not-allowed; transform: none; box-shadow: none;
+}
+/* aria-disabled is styling only: JavaScript must prevent the action. */
+.ev-toast { width: max-content; max-width: calc(100vw - 32px); overflow-wrap: anywhere; border-radius: 16px; }
+.cta-subtext { color: var(--ev-text-muted); }
+.theme-sale {
+  --ev-surface-subtle: #18181b;
+  --ev-border-focus: #52525b;
+  --ev-primary: #ccff00;
+  --ev-primary-hover: #b8e600;
+  --ev-primary-light: #272c15;
+  --ev-gradient-cta: linear-gradient(#ccff00, #b8e600);
+  --ev-primary-glow: rgba(204,255,0,.18);
+}
+.theme-sale .cta-btn, .theme-sale .step-badge,
+.theme-sale [data-block="cta"] .btn { color: #09090b; }
+.theme-sale :where(.event-page, .ev-container),
+:where(.event-page, .ev-container).theme-sale {
+  --notice: #292315; --notice-ink: #fde68a;
+}
+.theme-sale .fs-deal-desc, .theme-sale .fs-deal-original,
+.theme-sale .fs-step-compact-desc, .theme-sale .fs-period-sub { color: #a1a1aa; }
+.theme-holiday .cta-btn, .theme-vip .cta-btn { color: #1c1917; }
+.theme-vip .vp-cta-btn { color: #fef08a; }
+.theme-launch .cta-btn { color: #0f172a; }
+.theme-launch .lc-cta-btn { color: #ffffff; }
+/* Nested tags in featured components are not outer grid items. */
+:where(.sp-prize-main, .hl-gift-featured, .vp-coupon, .lc-prize-featured) .benefit-tag {
+  position: static; display: inline-block; max-width: 100%;
+}
+@media (max-width: 640px) {
+  .theme-launch .lc-mockup { flex: none; }
+  .theme-sale .fs-deal-item { flex-wrap: wrap; }
+  .theme-sale .fs-deal-info { flex: 1 1 130px; }
+  .theme-sale .fs-deal-pricing { margin-left: auto; max-width: 100%; }
+  .theme-sports .sp-prize-main-inner { flex-wrap: wrap; }
+  .theme-sports .sp-prize-main-inner > .benefit-body { flex: 1 1 140px; }
+  .theme-holiday .hl-gift-featured-inner,
+  .theme-launch .lc-prize-featured-inner { flex-wrap: wrap; }
+  :where(.event-page) { padding: 16px 12px 48px; }
+  :where(.event-page) :where([data-block="hero"]) { padding: 32px 20px; }
+}
+/* ==========================================================================
+   INTERACTIVE BUTTONS & WIDGET ENHANCEMENTS
+   ========================================================================== */
+
+/* Template 1: Sports Vote Buttons */
+.theme-sports .sp-vote-wrap {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(220, 38, 38, 0.4);
+  text-align: center;
+}
+.theme-sports .sp-vote-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.theme-sports .sp-vote-btns {
+  display: flex;
+  gap: 6px;
+}
+.theme-sports .sp-vote-btn {
+  flex: 1;
+  padding: 7px 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #e2e8f0;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid #475569;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.theme-sports .sp-vote-btn:hover {
+  background: rgba(220, 38, 38, 0.25);
+  border-color: #ef4444;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.theme-sports .sp-vote-btn.active {
+  background: #dc2626;
+  border-color: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Template 2: Holiday 3 Lucky Draw Songpyeon Boxes */
+.theme-holiday .hl-gift-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+/* Template 2: Traditional Korean Fortune Pouch (복주머니) Styles */
+.theme-holiday .hl-gift-boxes,
+.theme-holiday .hl-pouches-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.theme-holiday .hl-pouch-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: 20px;
+  padding: 20px 12px 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+.theme-holiday .hl-pouch-card:hover {
+  transform: translateY(-6px);
+  border-color: #ea580c;
+  box-shadow: 0 12px 24px rgba(180, 83, 9, 0.15);
+}
+.theme-holiday .hl-pouch-visual {
+  position: relative;
+  width: 90px;
+  height: 98px;
+  margin: 12px auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-holiday .hl-pouch-card:hover .hl-pouch-visual {
+  transform: scale(1.08) rotate(-2deg);
+}
+.theme-holiday .hl-pouch-top {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 16px;
+  background: #f59e0b;
+  border-radius: 10px 10px 4px 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+.theme-holiday .hl-pouch-tie {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  z-index: 4;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  line-height: 1;
+}
+.theme-holiday .hl-pouch-body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82px;
+  height: 82px;
+  border-radius: 40% 40% 50% 50% / 30% 30% 60% 60%;
+  box-shadow: inset 0 -8px 14px rgba(0,0,0,0.25), inset 0 4px 8px rgba(255,255,255,0.4), 0 6px 14px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fde68a;
+  z-index: 1;
+}
+.theme-holiday .hl-pouch-red .hl-pouch-body {
+  background: radial-gradient(circle at 35% 35%, #ef4444 0%, #b91c1c 60%, #7f1d1d 100%);
+}
+.theme-holiday .hl-pouch-gold .hl-pouch-body {
+  background: radial-gradient(circle at 35% 35%, #fbbf24 0%, #d97706 60%, #92400e 100%);
+}
+.theme-holiday .hl-pouch-blue .hl-pouch-body {
+  background: radial-gradient(circle at 35% 35%, #38bdf8 0%, #2563eb 60%, #1e3a8a 100%);
+}
+.theme-holiday .hl-pouch-hanja {
+  font-family: "Noto Serif KR", serif, -apple-system, sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fef08a;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 0 8px rgba(254, 240, 138, 0.6);
+  user-select: none;
+}
+.theme-holiday .hl-pouch-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #7c2d12;
+  margin-bottom: 3px;
+}
+.theme-holiday .hl-pouch-prize {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ea580c;
+  margin-bottom: 6px;
+}
+.theme-holiday .hl-pouch-desc {
+  font-size: 11px;
+  color: #9a3412;
+  opacity: 0.85;
+  margin-bottom: 12px;
+  flex-grow: 1;
+  line-height: 1.4;
+}
+.theme-holiday .hl-pouch-btn {
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(234, 88, 12, 0.3);
+  transition: all 0.2s ease;
+}
+.theme-holiday .hl-pouch-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 12px rgba(234, 88, 12, 0.4);
+}
+.theme-holiday .hl-pouch-btn.opened {
+  background: #15803d;
+  box-shadow: none;
+}
+@keyframes pouch-shake {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.12) rotate(-8deg); }
+  50% { transform: scale(1.12) rotate(8deg); }
+  75% { transform: scale(1.06) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.theme-holiday .hl-pouch-visual.shake {
+  animation: pouch-shake 0.5s ease-in-out;
+}
+.theme-holiday .hl-share-wrap {
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+.theme-holiday .hl-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #78350f;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.theme-holiday .hl-share-btn:hover {
+  background: #fde68a;
+  color: #92400e;
+}
+.theme-holiday .hl-cta-btn.cta-completed {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important;
+  color: #fff !important;
+}
+
+/* Template 3: VIP Coupon Action Button */
+.theme-vip .vp-coupon-btn {
+  margin-top: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #854d0e;
+  background: linear-gradient(135deg, #fef08a 0%, #eab308 100%);
+  border: 1px solid #ca8a04;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+.theme-vip .vp-coupon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(202, 138, 4, 0.3);
+  color: #713f12;
+}
+.theme-vip .vp-coupon-btn.downloaded {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #64748b;
+  cursor: default;
+}
+
+/* Template 4: Flash Sale Deal Button */
+.theme-sale .fs-deal-btn {
+  margin-top: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #000;
+  background: #ccff00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  display: inline-block;
+  white-space: nowrap;
+}
+.theme-sale .fs-deal-btn:hover {
+  background: #e6ff66;
+  box-shadow: 0 0 12px rgba(204, 255, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Template 5: Tech Launch Milestone Gauge & Form */
+.theme-launch .lc-gauge-card {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.06);
+}
+.theme-launch .lc-gauge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.theme-launch .lc-gauge-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+.theme-launch .lc-gauge-percent {
+  font-size: 15px;
+  font-weight: 900;
+  color: #2563eb;
+}
+.theme-launch .lc-progress-track {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.theme-launch .lc-progress-fill {
+  height: 100%;
+  width: 74%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+.theme-launch .lc-milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.theme-launch .lc-milestone-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.theme-launch .lc-milestone-item.achieved {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+.theme-launch .lc-ms-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.theme-launch .lc-milestone-item.achieved .lc-ms-badge {
+  background: #dcfce7;
+  color: #15803d;
+}
+.theme-launch .lc-ms-target {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.theme-launch .lc-ms-reward {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Interactive Form */
+.theme-launch .lc-form-card {
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.theme-launch .lc-form-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.theme-launch .lc-form-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+.theme-launch .lc-form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.theme-launch .lc-input {
+  flex: 1;
+  padding: 12px 14px;
+  background: #090d16;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.theme-launch .lc-input:focus {
+  border-color: #3b82f6;
+}
+.theme-launch .lc-form-btn {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.theme-launch .lc-form-btn:hover {
+  background: #1d4ed8;
+}
+.theme-launch .lc-share-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #334155;
+}
+.theme-launch .lc-share-text {
+  font-size: 12px;
+  color: #94a3b8;
+}
+.theme-launch .lc-share-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-launch .lc-share-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+@media (max-width: 640px) {
+  .theme-holiday .hl-gift-boxes {
+    grid-template-columns: 1fr;
+  }
+  .theme-launch .lc-milestones-grid {
+    grid-template-columns: 1fr;
+  }
+  .theme-launch .lc-form-row {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.ev-container, .event-page),
+  :where(.ev-container, .event-page) *,
+  :where(.ev-container, .event-page) *::before,
+  :where(.ev-container, .event-page) *::after,
+  .ev-toast { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
