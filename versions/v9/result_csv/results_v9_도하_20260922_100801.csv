@@ -1,0 +1,16 @@
+runner,provider,model,group,prompt_id,repeat_no,attempt,ok,model_fails,pipeline_fails,sanitize_damaged,input_tokens,output_tokens,wall_ms,truncated,note
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E1,1,1,1,,,0,398,122,3758,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E1,2,1,1,,,0,398,159,710,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E1,3,1,1,,,0,398,126,1139,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E2,1,1,1,,,0,428,193,1325,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E2,2,1,1,,,0,428,113,1227,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E2,3,1,1,,,0,428,191,972,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T1,1,1,1,,,0,398,120,2106,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T2,1,1,1,,,0,428,191,1206,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T3,1,1,1,,,0,438,142,1739,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T1,2,1,1,,,0,398,127,892,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T2,2,1,1,,,0,428,204,1037,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T3,2,1,1,,,0,438,238,1352,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T1,3,1,1,,,0,398,130,2710,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T2,3,1,1,,,0,428,191,874,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C1-T3,3,1,1,,,0,438,186,1364,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가

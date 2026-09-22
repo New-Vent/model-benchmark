@@ -20,11 +20,11 @@ v8 은 백엔드 미러라 필요한 게 다르므로 독립 러너를 쓴다 �
 
     export LLM_PROVIDER=bedrock
     export BEDROCK_REGION=us-east-1          # AWS_REGION 과 별개 (아래 참고)
-    BEDROCK_MODEL=qwen   python run_v8.py    # 별칭 또는 모델 ID
-    BEDROCK_MODEL=haiku  python run_v8.py
+    BEDROCK_MODEL=qwen   python run_v9.py    # 별칭 또는 모델 ID
+    BEDROCK_MODEL=haiku  python run_v9.py
 
-    LLM_PROVIDER=ollama OLLAMA_MODEL=qwen2.5:7b python run_v8.py   # 대조군
-    LLM_PROVIDER=mock python run_v8.py                             # 0원, 배선 확인
+    LLM_PROVIDER=ollama OLLAMA_MODEL=qwen2.5:7b python run_v9.py   # 대조군
+    LLM_PROVIDER=mock python run_v9.py                             # 0원, 배선 확인
 
 쓸 수 있는 별칭은 BEDROCK_MODELS 참고. 전부 2026-09-21 에 실제로 호출해서
 되는 것만 남겼다.
@@ -75,10 +75,24 @@ BEDROCK_MODELS = {
 #   ② AWS Marketplace 구독 — haiku·sonnet·luna·terra 같은 프로파일 모델.
 #        AccessDeniedException: ... not authorized to perform the required AWS
 #        Marketplace actions (aws-marketplace:ViewSubscriptions, aws-marketplace:Subscribe)
+#      IAM 에 저 두 액션을 주면 Bedrock 이 알아서 구독을 걸고 2분 뒤 풀린다.
+#      구독 자체는 **고정 요금이 없다** — 모델 약관 동의일 뿐이고 과금은 토큰당
+#      그대로다. AWS 관리형 정책 AmazonBedrockFullAccess 에도 들어 있다.
 #      다만 리소스 범위를 좁힐 수 없어서 Bedrock 외 Marketplace 상품에도 열린다.
 #
 #   온디맨드 모델(qwen·gemma·gpt-oss)은 둘 다 필요 없다. 바로 호출된다.
 #
+# ★ 일부러 뺀 것
+#
+#   gpt-5.6-luna ($0.22/$1.32)
+#     ②가 필요한데, 같은 OpenAI 계열 gpt-oss-120b 가 더 싸고($0.15/$0.60)
+#     관문 없이 바로 된다. 대표는 그쪽으로 충분하다.
+#
+#   gpt-oss-safeguard-20b / 120b
+#     콘텐츠 안전성 **분류** 전용 모델이다. HTML 생성·수정에 쓸 물건이 아니라
+#     단가가 싸다고 넣으면 엉뚱한 걸 재게 된다.
+
+
 # ★ BEDROCK_MODELS 는 **조회표**이지 실행 목록이 아니다.
 #   ID 와 단가를 한 번 알아내는 게 번거로워서(온디맨드/프로파일 구분, 리전별
 #   유무, Marketplace 구독) 확인한 것을 전부 적어둔 것뿐이다. 여기 있다고

@@ -1,6 +1,9 @@
 # v8 — Bedrock, 백엔드 레지스트리 기준으로 다시 재기
 
-**구현 완료, 실행 전.** `python versions/v8/run_v8.py --self-check` 로 호출 없이 검증만 가능합니다.
+4개 모델 + 로컬 대조군 1종, 213행, 실측 비용 48원 — 결과는 §6.
+**1순위는 `google.gemma-3-27b-it`** (45/45, haiku 와 동점인데 비용 1/8).
+
+`python versions/v8/run_v8.py --self-check` 로 호출 없이 검증만 가능합니다.
 
 공통 원칙은 [docs/methodology.md](../../docs/methodology.md)를 따르되, **v1~v7과
 기준선이 다릅니다.** 아래 §1을 먼저 읽으세요.
@@ -21,7 +24,7 @@ v4~v7이 쓴 `template/*.html`은 **백엔드가 모델에게 시키는 형태�
 레지스트리의 cta는 `<a href="#" class="btn">`인데 템플릿은 `<button class="cta-btn">`입니다.
 섞으면 v4 때처럼 채점이 또 틀어지므로, v8의 기준은 **레지스트리 하나뿐**입니다.
 
-### ② ★ 정화(sanitize) 뒤를 채점한다
+### ② 정화(sanitize) 뒤를 채점한다
 
 지금까지 벤치마크는 `raw → extract → check` 였습니다.
 실제 서비스는 `raw → extract → sanitize → validate` 입니다.
@@ -37,12 +40,6 @@ v8은 **정화 전과 후를 둘 다 채점**해서 책임을 가릅니다.
 | `sanitize_damaged` | 정화가 망가뜨린 출력인가 |
 
 **모델 비교를 하면서 정화 버그를 모델 탓으로 돌리면 엉뚱한 모델을 고르게 됩니다.**
-
-### ③ `base/`를 건드리지 않는다
-
-`base/engine.py`는 Ollama에 깊게 묶여 있고(캘리브레이션·digest·`/api/tags`),
-팀 공용이라 "합의 없이 개인이 고치지 않는다"가 규칙입니다. v8은 독립 러너를
-씁니다 — **v1~v7 결과는 그대로 재현 가능한 채로 남습니다.**
 
 ---
 
@@ -70,7 +67,7 @@ v1~v7은 **설계를 고르는** 실험이었고, v8은 설계가 확정된 뒤 
 | 부분 / 전체 재생성 | v1 E군·v4 | `edit(block)`+`merge` **확정** | 비교 대상 없음 |
 
 여기에 J 노선을 넣어 비교하려면 **백엔드에 없는 경로를 벤치마크가 새로 만들어야**
-합니다. 그건 v4가 저지른 실수(실제와 다른 조건으로 재고 결론 내기)의 반복입니다.
+합니다.
 
 **G·E·R·C는 비교군이 아니라 커버리지입니다** — 넷 다 서비스가 쓰는 경로라
 넷 다 통과해야 하고, 서로 우열을 겨루지 않습니다. v8의 비교축은 §2-1입니다.
@@ -128,9 +125,9 @@ FINAL_DOC  슬롯: 전부 사라짐               href: 전부 사라짐
 
 ---
 
-## 3. 실행 전에 이미 확인된 것 — 호출 0원
+## 3. 실행 전에 이미 확인된 것 —
 
-`--self-check`가 **백엔드 PR ②번 버그를 그대로 재현합니다.**
+`--self-check`가 CTA 버튼의 링크가 사라지는 것을 확인했습니다.
 
 ```
 프롬프트가 예시로 준 것 : <section data-block="cta"><a href="#" class="btn">참여하기</a></section>
@@ -150,7 +147,6 @@ FINAL_DOC  슬롯: 전부 사라짐               href: 전부 사라짐
 | `https://...` | 유지 |
 
 그리고 **`data-slot`도 정화가 지웁니다.** 수정 경로에서는 이게 곧 `slot_lost`입니다
-(백엔드 PR이 고치는 중인 ①번 항목).
 
 > 이 두 가지는 **모델을 아무리 바꿔도 안 고쳐집니다.** Bedrock 호출을 한 번도
 > 하기 전에 잡을 수 있는 것이라, v8의 첫 성과는 여기입니다.
@@ -162,8 +158,8 @@ FINAL_DOC  슬롯: 전부 사라짐               href: 전부 사라짐
 ```bash
 pip install -r requirements.txt      # boto3 포함
 
-# ① 0원 — 배선 확인. mock은 "완벽한 모델"이라 남는 실패는 전부 파이프라인 탓
-LLM_PROVIDER=mock RUNNER=도하 python versions/v8/run_v8.py --repeats 1
+# mock은 "완벽한 모델"이라 남는 실패는 전부 파이프라인 탓
+LLM_PROVIDER=mock RUNNER=OO python versions/v8/run_v8.py --repeats 1
 
 # ② 호출 없이 코드 검증만
 python versions/v8/run_v8.py --self-check
@@ -171,26 +167,17 @@ python versions/v8/run_v8.py --self-check
 # ③ 라우터만 — 가장 위험하고 가장 싼 축
 export BEDROCK_REGION=us-east-1
 export BEDROCK_MODEL="anthropic.claude-haiku-4-5-20251001-v1:0"
-LLM_PROVIDER=bedrock RUNNER=도하 python versions/v8/run_v8.py --groups R
+LLM_PROVIDER=bedrock RUNNER=OO python versions/v8/run_v8.py --groups R
 
 # ④ 누적 수정만
-LLM_PROVIDER=bedrock RUNNER=도하 python versions/v8/run_v8.py --groups C
+LLM_PROVIDER=bedrock RUNNER=OO python versions/v8/run_v8.py --groups C
 
 # ⑤ 전체
-LLM_PROVIDER=bedrock RUNNER=도하 python versions/v8/run_v8.py
+LLM_PROVIDER=bedrock RUNNER=OO python versions/v8/run_v8.py
 
 # 대조군 — 같은 케이스를 로컬로
 LLM_PROVIDER=ollama OLLAMA_MODEL=qwen2.5:7b python versions/v8/run_v8.py
 ```
-
-### 비용
-
-| 범위 | 호출 (재시도 제외) |
-| --- | ---: |
-| `--groups R --repeats 3` | 24 (전부 캡 256) |
-| `--groups E --repeats 3` | 12 |
-| `--groups C --repeats 3` | 18 (2케이스 × 3턴 × 3회) |
-| 전체 `--repeats 3` | 60 |
 
 ### 리전
 
@@ -226,42 +213,123 @@ LLM_PROVIDER=ollama OLLAMA_MODEL=qwen2.5:7b python versions/v8/run_v8.py
 | `cases_v8.py` | — (v8 고유) |
 | `run_v8.py` | — (v8 고유) |
 
-### ⚠ 두 저장소가 갈라지는 문제
-
-v3 README가 경고한 "같은 프롬프트가 두 파일에 중복 보관"이 이제 **저장소를
-넘어서** 생겼습니다 — 벤치마크(Python)와 서비스(Java).
-
-**백엔드가 프롬프트·레지스트리·정화를 건드리면 여기도 같이 고쳐야 합니다.**
-자동으로 감지할 방법이 없습니다. `self_check()`는 Python 쪽 일관성만 봅니다.
-
-### 현재 백엔드 기준점
-
-`develop` @ `8f39d6a` (`fix: PERIOD 를 슬롯으로 분리하고 CSS 정화 추가`).
-
-**PR(정화 2종 분리 · `validateEdited(Block, before, after)` · 슬롯 규칙)은 아직
-머지 전**이라, `prompts_v8.edit()`에는 슬롯 문장이 없습니다 — 지금 `develop`과
-일치시키는 쪽을 골랐습니다. 머지되면:
-
-- `prompts_v8.edit()`에 슬롯 규칙 추가
-- `checks_v8.sanitize()`를 `sanitize_generated` / `sanitize_edited`로 분리
-- `checks_v8.self_check()`의 "버그가 재현되는지" 단언 2개를 뒤집기
-
 ---
 
 ## 6. 결과 / 결론
 
-*실행 전입니다.*
+### 1차 통과율 (라우터는 재시도 없음, §2 참고)
+
+| 모델 | G 생성 | E 수정 | R 라우터 | C 누적 | **합계** | 비용 | 평균응답 |
+| --- | :-: | :-: | :-: | :-: | :-: | ---: | ---: |
+| **google.gemma-3-27b-it** | 6/6 | 6/6 | **24/24** | 9/9 | **45/45 (100%)** | **5원** | 0.90s |
+| **us.anthropic.claude-haiku-4-5** | 6/6 | 8/9 | 27/30 | 9/9 | **50/54** | 41원 | 0.96s |
+| openai.gpt-oss-120b | 6/6 | 6/6 | 22/24 | 9/9 | 43/45 | 9원 | 1.06s |
+| qwen.qwen3-coder-30b-a3b | 6/6 | 6/6 | 16/24 | 9/9 | 37/45 | 4원 | 0.63s |
+| *qwen2.5:7b (로컬 대조군)* | — | — | *17/24* | — | — | 0원 | 0.68s |
+
+**haiku 의 실패 4건은 전부 `call_error`** (Marketplace 구독 전파 중 발생). CSV 의
+`model_fails` 를 까보면 모델 탓은 **0건** — 실제 실행된 호출 기준 **50/50** 이다.
+(재실행분 9행이 더해져 분모가 54 다)
+
+### ① 갈린 축은 라우터 하나뿐이다
+
+**G·E·C 는 네 모델 전부 만점.** 생성·수정·누적수정은 Bedrock 급에서 변별력이 없다.
+출력 품질도 눈으로 확인했다 — 한국어 문구 자연스럽고, `href="#"` 보존, 블록 구성
+정확, 자리표시자·이모지 없음. 채점이 느슨해서 통과한 게 아니다.
+
+라우터 실패는 **3회 모두 같은 답**이라 우연이 아니다.
+
+| 케이스 | qwen3-coder | qwen2.5:7b(로컬) | gemma-3-27b |
+| --- | --- | --- | --- |
+| R1 "혜택에 쿠폰 하나 더 넣어줘" | `ADD` ✗ (2/3) | `ADD` ✗ (3/3) | ✓ |
+| R5 "버튼 문구 바꿔줘" | `STYLE` ✗ (3/3) | `STYLE` ✗ (1/3) | ✓ |
+| R3 "글씨 크고 빨갛게" | `target:null` ✗ (3/3) | ✓ | ✓ |
+| R7 "제목·소개 다듬어줘" | ✓ | `benefits` ✗ (3/3) | ✓ |
+
+R1 을 qwen 두 모델이 똑같이 틀리는 게 눈에 띈다 — 계열 공통 약점으로 보인다.
+
+**라우터는 파이프라인 입구라 여기서 틀리면 뒤가 다 무의미하다.** "혜택 하나 더
+넣어줘"가 `ADD` 로 가면 멀쩡한 블록 옆에 빈 블록이 생기고, 서버는 정답을 모르니
+재시도도 없다(§2 의 "라우터 재시도 없음"이 그 이유다).
+
+### ② 체급이 답이 아니다
+
+| | R군 |
+| --- | :-: |
+| qwen2.5:7b (로컬, 7B) | **17/24** |
+| qwen.qwen3-coder-30b (Bedrock, 30B) | 16/24 |
+
+**4배 키웠는데 라우팅은 안 올랐다.** 반면 gemma 는 4B(로컬, 패치 전멸)에서
+27B 로 가며 만점이 됐다. **계열마다 강한 축이 다르다** — qwen 계열은 HTML
+편집(v7 10/10), gemma 계열은 분류.
+
+로컬 데이터가 가장 강하게 밀던 qwen-coder 가 여기서 꼴찌인 이유이기도 하다.
+v7 의 10/10 은 **편집 능력**이었지 분류 능력이 아니었다.
+
+### ③ gpt-oss-120b 는 보이지 않는 토큰을 태운다
+
+| | 라우터 출력 토큰/호출 |
+| --- | ---: |
+| qwen · gemma | 10~11 |
+| **gpt-oss-120b** | **80 (최대 256)** |
+
+응답 내용은 `{"op":"EDIT","target":"benefits"}` 로 똑같다. 차액은 전부 추론
+토큰이고 Converse 가 `content` 로 돌려주지 않는데 **과금은 된다.** 실제로 한 번은
+캡 256 을 다 쓰고 **빈 응답**(`unparseable`, `truncated=1`)을 냈다.
+짧은 출력 작업에 추론 모델은 구조적으로 안 맞는다.
+
+### ④ 응답시간은 전부 충분하다
+
+0.63~1.06초, 서울→us-east-1 왕복 포함. **리전 분리는 문제가 아니다.**
+다만 같은 케이스가 0.4s~7.2s 로 흔들린 적이 있어(부하 변동) 단일 측정은 못 믿는다.
+
+### 결론
+
+**1순위: `google.gemma-3-27b-it`**
+
+| | gemma-3-27b | claude-haiku-4.5 |
+| --- | ---: | ---: |
+| 통과율 | 45/45 | 50/50 (동점) |
+| v8 1회 | 5원 | 41원 |
+
+**같은 결과를 9.5 배 비싸게 살 이유가 없다.** haiku 는 상위 대조군으로서
+"더 비싼 모델이 실제로 더 낫지 않다"를 입증한 데 의미가 있다.
+
+누적 실측 비용 **48원**.
+
+### ⚠ 이전 판단 정정 — E4(삭제)는 새 능력이 아니다
+
+1차 결과를 보고 "삭제 축이 로컬에선 0/5 였는데 Bedrock 에서 6/6 이 됐다"고
+적었으나 **틀렸다.** 그 0/5 는 **K-T(JSON 패치)** 결과이고 v8 의 E4 는
+**HTML 직접 편집**이다. 다른 경로를 비교한 것이다.
+
+v4 의 S-E(HTML 직접편집) 실측:
+
+| | 삭제(SE3) | 추가(SE4) |
+| --- | :-: | :-: |
+| qwen2.5:7b | **10/10** | **10/10** |
+| qwen2.5-coder:7b | **10/10** | **10/10** |
+| exaone3.5:7.8b | **10/10** | **10/10** |
+| gemma3:4b | 7/10 | 4/10 |
+
+**로컬 7B 도 HTML 경로에서는 구조 변경을 100% 해냈다.** 정확한 진단은 v4 가
+이미 내려둔 그대로다 — "구조 변경을 못 하는 게 아니라, JSON 패치로 지시하면
+오퍼레이션을 아예 안 낸다." 백엔드는 JSON 패치 경로가 없으므로 애초에 문제가
+아니었다.
+
+따라서 **Bedrock 전환의 실측 이득은 라우터 한 축**이다(로컬 71% → 100%).
+생성·수정은 로컬로도 됐다.
 
 ---
 
 ## 7. PR 머지 전에 나눠 돌리기 — 파일은 안 고칩니다
 
 ```bash
-# 머지 전 — 슬롯 케이스(E1·E2·C1)를 자동으로 뺀다. 20 → 15호출
-LLM_PROVIDER=bedrock RUNNER=도하 python versions/v8/run_v8.py --skip-slot-cases
+# 슬롯 케이스(E1·E2·C1)를 자동으로 뺀다. 
+LLM_PROVIDER=bedrock RUNNER=OO python versions/v8/run_v8.py --skip-slot-cases
 
-# 머지 후 — 플래그만 떼면 된다
-LLM_PROVIDER=bedrock RUNNER=도하 python versions/v8/run_v8.py
+# 슬롯 케이스 반영
+LLM_PROVIDER=bedrock RUNNER=OO python versions/v8/run_v8.py
 
 # 케이스를 직접 고를 수도 있다
 python versions/v8/run_v8.py --cases E3,E4,C2
@@ -269,6 +337,3 @@ python versions/v8/run_v8.py --cases E3,E4,C2
 
 `uses_slots()` 가 baseline 에 `data-slot` 이 있는지 보고 자동으로 판별하므로,
 케이스를 추가해도 목록을 손댈 필요가 없습니다.
-
-**다만 PR 이 머지되면 §5의 미러 3곳은 손대야 합니다** — 그건 "나눠 돌리기"와
-다른 문제로, 백엔드와 벤치마크를 일치시키는 작업이라 피할 수 없습니다.

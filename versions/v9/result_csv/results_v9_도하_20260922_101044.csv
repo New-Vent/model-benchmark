@@ -1,0 +1,61 @@
+runner,provider,model,group,prompt_id,repeat_no,attempt,ok,model_fails,pipeline_fails,sanitize_damaged,input_tokens,output_tokens,wall_ms,truncated,note
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G1,1,1,1,,,0,870,246,2129,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G1,2,1,1,,,0,870,246,1745,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G1,3,1,1,,,0,870,246,1713,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G2,1,1,1,,,0,896,188,1388,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G2,2,1,1,,,0,896,188,1428,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,G,G2,3,1,1,,,0,896,183,1381,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E1,1,1,1,,,0,548,41,861,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E1,2,1,1,,,0,548,41,886,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E1,3,1,1,,,0,548,41,879,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E2,1,1,1,,,0,590,78,965,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E2,2,1,1,,,0,590,83,1010,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E2,3,1,1,,,0,590,78,1020,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E3,1,1,1,,,0,595,87,1125,0,구조 늘리기
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E3,2,1,1,,,0,595,87,1255,0,구조 늘리기
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E3,3,1,1,,,0,595,87,1171,0,구조 늘리기
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E4,1,1,1,,,0,577,48,1006,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E4,2,1,1,,,0,577,48,902,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,E,E4,3,1,1,,,0,577,48,952,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R1,1,1,1,,,0,224,18,974,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R1,2,1,1,,,0,224,18,909,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R1,3,1,1,,,0,224,18,747,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R2,1,1,1,,,0,217,17,790,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R2,2,1,1,,,0,217,17,833,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R2,3,1,1,,,0,217,17,824,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R3,1,1,1,,,0,221,18,855,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R3,2,1,1,,,0,221,18,799,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R3,3,1,1,,,0,221,18,841,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R4,1,1,1,,,0,221,17,785,0,ADD 정답 — R1 과 짝
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R4,2,1,1,,,0,221,17,773,0,ADD 정답 — R1 과 짝
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R4,3,1,1,,,0,221,17,797,0,ADD 정답 — R1 과 짝
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R5,1,1,1,,,0,223,19,893,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R5,2,1,1,,,0,223,19,757,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R5,3,1,1,,,0,223,19,764,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R6,1,1,1,,,0,219,18,822,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R6,2,1,1,,,0,219,18,767,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R6,3,1,1,,,0,219,18,742,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R7,1,1,1,,,0,225,18,874,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R7,2,1,1,,,0,225,18,852,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R7,3,1,1,,,0,225,18,811,0,
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R8,1,1,1,,,0,214,17,795,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R8,2,1,1,,,0,214,17,836,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,R,R8,3,1,1,,,0,214,17,852,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T1,1,1,1,,,0,547,40,870,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T2,1,1,1,,,0,590,83,973,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T3,1,1,1,,,0,595,87,1159,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T1,2,1,1,,,0,547,40,867,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T2,2,1,1,,,0,590,78,1004,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T3,2,1,1,,,0,595,87,1164,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T1,3,1,1,,,0,547,40,872,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T2,3,1,1,,,0,590,83,1961,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C1-T3,3,1,1,,,0,595,87,1134,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T1,1,1,1,,,0,572,85,1112,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T2,1,1,1,,,0,594,68,1012,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T3,1,1,1,,,0,579,61,884,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T1,2,1,1,,,0,572,85,1093,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T2,2,1,1,,,0,594,68,1155,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T3,2,1,1,,,0,579,61,944,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T1,3,1,1,,,0,572,85,1118,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T2,3,1,1,,,0,594,68,971,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:us.anthropic.claude-haiku-4-5-20251001-v1:0@us-east-1,us.anthropic.claude-haiku-4-5-20251001-v1:0,C,C2-T3,3,1,1,,,0,579,61,918,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가

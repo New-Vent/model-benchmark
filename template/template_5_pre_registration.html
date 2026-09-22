@@ -28,7 +28,7 @@
             지금 사전예약하고 얼리버드 1년 무료 구독권과 한정판 웰컴 키트를 받으세요!
           </p>
           <div class="lc-period">
-            🚀 사전예약 기간: 2026.10.01 ~ 2026.10.31
+            🚀 사전예약 기간: <span data-slot="period">2026.10.01 ~ 2026.10.31</span>
           </div>
         </div>
 
@@ -74,18 +74,18 @@
         <div class="lc-progress-track">
           <div class="lc-progress-fill"></div>
         </div>
-        <div class="lc-milestones-grid">
-          <div class="lc-milestone-item achieved">
+        <div class="benefits-list lc-milestones-grid">
+          <div class="benefit-card lc-milestone-item achieved">
             <span class="lc-ms-badge">달성 완료 ✅</span>
             <div class="lc-ms-target">5,000명 달성</div>
             <div class="lc-ms-reward">Pro 1년 무료권 (전원)</div>
           </div>
-          <div class="lc-milestone-item achieved">
+          <div class="benefit-card lc-milestone-item achieved">
             <span class="lc-ms-badge">달성 완료 ✅</span>
             <div class="lc-ms-target">10,000명 달성</div>
             <div class="lc-ms-reward">굿즈 웰컴 키트 (추첨)</div>
           </div>
-          <div class="lc-milestone-item">
+          <div class="benefit-card lc-milestone-item">
             <span class="lc-ms-badge">목표 20,000명</span>
             <div class="lc-ms-target">20,000명 달성</div>
             <div class="lc-ms-reward">네이버페이 5천원 (전원)</div>
@@ -168,6 +168,7 @@
     <!-- [BLOCK: cta] -->
     <section class="ev-block block-cta lc-cta" data-block="cta">
       <button class="cta-btn lc-cta-btn btn" type="button"
+        data-slot="cta-link"
         data-demo-msg="사전예약이 접수되었습니다! 얼리버드 Pro 1년 이용권이 예약되었습니다 🚀 (데모)">
         사전예약 신청하고 1년 무료권 받기 🚀
       </button>
