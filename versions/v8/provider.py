@@ -65,17 +65,28 @@ BEDROCK_MODELS = {
     "sonnet":  ("us.anthropic.claude-sonnet-5",                       2.00, 10.00),
 }
 
+# ★ 관문이 둘이다 (2026-09-21 실측)
+#
+#   ① Anthropic use case 양식 — Anthropic 모델만. 콘솔 배너의
+#      "Submit use case details". 안 내면:
+#        ResourceNotFoundException: Model use case details have not been submitted
+#      제출 후 15분쯤 걸린다.
+#
+#   ② AWS Marketplace 구독 — haiku·sonnet·luna·terra 같은 프로파일 모델.
+#        AccessDeniedException: ... not authorized to perform the required AWS
+#        Marketplace actions (aws-marketplace:ViewSubscriptions, aws-marketplace:Subscribe)
+#      IAM 에 저 두 액션을 주면 Bedrock 이 알아서 구독을 걸고 2분 뒤 풀린다.
+#      구독 자체는 **고정 요금이 없다** — 모델 약관 동의일 뿐이고 과금은 토큰당
+#      그대로다. AWS 관리형 정책 AmazonBedrockFullAccess 에도 들어 있다.
+#      다만 리소스 범위를 좁힐 수 없어서 Bedrock 외 Marketplace 상품에도 열린다.
+#
+#   온디맨드 모델(qwen·gemma·gpt-oss)은 둘 다 필요 없다. 바로 호출된다.
+#
 # ★ 일부러 뺀 것
 #
 #   gpt-5.6-luna ($0.22/$1.32)
-#     AWS Marketplace 구독이 필요하다. 실호출하면 이렇게 막힌다:
-#       AccessDeniedException: ... not authorized to perform the required AWS
-#       Marketplace actions (aws-marketplace:ViewSubscriptions, aws-marketplace:Subscribe)
-#     IAM 에 저 두 액션을 주면 Bedrock 이 알아서 구독을 걸고 2분 뒤 풀린다.
-#     그런데 `aws-marketplace:Subscribe` 는 **계정에 유료 구독을 거는 권한**이라
-#     벤치마크용 사용자에게 주기엔 과하다. 게다가 같은 OpenAI 계열인
-#     gpt-oss-120b 가 더 싸고($0.15/$0.60) 구독 없이 바로 된다 — 대표는 그쪽으로.
-#     (같은 us.openai.* 인 terra 는 구독 없이 호출된다. 계열 전체가 막힌 게 아니다)
+#     ②가 필요한데, 같은 OpenAI 계열 gpt-oss-120b 가 더 싸고($0.15/$0.60)
+#     관문 없이 바로 된다. 대표는 그쪽으로 충분하다.
 #
 #   gpt-oss-safeguard-20b / 120b
 #     콘텐츠 안전성 **분류** 전용 모델이다. HTML 생성·수정에 쓸 물건이 아니라
@@ -166,10 +177,16 @@ class BedrockClient:
             modelId=self.model,
             system=[{"text": system}],
             messages=[{"role": "user", "content": [{"text": user}]}],
+            # ★ topP 를 일부러 안 보낸다.
+            #   Anthropic 모델은 temperature 와 topP 를 **동시에 받지 않는다**:
+            #     ValidationException: `temperature` and `top_p` cannot both be
+            #     specified for this model. Please use only one.
+            #   Anthropic 만 빼면 모델마다 다른 조건으로 비교하게 되므로
+            #   (methodology.md §6), 전 모델 공통으로 temperature 만 쓴다.
+            #   temperature 0.2 에서 topP 0.9 는 거의 구속력이 없어 손실도 작다.
             inferenceConfig={
                 "maxTokens": max_tokens,
                 "temperature": TEMPERATURE,
-                "topP": TOP_P,
             },
         )
         wall_ms = int((time.time() - t0) * 1000)

@@ -1,0 +1,46 @@
+runner,provider,model,group,prompt_id,repeat_no,attempt,ok,model_fails,pipeline_fails,sanitize_damaged,input_tokens,output_tokens,wall_ms,truncated,note
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G1,1,1,1,,,0,621,420,2078,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G1,2,1,1,,,0,621,443,1712,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G1,3,1,1,,,0,621,471,4100,0,"기본 생성 — 필수 블록 3종 + 선택 blocks, notices 는 만들면 안 됨"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G2,1,1,1,,,0,635,386,2050,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G2,2,1,1,,,0,635,327,2824,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,G,G2,3,1,1,,,0,635,486,1928,0,선택 블록(steps) 생략 — 필수만 내는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E3,1,1,1,,,0,365,145,754,0,구조 늘리기
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E3,2,1,1,,,0,365,267,1578,0,구조 늘리기
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E3,3,1,1,,,0,365,146,1731,0,구조 늘리기
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E4,1,1,1,,,0,355,135,587,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E4,2,1,1,,,0,355,125,652,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,E,E4,3,1,1,,,0,355,85,1035,0,★ 구조 줄이기 — 로컬 모델이 일관되게 회피한 축
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R1,1,1,0,op_ADD_want_EDIT,,0,218,35,412,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R1,2,1,0,op_ADD_want_EDIT,,0,218,41,487,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R1,3,1,1,,,0,218,113,740,0,ADD 로 오답 내기 쉬움 — 블록 추가가 아니라 내용 수정이다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R2,1,1,1,,,0,218,50,521,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R2,2,1,1,,,0,218,51,535,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R2,3,1,1,,,0,218,60,581,0,선택 블록이라 실제로 지울 수 있다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R3,1,1,1,,,0,221,52,444,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R3,2,1,1,,,0,221,48,492,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R3,3,1,1,,,0,221,46,752,0,EDIT 과 헷갈리는 축 — 겉모양만 바꾸는 요청
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R4,1,1,1,,,0,219,103,652,0,ADD 정답 — R1 과 짝
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R4,2,1,1,,,0,219,132,736,0,ADD 정답 — R1 과 짝
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R4,3,1,1,,,0,219,172,898,0,ADD 정답 — R1 과 짝
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R5,1,1,1,,,0,223,44,537,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R5,2,1,1,,,0,223,44,550,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R5,3,1,1,,,0,223,44,495,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R6,1,1,1,,,0,218,65,516,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R6,2,1,1,,,0,218,72,558,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R6,3,1,1,,,0,218,66,535,0,"★ SERVER 블록 — 라우터는 target 을 맞혀야 하고, 거절은 Block.denyReason 이 한다(모델 책임 아님)"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R7,1,1,1,,,0,221,84,632,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R7,2,1,1,,,0,221,102,872,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R7,3,1,1,,,0,221,103,831,0,
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R8,1,1,1,,,0,216,36,435,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R8,2,1,1,,,0,216,34,623,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,R,R8,3,1,1,,,0,216,36,464,0,"★ 필수 블록이라 실제로는 거절되어야 한다 — 라우터는 의도대로 분류하고, 막는 건 서버"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T1,1,1,1,,,0,354,155,921,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T2,1,1,1,,,0,369,129,681,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T3,1,1,1,,,0,361,261,1070,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T1,2,1,1,,,0,354,258,3422,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T2,2,1,1,,,0,368,210,1489,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T3,2,1,1,,,0,361,169,814,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T1,3,1,1,,,0,354,220,928,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T2,3,1,1,,,0,366,216,1896,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,C,C2-T3,3,1,1,,,0,361,191,963,0,★ 같은 블록 3턴 — 늘렸다 줄였다. 구조를 줄이는 축이 누적에서도 버티는가
