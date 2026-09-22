@@ -11,3 +11,10 @@ base/.ollama_host
 
 # playground의 생성/수정 결과물 — 실행할 때마다 새로 생기는 개인 산출물
 playground/output/*
+
+# bedrock/ 의 모델 출력·judge 결과 — 같은 원칙(개인 산출물, 폴더 구조만 커밋)
+bedrock/outputs/*/*
+!bedrock/outputs/*/.gitkeep
+bedrock/results/*/*
+!bedrock/results/*/.gitkeep
+bedrock/results/summary_*.md

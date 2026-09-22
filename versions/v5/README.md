@@ -6,11 +6,11 @@
 `python base/run.py v5 --self-check`로 LLM 호출 없이 코드 검증만 할 수도
 있습니다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)를 그대로 따릅니다.
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)를 그대로 따릅니다.
 
 ## 0. 왜 v5인가 — v4가 남긴 구멍
 
-v4([docs/reports/v1/pipeline.md](../../docs/reports/v1/pipeline.md) §1)는 "수정"(S-E vs
+v4([docs/reports/v1_v1-v7/pipeline.md](../../docs/reports/v1_v1-v7/pipeline.md) §1)는 "수정"(S-E vs
 K-T)만 실제 제품 템플릿 크기로 쟀습니다. "생성"(S-T vs J-T)은 실제 크기로
 만들면 출력 토큰이 1,985~2,443인데 html 캡이 1536이라 **v4 범위에서
 통째로 뺐습니다.**
@@ -25,7 +25,7 @@ qwen 계열은 그 비교에서 완전 동률(불일치 0쌍)이었습니다. v4
 
 v5는 이 구멍 하나만 채웁니다. 새 버전인 이유는 두 가지입니다.
 
-1. v4가 이미 "수정"이라는 이름으로 범위를 확정했고([docs/reports/v1/v-summary.md](../../docs/reports/v1/v-summary.md)
+1. v4가 이미 "수정"이라는 이름으로 범위를 확정했고([docs/reports/v1_v1-v7/v-summary.md](../../docs/reports/v1_v1-v7/v-summary.md)
    §v4), "생성"은 애초에 다른 질문입니다 — 같은 버전에 욱여넣으면 v4
    결과 해석("S-E vs K-T")과 섞여 혼란만 커집니다.
 2. `base/checks_v4.py`를 `versions/v4/`에서 `base/`로 옮겼습니다(v4
@@ -142,7 +142,7 @@ exaone의 J-T 전멸은 기기 독립적으로 재현됨(0/25, 1/25) — 특정 
 
 ### 핵심 발견 — v4의 "S가 J보다 안전하다"는 결론은 신규 생성에는 그대로 적용되지 않는다
 
-v4([docs/reports/v1/v-summary.md](../../docs/reports/v1/v-summary.md) §v4)는
+v4([docs/reports/v1_v1-v7/v-summary.md](../../docs/reports/v1_v1-v7/v-summary.md) §v4)는
 "수정" 경로에서 S(HTML)가 J(JSON)보다 확실히 우세했다. 그런데 "신규 생성"
 에서는 그 격차가 사라지거나 반대로 나타난다.
 
@@ -207,7 +207,7 @@ S-T에는 나타나지 않는다 — S-T/J-T는 채점 대상 실패 종류 자�
   아예 텍스트 필드 규칙을 못 지켜 전멸한다. S(HTML) 경로 단독으로만
   쓴다면 이 모델도 47/50으로 쓸 만하다.
 - **gemma3:4b는 여전히 탈락권** — 생성 경로 자체는 84%로 나쁘지 않지만,
-  v2·v3·v4에 걸쳐 반복 확인된 "수정·패치·JS-PATCH 전멸" 패턴([docs/reports/v1/모델선정_종합보고서.md](../../docs/reports/v1/모델선정_종합보고서.md)
+  v2·v3·v4에 걸쳐 반복 확인된 "수정·패치·JS-PATCH 전멸" 패턴([docs/reports/v1_v1-v7/모델선정_종합보고서.md](../../docs/reports/v1_v1-v7/모델선정_종합보고서.md)
   §3)이 더 크게 작용한다. 신규 생성만 시키는 용도가 아니라면 후보에서
   제외 유지.
 
@@ -215,7 +215,7 @@ S-T에는 나타나지 않는다 — S-T/J-T는 채점 대상 실패 종류 자�
 
 - **CHAIN7**: 신규 생성 축(S-T vs J-T)이 여기서 확정되면, "그 결과 →
   E수정 → JS-PLAN추가 → 값수정"까지 이어지는 전체 파이프라인을 그대로
-  재는 CHAIN7이 필요합니다([docs/reports/v1/pipeline.md](../../docs/reports/v1/pipeline.md)
+  재는 CHAIN7이 필요합니다([docs/reports/v1_v1-v7/pipeline.md](../../docs/reports/v1_v1-v7/pipeline.md)
   §4 "다음 단계"). v5 범위 밖입니다.
 - **전역 CSS 전파**: J만 가능한 기능 — 성능이 아니라 제품 요구사항
   판단이라 이 문서가 답할 문제가 아닙니다.

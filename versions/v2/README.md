@@ -3,7 +3,7 @@
 J(조합 계획) · K(패치) · CHAIN(생성→그 결과를 실제로 패치) 군.
 v1에서 보류했던 **출력 방식 J·K**를 실제로 재는 버전입니다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md), 공통 코드는 [`base/`](../../base/)에 있습니다.
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md), 공통 코드는 [`base/`](../../base/)에 있습니다.
 
 ## v1에서 무엇이 달라졌나
 
@@ -99,7 +99,7 @@ K3=블록 통째로 추가)에서만 정확히 걸린다는 점도 이 해석과
 능력 차이로 봐도 됩니다.
 
 `NUM_PREDICT`는 `base/engine.py`의 "팀 합의 없이 개인이 수정 금지" 상수라 여기서 임의로
-올리지 않았습니다. `docs/methodology.md` §6 규칙상 파라미터 변경은 새 버전 사유이기도
+올리지 않았습니다. `docs/common/methodology.md` §6 규칙상 파라미터 변경은 새 버전 사유이기도
 합니다 — **v3에서 `plan`/`patch` 캡 상향(예: 512→900, 256→400)을 논의할 것을 제안합니다.**
 
 ## 실행

@@ -5,7 +5,7 @@
 
 `python versions/v8/run_v8.py --self-check` 로 호출 없이 검증만 가능합니다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)를 따르되, **v1~v7과
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)를 따르되, **v1~v7과
 기준선이 다릅니다.** 아래 §1을 먼저 읽으세요.
 
 ---

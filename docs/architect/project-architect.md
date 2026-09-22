@@ -9,8 +9,9 @@
 Part를 같이 적는다.
 
 두 방식이 실제로 얼마나 구현되어 있는지는 이 문서만으로는 알 수 없다 —
-`bedrock/README.md` §0-①이 실제 코드(`newvent-backend`)와 대조해 확인한
-내용을 참고할 것 (요약: HTML 방식은 구현됨, JSON 방식은 미구현·설계뿐).
+[`../../bedrock/README.md`](../../bedrock/README.md) §0-①이 실제 코드(`newvent-backend`)와
+대조해 확인한 내용을 참고할 것 (요약: HTML 방식은 구현됨, JSON 방식은 미구현·설계뿐).
+전체 문서가 어떻게 이어지는지는 [`../README.md`](../README.md) 참고.
 
 ---
 

@@ -8,7 +8,7 @@ v3 --self-check`로 LLM 호출 없이 검증 가능합니다. 아직 실제 모�
 구현 단계에서 "생성/수정×JS 축 교차 조합 + JS로 추가한 인터랙션의 재수정 검증"으로
 바뀌었습니다 — §3의 "변경 이력" 참고.)
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)를 그대로 따릅니다.
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)를 그대로 따릅니다.
 
 ## 구현 메모 — base/·tools/에 생긴 변경 4가지
 
@@ -25,7 +25,7 @@ v3 --self-check`로 LLM 호출 없이 검증 가능합니다. 아직 실제 모�
 3. **`tools/summarize.py`에 `section_chain_pipeline()` 추가** — CHAIN은 여러 단계
    (`prompt_id`)가 한 파이프라인을 이루는데, 기존 "모델 x 군" 표는 그 단계들을 서로
    독립된 케이스처럼 그냥 더한다. 예를 들어 GEN 5/5·PATCH 5/5·JSADD 5/5·JSMOD 0/5면
-   "15/20(75%)"로 보이지만, `docs/methodology.md` §4("성공 판정은 체인 전체가 기준")대로면
+   "15/20(75%)"로 보이지만, `docs/common/methodology.md` §4("성공 판정은 체인 전체가 기준")대로면
    끝까지 이어진 체인은 실제로 0개(0%)다. 이 문제는 CHAIN1(v2)때부터 있었지만 2단계라
    덜 두드러졌고, 이번 4단계 체인들에서는 왜곡이 훨씬 커진다. 새 섹션은 각 단계 행에
    이미 붙어 있는 `pair` 필드(체인 ID)로 같은 체인의 단계를 묶어 "체인 전체가 끝까지
@@ -228,7 +228,7 @@ NUM_PREDICT = {"html": 3072, "plan": 3072, "patch": 3072, "router": 3072}
 진짜 모델 문제라고 확실히 말할 수 있게 하는 것"이지, 점수를 끌어올리는 게 아닙니다.
 
 이건 `base/engine.py`의 "팀 합의 없이 개인이 수정 금지" 상수를 바꾸는 것이라
-`docs/methodology.md` §6 규칙상 그 자체로 새 버전(v3) 사유입니다 — 그래서 이 문서가
+`docs/common/methodology.md` §6 규칙상 그 자체로 새 버전(v3) 사유입니다 — 그래서 이 문서가
 v3로 분리돼 있습니다.
 
 **구현 완료** — 전역 `NUM_PREDICT`는 그대로 두고, `Case`에 `num_predict` 필드를 추가해

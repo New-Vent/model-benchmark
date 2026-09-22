@@ -4,7 +4,7 @@ v4 결론("K는 구조 변경을 못 한다, 지배적 실패는 `no_ops`")과 v
 계열은 신규 생성에서 S-T·J-T가 동률")을 이어받아, "모델에게 판단·생성을
 얼마나 좁혀서 시키느냐"를 검증하는 두 실험만 이 문서에 남긴다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)
 
 ---
 
@@ -65,7 +65,7 @@ tag_in_field·duplicate_data_block이 전부 사라졌다 — 문구를 안 시�
 **조치 완료**: 위 SYSTEM 프롬프트에 "itemCount가 없는 블록(hero·cta)도
 절대 생략하지 마라"를 명시적으로 추가했다.
 
-⚠ **이 프롬프트 변경 이후 재실행 필요** — `docs/methodology.md` §6 기준
+⚠ **이 프롬프트 변경 이후 재실행 필요** — `docs/common/methodology.md` §6 기준
 SYSTEM 프롬프트 변경은 새 조건이다. 위 100%/0% 수치는 **프롬프트 수정
 전** 결과이므로, 특히 qwen2.5:7b의 1차 통과율(0/25)은 이 CSV(`results_v6_주호_20260918_143504_708069.csv`)에서만
 유효하고 그대로 최종 결론으로 쓰면 안 된다 — 최종 통과율(100%)은 수정

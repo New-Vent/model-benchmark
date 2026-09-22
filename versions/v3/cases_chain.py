@@ -42,7 +42,7 @@ engine.run_one()은 검증에 성공한 최종 콘텐츠(파싱된 plan, 렌더�
 각 체인의 "성공 판정"은 CHAIN1과 동일한 관례를 따른다 — 단계마다 별도의 CSV 행
 (prompt_id에 접미사)을 남기고, 앞 단계가 실패하면 뒷 단계는 실행하지 않고
 "chain_blocked_by_previous_stage_failure"로 명시적으로 기록한다(조용히 건너뛰지
-않는다 — docs/methodology.md §4).
+않는다 — docs/common/methodology.md §4).
 
 Case.mode == "custom"이라 engine.py 수정 없이 동작한다.
 """

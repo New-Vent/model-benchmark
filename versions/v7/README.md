@@ -4,14 +4,14 @@
 × 5회차로 2기기(윤기·주호)에서 측정 끝났습니다 — 결과는 §7 참고. `python
 base/run.py v7 --self-check`로 LLM 호출 없이 코드 검증만 할 수도 있습니다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)를 그대로 따릅니다.
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)를 그대로 따릅니다.
 
-CHAIN7은 [docs/methodology.md](../../docs/methodology.md) §6 "버전을 새로 파는 기준"에 그대로 걸립니다 — 새 프롬프트(실제 템플릿 스케일), 새
+CHAIN7은 [docs/common/methodology.md](../../docs/common/methodology.md) §6 "버전을 새로 파는 기준"에 그대로 걸립니다 — 새 프롬프트(실제 템플릿 스케일), 새
 케이스(CHAIN7-J-E/CHAIN7-J-K/CHAIN7-S), 기존 CHAIN2~6과 다른 검증 로직
 (내용 보존 diff 체크, 아래 §4)이 전부 새로 생기므로 기존 v3에 끼워 넣을
 수 없습니다.
 
-**CHAIN7 자체는 팀이 이미 정한 다음 단계입니다** — [docs/reports/v1/pipeline.md:80](../../docs/reports/v1/pipeline.md)
+**CHAIN7 자체는 팀이 이미 정한 다음 단계입니다** — [docs/reports/v1_v1-v7/pipeline.md:80](../../docs/reports/v1_v1-v7/pipeline.md)
 이 명시:
 
 > 다음 단계: 신규 생성 캡을 올려 S/J를 확정한 뒤, "그 결과 → E수정 →

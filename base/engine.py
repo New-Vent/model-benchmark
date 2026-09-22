@@ -110,7 +110,7 @@ class Case:
     # 이 케이스만 NUM_PREDICT[mode] 기본값 대신 이 값을 쓴다. None이면
     # 기존과 동일(전역 NUM_PREDICT 사용) — v1·v2 케이스는 전부 그대로다.
     # v3에서 "truncated 실패가 캡 부족 때문"임을 실측으로 확인했는데
-    # (docs/methodology.md 원칙상 전역 NUM_PREDICT 변경은 새 버전 사유),
+    # (docs/common/methodology.md 원칙상 전역 NUM_PREDICT 변경은 새 버전 사유),
     # 전역 상수를 건드리면 v1·v2를 재실행할 때도 값이 바뀌어버려
     # "예전 버전은 그 조건 그대로 재현 가능해야 한다"는 원칙과 충돌한다.
     # 케이스 단위 오버라이드로 이 충돌을 피한다(v3 README §5 참고).

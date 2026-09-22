@@ -4,7 +4,7 @@ v1-v3은 인공 문서(370-590자)를 `ul li` 같은 **벤치마크 전용 규�
 v4는 **실제 서비스 템플릿**(`template/template_1~5.html`, 4,351~5,356자)을 baseline으로 쓰고,
 두 노선을 **같은 검사기**로 채점합니다.
 
-공통 원칙은 [docs/methodology.md](../../docs/methodology.md)
+공통 원칙은 [docs/common/methodology.md](../../docs/common/methodology.md)
 
 ---
 

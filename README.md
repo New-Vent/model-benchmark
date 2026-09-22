@@ -2,7 +2,8 @@
 
 이벤트 페이지 생성/수정에 쓸 LLM을 정하기 위한 실험 기록입니다.
 v1~v7은 로컬 Ollama, **v8부터는 AWS Bedrock**입니다.
-버전이 바뀌어도 변하지 않는 원칙은 [docs/methodology.md](docs/methodology.md)에 있습니다.
+버전이 바뀌어도 변하지 않는 원칙은 [docs/common/methodology.md](docs/common/methodology.md)에 있습니다.
+`docs/` 전체를 어떤 순서로 읽으면 되는지는 [docs/README.md](docs/README.md)에 정리되어 있습니다.
 
 ## v8~v9 결론 — Bedrock
 
@@ -33,14 +34,14 @@ v1~v7은 로컬 Ollama, **v8부터는 AWS Bedrock**입니다.
   (`K-COUNT`) 0%였던 축이 100%로 올라옵니다 — **모델을 바꾸는 것보다 요청 형태를
   바꾸는 쪽이 효과가 컸습니다.**
 
-버전별 근거는 각 버전 README, 종합 정리는 [docs/reports/v1/](docs/reports/v1/)에 있습니다.
+버전별 근거는 각 버전 README, 종합 정리는 [docs/reports/v1_v1-v7/](docs/reports/v1_v1-v7/)에 있습니다.
 
 | 보고서 | 내용 |
 | --- | --- |
-| [모델선정_종합보고서.md](docs/reports/v1/모델선정_종합보고서.md) | v1~v4 통합 모델 선정 근거 |
-| [pipeline.md](docs/reports/v1/pipeline.md) | 축별 결론(생성·수정·JS추가·값수정)과 미결 항목 |
-| [v-summary.md](docs/reports/v1/v-summary.md) | 버전별 `summarize.py` 원표 모음 |
-| [model.md](docs/reports/v1/model.md) | 모델별 특성 정리 |
+| [모델선정_종합보고서.md](docs/reports/v1_v1-v7/모델선정_종합보고서.md) | v1~v7 통합 모델 선정 근거 |
+| [pipeline.md](docs/reports/v1_v1-v7/pipeline.md) | 축별 결론(생성·수정·JS추가·값수정) — v7 CHAIN7까지 확정 |
+| [v-summary.md](docs/reports/v1_v1-v7/v-summary.md) | 버전별 `summarize.py` 원표 모음 |
+| [model.md](docs/reports/v1_v1-v7/model.md) | 모델별 특성 정리(v1~v7 추이) |
 
 <details>
 <summary>모델 테스트 버전 7개</summary>
@@ -103,8 +104,10 @@ base/                                공통 — 버전이 늘어도 복사하지
   component_library.py               컴포넌트 렌더 함수
 
 template/                            실제 서비스 템플릿 5종 (v4부터 baseline)
-docs/methodology.md                  버전 무관 공통 원칙
-docs/reports/v1/                     버전 횡단 종합 보고서
+docs/common/methodology.md           버전 무관 공통 원칙
+docs/architect/project-architect.md  HTML·JSON 두 방식의 설계 문서(§0-①: HTML만 구현됨)
+docs/bedrock/                        v1-migration.md(전환 이유) · v2-pipeline.md(평가 설계)
+docs/reports/v1_v1-v7/               버전 횡단 종합 보고서
 
 versions/v4/                         S-E·K-T 군
   cases_se.py cases_kt.py templates.py
@@ -119,7 +122,7 @@ versions/v4/                         S-E·K-T 군
 (`CASES: list[Case]`와, 있으면 `self_check()`만 지키면 됩니다).
 
 버전 README에는 **그 버전에서만 유효한 조건**(모델 목록·digest·파라미터·케이스 수)을 적습니다.
-군이 각각 무엇을 재는지 같은 공통 정의는 `docs/methodology.md`에 한 번만 적습니다.
+군이 각각 무엇을 재는지 같은 공통 정의는 `docs/common/methodology.md`에 한 번만 적습니다.
 
 </div>
 </details>
@@ -169,7 +172,7 @@ LLM 호출 없이 케이스 정의만 검증하려면 `python base/run.py v1 --s
 폴더 안의 CSV를 전부 읽으므로, runner가 몇 명이든 파일만 넣으면 됩니다.
 
 > CHAIN 군은 "모델 × 군" 표와 "파이프라인 전체 통과율" 표의 수치가 다릅니다 —
-> 앞은 단계를 독립 케이스로 더한 값이고, 뒤가 `docs/methodology.md` §4가 말하는
+> 앞은 단계를 독립 케이스로 더한 값이고, 뒤가 `docs/common/methodology.md` §4가 말하는
 > 진짜 성공 기준(체인 전체 완주)입니다. **CHAIN을 인용할 때는 뒤쪽 표를 쓰세요.**
 
 </div>

@@ -154,7 +154,7 @@ def section_pass_rate(rows):
 # CHAIN 그룹은 GEN/PATCH/JSADD/JSMOD처럼 여러 단계(prompt_id)가 한
 # 파이프라인을 이루는데, 위 section_pass_rate()의 CHAIN 열은 이 단계들을
 # 서로 독립된 케이스처럼 그냥 더한 값이다 — GEN 5/5·PATCH 5/5·JSADD 5/5·
-# JSMOD 0/5면 "15/20(75%)"로 보이지만 docs/methodology.md §4("성공 판정은
+# JSMOD 0/5면 "15/20(75%)"로 보이지만 docs/common/methodology.md §4("성공 판정은
 # 체인 전체가 기준")대로면 끝까지 이어진 체인은 실제로 0개(0%)다. 이 섹션은
 # 각 단계 행에 이미 붙어 있는 pair 필드(체인 ID)로 같은 체인의 단계를 묶어
 # "체인 전체가 끝까지 성공했는가"를 따로 집계한다.
