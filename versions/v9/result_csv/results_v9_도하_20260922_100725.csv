@@ -1,0 +1,16 @@
+runner,provider,model,group,prompt_id,repeat_no,attempt,ok,model_fails,pipeline_fails,sanitize_damaged,input_tokens,output_tokens,wall_ms,truncated,note
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E1,1,1,1,,,0,344,32,1389,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E1,2,1,1,,,0,344,32,1205,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E1,3,1,1,,,0,344,32,946,0,문구만 교체. href·class·data-slot 이 살아야 한다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E2,1,1,1,,,0,376,62,1380,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E2,2,1,1,,,0,376,62,2110,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,E,E2,3,1,1,,,0,376,62,1376,0,기간 슬롯을 건드리면 안 된다
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T1,1,1,1,,,0,344,32,1015,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T2,1,1,1,,,0,376,62,1209,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T3,1,1,1,,,0,367,48,2487,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T1,2,1,1,,,0,344,32,866,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T2,2,1,1,,,0,376,62,1259,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T3,2,1,1,,,0,367,48,1586,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T1,3,1,1,,,0,344,32,808,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T2,3,1,1,,,0,376,62,1235,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
+도하,bedrock:google.gemma-3-27b-it@us-east-1,google.gemma-3-27b-it,C,C1-T3,3,1,1,,,0,367,48,1357,0,서로 다른 블록 3턴 — 앞 턴의 변경이 끝까지 남는가
