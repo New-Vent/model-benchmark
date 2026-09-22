@@ -1,0 +1,13 @@
+runner,provider,model,group,prompt_id,template,block,repeat_no,attempt,ok,model_fails,pipeline_fails,sanitize_damaged,input_tokens,output_tokens,wall_ms,truncated,note
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,D,D1,holiday,benefits,1,1,0,hook_lost_data-demo-msg,,0,1321,1453,12625,0,"★ 항목 추가 — .benefit-card 를 복제하는가 (출력 811tok, 캡의 53%)"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,D,D1,holiday,benefits,1,2,1,,,0,1355,1524,4861,0,"★ 항목 추가 — .benefit-card 를 복제하는가 (출력 811tok, 캡의 53%)"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,D,D2,member,benefits,1,1,1,,,0,1202,679,2428,0,결정 ② 삭제 — 남은 카드 구조가 유지되는가
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,D,D3,sale,benefits,1,1,1,,,0,1207,1061,5360,0,문구만 — 구조를 건드릴 이유가 전혀 없는 요청
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,P,P1,sports,cta,1,1,1,,,0,563,479,2004,0,cta — data-slot·data-demo-msg·class 가 전부 걸려 있다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,P,P2,launch,hero,1,1,1,,,0,905,1061,3422,0,hero — period 슬롯이 <span> 안에 있다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,P,P3,sports,hero,1,1,1,,,0,986,696,2063,0,★ hero 안에 data-vote 버튼이 3개 — 블록 경계가 단순하지 않다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,H,H1,member,benefits,1,1,0,request_not_applied|item_count_3_want_4,,0,1206,1536,6501,1,"★ 하나를 줬다 — 그 하나만 넣는가, 덤으로 더 지어내는가"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,H,H1,member,benefits,1,2,1,,,0,1262,1393,3168,0,"★ 하나를 줬다 — 그 하나만 넣는가, 덤으로 더 지어내는가"
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,H,H2,sale,benefits,1,1,0,lost_benefits|item_count_0_want_3,,0,1206,1536,5084,1,★ 결정 ④ 의 경계 — 문구는 고치되 수치는 그대로여야 한다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,H,H2,sale,benefits,1,2,1,,,0,1254,1241,3588,0,★ 결정 ④ 의 경계 — 문구는 고치되 수치는 그대로여야 한다
+도하,bedrock:openai.gpt-oss-120b-1:0@us-east-1,openai.gpt-oss-120b-1:0,H,H3,launch,steps,1,1,1,,,0,892,1536,4920,1,steps 는 Source.LLM — benefits 와 규칙이 같은가
