@@ -19,7 +19,7 @@
         VIP 및 FAMILY 회원님만을 위해 준비한 가을 선물.<br>
         전 카테고리 30% 감사 쿠폰팩과 무료배송 혜택을 한 번에 만나보세요.
       </p>
-      <div class="vp-period">🍁 프로모션 기간: 2026.09.15 ~ 2026.10.05</div>
+      <div class="vp-period">🍁 프로모션 기간: <span data-slot="period">2026.09.15 ~ 2026.10.05</span></div>
     </section>
 
     <!-- [BLOCK: benefits] -->
@@ -29,8 +29,8 @@
         <h2 class="title">회원 등급별 특별 감사 혜택</h2>
       </div>
       <!-- 쿠폰 형태 — 가로형 -->
-      <div class="vp-coupons">
-        <div class="vp-coupon">
+      <div class="benefits-list vp-coupons">
+        <div class="benefit-card vp-coupon">
           <div class="vp-coupon-left">
             <div class="vp-coupon-icon">👑</div>
             <div class="vp-coupon-value">30%</div>
@@ -47,7 +47,7 @@
             <button type="button" class="vp-coupon-btn btn" data-demo-msg="가을 감사 30% 할인 쿠폰 2장이 발급되었습니다! (데모)">쿠폰 받기 🎟️</button>
           </div>
         </div>
-        <div class="vp-coupon">
+        <div class="benefit-card vp-coupon">
           <div class="vp-coupon-left">
             <div class="vp-coupon-icon">🚚</div>
             <div class="vp-coupon-value">FREE</div>
@@ -64,7 +64,7 @@
             <button type="button" class="vp-coupon-btn btn" data-demo-msg="1개월 무료배송 패스 티켓이 쿠폰함에 발급되었습니다! (데모)">패스 발급 🚚</button>
           </div>
         </div>
-        <div class="vp-coupon">
+        <div class="benefit-card vp-coupon">
           <div class="vp-coupon-left">
             <div class="vp-coupon-icon">☕</div>
             <div class="vp-coupon-value">GIFT</div>
@@ -90,8 +90,8 @@
         <div class="sub-label">Benefit Steps</div>
         <h2 class="title">감사 혜택 받는 방법</h2>
       </div>
-      <div class="vp-steps-list">
-        <div class="vp-step-row">
+      <div class="steps-list vp-steps-list">
+        <div class="step-card vp-step-row">
           <div class="vp-step-num">1</div>
           <div class="step-content">
             <div class="step-title">본인 회원 등급 확인하기</div>
@@ -99,7 +99,7 @@
           </div>
         </div>
         <div class="vp-step-divider"></div>
-        <div class="vp-step-row">
+        <div class="step-card vp-step-row">
           <div class="vp-step-num">2</div>
           <div class="step-content">
             <div class="step-title">감사 쿠폰팩 3종 일괄 다운로드</div>
@@ -107,7 +107,7 @@
           </div>
         </div>
         <div class="vp-step-divider"></div>
-        <div class="vp-step-row">
+        <div class="step-card vp-step-row">
           <div class="vp-step-num">3</div>
           <div class="step-content">
             <div class="step-title">가을 기획전 상품 결제 시 쿠폰 적용</div>
@@ -136,6 +136,7 @@
     <!-- [BLOCK: cta] -->
     <section class="ev-block block-cta vp-cta" data-block="cta">
       <button class="cta-btn vp-cta-btn btn" type="button"
+        data-slot="cta-link"
         data-demo-msg="VIP 감사 쿠폰팩 3종이 쿠폰함에 지급되었습니다! (데모)">
         감사 쿠폰팩 3종 한번에 받기 🎁
       </button>

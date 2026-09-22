@@ -31,7 +31,7 @@
             <span class="sp-team">TBD</span>
           </div>
           <div class="sp-sb-divider"></div>
-          <div class="sp-sb-row"><span>📅 기간</span><strong>09.10 ~ 09.30</strong></div>
+          <div class="sp-sb-row"><span>📅 기간</span><strong><span data-slot="period">2026.09.10 ~ 2026.09.30</span></strong></div>
           <div class="sp-sb-row"><span>🏆 경품</span><strong>최대 149,000원</strong></div>
           <div class="sp-sb-row"><span>🎁 전원</span><strong>5,000 P 즉시</strong></div>
           <div class="sp-sb-note">※ 경기 시작 10분 전까지 수정 가능</div>
@@ -53,37 +53,40 @@
         <div class="sub-label">Event Rewards</div>
         <h2 class="title">승리의 기쁨을 나눌 응원 선물</h2>
       </div>
-      <!-- 대표 경품 크게 -->
-      <div class="sp-prize-main">
-        <span class="benefit-tag">정답자 추첨 50명</span>
-        <div class="sp-prize-main-inner">
-          <div class="benefit-icon sp-icon-lg">⚽</div>
-          <div class="benefit-body">
-            <div class="benefit-name sp-name-lg">국가대표 공식 유니폼</div>
-            <div class="benefit-desc">2026 시즌 태극전사 정품 유니폼 (사이즈 선택 가능)</div>
-            <div class="benefit-value sp-value-lg">149,000원 상당</div>
+      <!-- 혜택 목록 컨테이너 -->
+      <div class="benefits-list sp-prizes-wrap">
+        <!-- 대표 경품 크게 -->
+        <div class="benefit-card sp-prize-main">
+          <span class="benefit-tag">정답자 추첨 50명</span>
+          <div class="sp-prize-main-inner">
+            <div class="benefit-icon sp-icon-lg">⚽</div>
+            <div class="benefit-body">
+              <div class="benefit-name sp-name-lg">국가대표 공식 유니폼</div>
+              <div class="benefit-desc">2026 시즌 태극전사 정품 유니폼 (사이즈 선택 가능)</div>
+              <div class="benefit-value sp-value-lg">149,000원 상당</div>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- 보조 혜택 2개 -->
-      <div class="sp-prize-sub-row">
-        <div class="benefit-card sp-prize-sub">
-          <span class="benefit-tag">정답자 추첨 30명</span>
-          <div class="benefit-icon">🍗</div>
-          <div class="benefit-body">
-            <div class="benefit-name">치킨 &amp; 콜라 세트</div>
-            <div class="benefit-desc">응원엔 역시 치맥! 당일 모바일 교환권 발송</div>
+        <!-- 보조 혜택 2개 -->
+        <div class="sp-prize-sub-row">
+          <div class="benefit-card sp-prize-sub">
+            <span class="benefit-tag">정답자 추첨 30명</span>
+            <div class="benefit-icon">🍗</div>
+            <div class="benefit-body">
+              <div class="benefit-name">치킨 &amp; 콜라 세트</div>
+              <div class="benefit-desc">응원엔 역시 치맥! 당일 모바일 교환권 발송</div>
+            </div>
+            <div class="benefit-value">30,000원 상당</div>
           </div>
-          <div class="benefit-value">30,000원 상당</div>
-        </div>
-        <div class="benefit-card sp-prize-sub">
-          <span class="benefit-tag">참가자 전원 100%</span>
-          <div class="benefit-icon">🎁</div>
-          <div class="benefit-body">
-            <div class="benefit-name">응원 5,000 P</div>
-            <div class="benefit-desc">참여만 해도 쇼핑몰 전용 포인트 지급</div>
+          <div class="benefit-card sp-prize-sub">
+            <span class="benefit-tag">참가자 전원 100%</span>
+            <div class="benefit-icon">🎁</div>
+            <div class="benefit-body">
+              <div class="benefit-name">응원 5,000 P</div>
+              <div class="benefit-desc">참여만 해도 쇼핑몰 전용 포인트 지급</div>
+            </div>
+            <div class="benefit-value">즉시 적립</div>
           </div>
-          <div class="benefit-value">즉시 적립</div>
         </div>
       </div>
     </section>
@@ -141,8 +144,7 @@
 
     <!-- [BLOCK: cta] -->
     <section class="ev-block block-cta sp-cta" data-block="cta">
-      <button class="cta-btn sp-cta-btn btn" type="button"
-        data-demo-msg="스코어 맞추기 응모가 완료되었습니다! 5,000P가 적립되었습니다. (데모)">
+      <button class="cta-btn sp-cta-btn btn" type="button" data-slot="cta-link" data-demo-msg="대한민국 응원 완료! 승리 스코어 맞추기에 응모되었습니다. ⚽">
         대한민국 승리 스코어 맞추기 🔥
       </button>
       <div class="cta-subtext">※ 로그인 회원 대상 · 참여 완료 시 카카오톡 알림톡 발송</div>

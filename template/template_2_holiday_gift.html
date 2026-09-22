@@ -25,7 +25,7 @@
         매일 출석체크하고 황금 복주머니를 열어보세요.
       </p>
       <div class="hl-period-ribbon">
-        🌕 이벤트 기간: 2026.09.20 ~ 2026.10.05
+        🌕 이벤트 기간: <span data-slot="period">2026.09.20 ~ 2026.10.05</span>
       </div>
     </section>
 
@@ -36,9 +36,9 @@
         <h2 class="title">소원 성취 한가위 복주머니 열기</h2>
       </div>
       <!-- 3종 전통 복주머니 -->
-      <div class="hl-pouches-wrap">
+      <div class="benefits-list hl-pouches-wrap">
         <!-- 1번 홍색 복주머니 -->
-        <div class="hl-pouch-card hl-pouch-red">
+        <div class="benefit-card hl-pouch-card hl-pouch-red">
           <span class="benefit-tag">특등 10명</span>
           <div class="hl-pouch-visual">
             <div class="hl-pouch-top"></div>
@@ -53,7 +53,7 @@
           <button type="button" class="hl-pouch-btn btn" data-demo-msg="🎉 [특등 즉석 당첨!] 1++ 명품 한우 세트에 당첨되셨습니다! (데모)">복주머니 열기 🧧</button>
         </div>
         <!-- 2번 황금 복주머니 -->
-        <div class="hl-pouch-card hl-pouch-gold">
+        <div class="benefit-card hl-pouch-card hl-pouch-gold">
           <span class="benefit-tag">행운상 100명</span>
           <div class="hl-pouch-visual">
             <div class="hl-pouch-top"></div>
@@ -68,7 +68,7 @@
           <button type="button" class="hl-pouch-btn btn" data-demo-msg="🎉 [행운상 즉석 당첨!] 신세계 상품권 5만원권에 당첨되셨습니다! (데모)">복주머니 열기 🧧</button>
         </div>
         <!-- 3번 청색 복주머니 -->
-        <div class="hl-pouch-card hl-pouch-blue">
+        <div class="benefit-card hl-pouch-card hl-pouch-blue">
           <span class="benefit-tag">전원 100%</span>
           <div class="hl-pouch-visual">
             <div class="hl-pouch-top"></div>
@@ -97,8 +97,8 @@
         <div class="sub-label">Event Guide</div>
         <h2 class="title">선물 받는 가장 쉬운 방법</h2>
       </div>
-      <div class="hl-steps-flow">
-        <div class="hl-step-item">
+      <div class="steps-list hl-steps-flow">
+        <div class="step-card hl-step-item">
           <div class="hl-step-num-wrap">
             <div class="hl-step-num">1</div>
             <div class="hl-step-line"></div>
@@ -108,7 +108,7 @@
             <div class="step-desc">매일 자정(00시) 갱신되는 한가위 출석 버튼을 눌러 복주머니를 받으세요.</div>
           </div>
         </div>
-        <div class="hl-step-item">
+        <div class="step-card hl-step-item">
           <div class="hl-step-num-wrap">
             <div class="hl-step-num">2</div>
             <div class="hl-step-line"></div>
@@ -118,7 +118,7 @@
             <div class="step-desc">원하는 복주머니를 터치하면 그 자리에서 즉석 당첨 결과가 공개됩니다.</div>
           </div>
         </div>
-        <div class="hl-step-item">
+        <div class="step-card hl-step-item">
           <div class="hl-step-num-wrap">
             <div class="hl-step-num">3</div>
             <div class="hl-step-line"></div>
@@ -150,6 +150,7 @@
     <!-- [BLOCK: cta] -->
     <section class="ev-block block-cta hl-cta" data-block="cta">
       <button class="cta-btn hl-cta-btn btn" id="hlMainCta" type="button"
+        data-slot="cta-link"
         data-state="ready"
         data-demo-msg="상단 복주머니 뽑기 영역으로 이동합니다 🧧">
         복주머니 뽑으러 가기 ↑
