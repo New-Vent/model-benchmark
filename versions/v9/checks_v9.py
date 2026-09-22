@@ -272,19 +272,59 @@ def validate_edited(target: R.Block, before: str, html: str) -> list:
 
     _check_shape(target, el, fails)
 
+    before_soup = _soup(before)
+
     # 슬롯 — 수정에서는 원본에 있던 것을 지켜야 한다 (생성과 정반대)
-    was, now = _slots_in(_soup(before)), _slots_in(soup)
+    was, now = _slots_in(before_soup), _slots_in(soup)
     for key in sorted(was - now):
         fails.append((f"slot_lost_{key}",
                       f'data-slot="{key}" 이 없어졌습니다. 그대로 두세요.'))
     for key in sorted(now - was):
         fails.append((f"slot_invented_{key}",
                       f'data-slot="{key}" 을 새로 만들지 마세요.'))
+    #
+    #   백엔드 `checkPreserved` 는 data-slot 과 id 만 대조한다. 그런데 정화는
+    #   class·href 를 **통과시킨다** — 즉 "정화가 지울 때"는 고쳐졌지만
+    #   "모델이 지울 때"는 아무도 안 잡는 반쪽 상태다.
+    #
+    #        정화가 지움      모델이 지움
+    #   href   고쳐짐         못 잡음   ← must="a" 는 <a> 존재만 본다
+    #   class  통과           못 잡음
+    #
+    #   class 는 템플릿에서 451건으로 압도적 1위이고 `class_lost` 는
+    #   v4·v5·v7 에서 반복 확인된 주요 실패 유형이다. 여기서 먼저 재고
+    #   결과를 백엔드에 넘긴다.
+
+    # class — **유실만** 본다. 날조는 막지 않는다:
+    #   혜택 항목을 하나 추가하면 그 항목의 클래스가 정당하게 늘어난다.
+    #   슬롯·id 와 성격이 다른 지점이다(집합 비교, 개별 이름이 아님).
+    lost_cls = _classes_in(before_soup) - _classes_in(soup)
+    for c in sorted(lost_cls):
+        fails.append((f"class_lost_{c}",
+                      f'class="{c}" 를 지웠습니다. 디자인이 이 클래스에 걸려 있습니다.'))
+
+    # href — 원본 <a> 의 href 값이 살아있는가
+    lost_href = _hrefs_in(before_soup) - _hrefs_in(soup)
+    for h in sorted(lost_href):
+        fails.append(("href_lost",
+                      f'href="{h}" 가 없어졌습니다. 기존 속성은 그대로 두세요.'))
     return fails
 
 
 def _slots_in(soup) -> set:
     return {el["data-slot"] for el in soup.select("[data-slot]")}
+
+
+def _classes_in(soup) -> set:
+    """문서에 등장하는 모든 클래스 이름."""
+    out = set()
+    for el in soup.select("[class]"):
+        out.update(el.get("class") or [])
+    return out
+
+
+def _hrefs_in(soup) -> set:
+    return {el["href"] for el in soup.select("a[href]")}
 
 
 # ── merge ─────────────────────────────────────────────────────────
@@ -372,6 +412,21 @@ def self_check():
 
     assert not [c for c, _ in validate_edited(R.of("hero"), without, without)
                 if c.startswith("slot_")], "원본에 없던 슬롯을 유실로 잡으면 오탐"
+
+    # ★ class·href 보존 — 백엔드에 아직 없는 검사
+    cta_before = '<section data-block="cta">' + anchor + "</section>"
+    broke_cls = cta_before.replace(' class="btn"', "")
+    codes = [c for c, _ in validate_edited(R.of("cta"), cta_before, broke_cls)]
+    assert "class_lost_btn" in codes, codes
+
+    broke_href = cta_before.replace(' href="#"', "")
+    codes = [c for c, _ in validate_edited(R.of("cta"), cta_before, broke_href)]
+    assert "href_lost" in codes, codes
+
+    #   클래스가 늘어나는 건 정상이다 — 항목을 추가하면 자연히 늘어난다
+    more_cls = cta_before.replace('class="btn"', 'class="btn btn-lg"')
+    assert not [c for c, _ in validate_edited(R.of("cta"), cta_before, more_cls)
+                if c.startswith("class_")], "클래스 추가를 막으면 항목 추가가 불가능해진다"
 
     # ★ 회귀 — 수정 경로에서 원본을 그대로 돌려주면 통과해야 한다.
     #   v8 에서는 정화가 슬롯·href 를 지워서 이게 **불가능**했다.
