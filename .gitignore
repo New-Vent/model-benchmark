@@ -17,3 +17,6 @@ bedrock/outputs/*/*
 !bedrock/outputs/*/.gitkeep
 bedrock/results/*/*
 !bedrock/results/*/.gitkeep
+
+# 렌더링 결과물
+rendered_v*/
