@@ -17,4 +17,3 @@ bedrock/outputs/*/*
 !bedrock/outputs/*/.gitkeep
 bedrock/results/*/*
 !bedrock/results/*/.gitkeep
-bedrock/results/summary_*.md

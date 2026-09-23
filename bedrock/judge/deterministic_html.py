@@ -252,7 +252,21 @@ def _check_shape(b: Block, el, fails: list):
             fails.append(f"few_{b.key}")
 
 
-def validate_generated(html: str, check_slots: bool = True) -> list:
+def validate_generated(html: str, check_slots: bool = True, omit_ok: frozenset = frozenset()) -> list:
+    """omit_ok — 이번 요청에서 애초에 내용을 안 준 블록의 키 집합(예: {"benefits"}).
+
+    `Block.required`는 Block.java를 그대로 미러링한 **전역** 규칙이라 여기서
+    건드리면 안 된다(파일 상단 ★ 참고) — 실제로는 "혜택 내용을 아직 안 정했다"는
+    요청도 있는데(TC-GEN-005), 그럴 때 모델이 지어내지 않고 블록 자체를 생략하는
+    건 결함이 아니라 정확히 바라는 동작이다("환각 방어"). 그런데도 `lost_benefits`가
+    떴던 건 이 함수가 "혜택을 요청했는데 없다"와 "애초에 혜택을 안 줬다"를
+    구분하지 못했기 때문 — 실측(bedrock/results)에서 TC-GEN-005가 gemma·haiku·
+    oss120·qwen **4개 모델 전부**에서 같은 이유로 걸렸다. 한 케이스에서 전 모델이
+    동시에 죽으면 모델 탓이 아니라 채점 로직 탓이라는 신호다(v10 README가 이미
+    확인한 패턴). 그래서 전역 규칙은 그대로 두고, **호출자가 이번 요청에 그
+    내용이 있었는지를 알려주는 optional 인자**로 좁혀서 고친다 — 기본값이
+    빈 집합이라 기존 호출부는 전부 그대로 엄격하게 동작한다.
+    """
     fails = []
     if not html or not html.strip():
         return ["no_html"]
@@ -267,7 +281,7 @@ def validate_generated(html: str, check_slots: bool = True) -> list:
     for b in LLM_BLOCKS:
         el = soup.select_one(b.selector())
         if el is None:
-            if b.required:
+            if b.required and b.key not in omit_ok:
                 fails.append(f"lost_{b.key}")
             continue
         _check_shape(b, el, fails)
@@ -407,6 +421,19 @@ def self_check():
 
     # placeholder
     assert "placeholder" in validate_generated(good.replace("여름 데이터", "[제목]"))
+
+    # omit_ok — 혜택 정보를 애초에 안 준 요청에서는 benefits 생략을 실패로
+    # 잡지 않는다 (TC-GEN-005 회귀: 4모델 전부가 이 이유만으로 오탐됐음)
+    skeleton = (
+        '<section data-block="hero"><h1>겨울 이벤트</h1></section>'
+        '<section data-block="cta"><a href="#" class="btn">참여하기</a></section>'
+    )
+    assert "lost_benefits" in validate_generated(skeleton)
+    assert "lost_benefits" not in validate_generated(skeleton, omit_ok={"benefits"})
+    # omit_ok에 없는 다른 필수 블록(hero)은 여전히 잡는다 — 조건을 통째로
+    # 끄는 게 아니라 지정된 키만 좁혀서 면제한다는 것을 확인
+    cta_only = '<section data-block="cta"><a href="#" class="btn">참여하기</a></section>'
+    assert "lost_hero" in validate_generated(cta_only, omit_ok={"benefits"})
 
     # 슬롯 — 생성은 금지, 수정은 보존 (정반대)
     with_slot = '<section data-block="hero"><h1>t</h1><span data-slot="period">기간</span></section>'

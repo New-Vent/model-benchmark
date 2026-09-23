@@ -8,7 +8,7 @@ results/{json,html}/*.json 을 전부 읽어 평균 점수·Validation Pass Rate
 import json
 import statistics as stats
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 # run_judge.py와 동일한 이유 — 일부 Windows 콘솔(cp949)이 이 파일의 "—" 등을
@@ -27,6 +27,23 @@ SCORE_FIELDS = [
     "requirement_accuracy", "content_accuracy", "schema_compliance_semantic",
     "modification_accuracy", "behavior_correctness",
 ]
+
+# 표에 찍히는 각 Metric 이름 옆에 붙일 한국어 해석 — rubric.py의 채점 기준
+# 정의(`docs/bedrock/v2-pipeline.md` §13~§22)를 그대로 요약한 것이다. 새
+# 필드를 추가했는데 여기 없으면 괄호 없이 영문 이름만 찍힌다(아래
+# `to_markdown`의 `.get(field, "")`).
+METRIC_LABELS_KO = {
+    "requirement_accuracy": "요구사항 반영 정확도 — 날짜·혜택 등 명시값을 정확히 반영했는가, "
+                             "안 준 값을 지어내면 감점",
+    "content_accuracy": "콘텐츠 의미 일치도 — 문구가 요구사항과 의미상 같은가(문자열 완전일치 아님)",
+    "schema_compliance_semantic": "구성 배치의 의미적 적절성 — 요구한 분량만큼 컴포넌트를 구성했는가",
+    "modification_accuracy": "수정 반영 정확도 — 요청한 부분만 바뀌고 나머지는 그대로인가",
+    "behavior_correctness": "행동 시나리오 정확도 — data-behavior의 event/action/target이 의미상 맞는가",
+    "validation_pass_rate": "완전 통과율",
+    "hard_ok_pass_rate": "핵심 결함 없음 비율",
+    "sanitization_violation_rate": "정화(sanitize)가 출력을 손상시킨 비율",
+    "parse_success_rate": "HTML/JSON 파싱(추출) 성공률",
+}
 
 # ══════════════════════════════════════════════════════════════════
 #  실패 유형 분포 — docs/reports/v1_v1-v7/v-summary.md 의 "실패 유형 분포"/
@@ -57,16 +74,24 @@ def _normalize_fail(code: str) -> str:
 
 
 def failure_distribution(fmt: str, results: list, field: str = "hard_fails") -> list:
-    """[(유형, 건수, 비율%), ...] — 건수 내림차순. `field`를 "soft_fails"로
-    주면 소프트 실패 분포(v-summary.md의 "소프트 실패" 표와 동일)가 나온다."""
+    """[(유형, 건수, 비율%, 모델별건수 Counter), ...] — 건수 내림차순. `field`를
+    "soft_fails"로 주면 소프트 실패 분포(v-summary.md의 "소프트 실패" 표와 동일)가
+    나온다. 모델별 Counter는 "어느 모델이 이 실패를 냈는가"를 보기 위한 것 —
+    v10에서 확인했듯 같은 유형이 한 모델에 몰리면 모델 결함, 전 모델에 고르게
+    퍼지면 케이스/채점기 결함일 가능성이 크다(TC-GEN-005 회귀 참고)."""
     counter = Counter()
+    by_model = defaultdict(Counter)
     for r in results:
+        model = r.get("model", "unspecified")
         codes = r.get(fmt, {}).get(field)
         if codes is None:  # hard_fails 필드가 없는 옛 결과는 model_fails로 대체
             codes = r.get(fmt, {}).get("model_fails", []) if field == "hard_fails" else []
-        counter.update(_normalize_fail(c) for c in codes)
+        normalized = [_normalize_fail(c) for c in codes]
+        counter.update(normalized)
+        for code in normalized:
+            by_model[code][model] += 1
     total = len(results)
-    return [(code, n, round(n / total * 100, 1) if total else 0.0)
+    return [(code, n, round(n / total * 100, 1) if total else 0.0, by_model[code])
             for code, n in counter.most_common()]
 
 
@@ -143,18 +168,30 @@ def to_markdown(fmt: str, summary: dict, model_summaries: dict | None = None,
                      "`deterministic_html.py`/`deterministic_json.py`의 모듈 docstring 참고.\n")
     lines.append("| Metric | 값 |")
     lines.append("| --- | ---: |")
+
+    def _label(field: str) -> str:
+        """`field (한국어 해석)` — METRIC_LABELS_KO에 없으면 영문 이름만."""
+        ko = METRIC_LABELS_KO.get(field)
+        return f"{field} ({ko})" if ko else field
+
     for field, val in summary["metrics"].items():
         if val is not None:
-            lines.append(f"| {field} | {val} |")
-    lines.append(f"| Validation Pass Rate (all_ok — 하드+소프트 0건) | "
+            lines.append(f"| {_label(field)} | {val} |")
+    lines.append(f"| Validation Pass Rate ({METRIC_LABELS_KO['validation_pass_rate']} — "
+                 f"all_ok, 하드+소프트 0건) | "
                  f"{summary['validation_pass_rate']}% |")
-    lines.append(f"| Hard-Fail Pass Rate (hard_ok — code_fence 등 소프트는 무시) | "
+    lines.append(f"| Hard-Fail Pass Rate ({METRIC_LABELS_KO['hard_ok_pass_rate']} — "
+                 f"hard_ok, code_fence 등 소프트는 무시) | "
                  f"{summary['hard_ok_pass_rate']}% |")
     if summary["soft_only_count"]:
         lines.append(f"| ↳ 그중 소프트 실패만 남은 건 (code_fence/extra_text) | "
                      f"{summary['soft_only_count']}건 |")
-    lines.append(f"| Sanitization Violation Rate | {summary['sanitization_violation_rate']}% |")
-    lines.append(f"| Parse Success Rate | {summary['parse_success_rate']}% |")
+    lines.append(f"| Sanitization Violation Rate "
+                 f"({METRIC_LABELS_KO['sanitization_violation_rate']}) | "
+                 f"{summary['sanitization_violation_rate']}% |")
+    lines.append(f"| Parse Success Rate "
+                 f"({METRIC_LABELS_KO['parse_success_rate']}) | "
+                 f"{summary['parse_success_rate']}% |")
 
     if model_summaries and len(model_summaries) > 1:
         lines.append(f"\n### 모델 {len(model_summaries)}종 비교 (`versions/v8`와 같은 축)")
@@ -168,22 +205,38 @@ def to_markdown(fmt: str, summary: dict, model_summaries: dict | None = None,
             row += [str(s["metrics"].get(f, "-")) for f in score_fields]
             lines.append("| " + " | ".join(row) + " |")
 
+    all_models = {r.get("model", "unspecified") for r in results}
+
+    def _model_col(models: Counter) -> str:
+        """"haiku×3, gemma×1" 형태. 관측된 전 모델에서 다 나온 실패는 그
+        사실 자체가 신호라 따로 표시한다 — 모델 하나만 계속 걸리면 그
+        모델의 결함, **전 모델이 같은 항목에서 동시에 걸리면 모델 탓이
+        아니라 케이스/채점기 결함일 가능성이 크다**(TC-GEN-005 회귀:
+        4모델 전부 같은 이유로 걸렸는데 원인은 채점기였다)."""
+        cell = ", ".join(f"{m}×{c}" for m, c in models.most_common())
+        if len(all_models) > 1 and set(models) >= all_models:
+            cell += " ⚠전모델"
+        return cell
+
     hard_dist = failure_distribution(fmt, results, "hard_fails")
     if hard_dist:
         lines.append(f"\n### 실패 유형 분포 (전체 {summary['n']}건 중, "
                      f"`docs/reports/v1_v1-v7/v-summary.md`와 같은 형식)")
-        lines.append("| 유형 | 건수 | 비율 |")
-        lines.append("| --- | --- | --- |")
-        for code, n, pct in hard_dist:
-            lines.append(f"| {code} | {n} | {pct}% |")
+        lines.append("| 유형 | 건수 | 비율 | 모델 |")
+        lines.append("| --- | --- | --- | --- |")
+        for code, n, pct, models in hard_dist:
+            lines.append(f"| {code} | {n} | {pct}% | {_model_col(models)} |")
+        if any(set(models) >= all_models and len(all_models) > 1 for *_, models in hard_dist):
+            lines.append("\n> ⚠전모델 — 관측된 모델 전부에서 같은 유형이 나왔다는 뜻. "
+                         "모델 결함이 아니라 **케이스·채점기 쪽 결함일 가능성**을 먼저 의심할 것.")
 
     soft_dist = failure_distribution(fmt, results, "soft_fails")
     if soft_dist:
         lines.append(f"\n#### 소프트 실패 (§4-1 — hard_ok 판정에는 반영 안 됨)")
-        lines.append("| 유형 | 건수 | 비율 |")
-        lines.append("| --- | --- | --- |")
-        for code, n, pct in soft_dist:
-            lines.append(f"| {code} | {n} | {pct}% |")
+        lines.append("| 유형 | 건수 | 비율 | 모델 |")
+        lines.append("| --- | --- | --- | --- |")
+        for code, n, pct, models in soft_dist:
+            lines.append(f"| {code} | {n} | {pct}% | {_model_col(models)} |")
 
     return "\n".join(lines)
 
@@ -224,10 +277,15 @@ def self_check():
     assert "lost_hero" in md and "실패 유형 분포" in md
     assert "code_fence" in md and "소프트 실패" in md
 
+    # failure_distribution은 (유형, 건수, 비율, 모델별Counter) 4-튜플을 낸다
     hard_dist = failure_distribution("html", fake, "hard_fails")
-    assert ("lost_hero", 1, round(1 / 3 * 100, 1)) in hard_dist
+    lost_hero = next(t for t in hard_dist if t[0] == "lost_hero")
+    assert lost_hero[1] == 1 and lost_hero[2] == round(1 / 3 * 100, 1)
+    assert lost_hero[3] == Counter({"haiku": 1}), lost_hero[3]  # haiku만 걸림
     soft_dist = failure_distribution("html", fake, "soft_fails")
-    assert ("code_fence", 1, round(1 / 3 * 100, 1)) in soft_dist
+    code_fence = next(t for t in soft_dist if t[0] == "code_fence")
+    assert code_fence[1] == 1 and code_fence[2] == round(1 / 3 * 100, 1)
+    assert code_fence[3] == Counter({"gemma": 1}), code_fence[3]
 
     # 동적 접미사가 붙는 코드는 *로 뭉쳐야 한다 (v-summary.md 형식이 깨지지 않게)
     dynamic = [
@@ -235,7 +293,23 @@ def self_check():
         {"model": "x", "html": {"hard_fails": ["unknown_action_execute-script"], "soft_fails": []}},
     ]
     dyn_dist = failure_distribution("html", dynamic, "hard_fails")
-    assert dyn_dist == [("unknown_action_*", 2, 100.0)], dyn_dist
+    assert len(dyn_dist) == 1
+    code, n, pct, models = dyn_dist[0]
+    assert (code, n, pct) == ("unknown_action_*", 2, 100.0)
+    assert models == Counter({"x": 2})
+
+    # ⚠전모델 — 관측된 모델 전부가 같은 유형으로 실패하면 표에 경고를 남긴다
+    # (TC-GEN-005 회귀: 채점기 버그를 모델 탓과 구분하려는 목적)
+    all_fail = [
+        {"model": "gemma", "html": {"hard_fails": ["lost_benefits"], "soft_fails": []}},
+        {"model": "haiku", "html": {"hard_fails": ["lost_benefits"], "soft_fails": []}},
+    ]
+    assert "⚠전모델" in to_markdown("html", summarize("html", all_fail), results=all_fail)
+    one_fail = [
+        {"model": "gemma", "html": {"hard_fails": ["lost_benefits"], "soft_fails": []}},
+        {"model": "haiku", "html": {"hard_fails": [], "soft_fails": []}},
+    ]
+    assert "⚠전모델" not in to_markdown("html", summarize("html", one_fail), results=one_fail)
 
     per_model = by_model("html", fake)
     assert set(per_model) == {"gemma", "haiku"}

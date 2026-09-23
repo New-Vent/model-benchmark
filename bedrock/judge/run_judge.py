@@ -128,8 +128,15 @@ def run_deterministic(fmt: str, category: str, case: dict, raw_output: str) -> d
         keep_slots = category == "edit"
         cleaned = DH.sanitize(html, keep_slots=keep_slots)
         if category == "generation":
-            fails_raw = DH.validate_generated(html)
-            fails_clean = DH.validate_generated(cleaned)
+            # 이번 요청에 애초에 내용이 없던 블록은 생략을 실패로 잡지 않는다
+            # (TC-GEN-005/008 회귀 — deterministic_html.validate_generated 참고).
+            # requirements에 그 블록 키가 없거나 비어 있으면 "안 준 것"으로 본다.
+            reqs = case.get("requirements") or {}
+            omit_ok = frozenset(
+                key for key in ("benefits",) if not reqs.get(key)
+            )
+            fails_raw = DH.validate_generated(html, omit_ok=omit_ok)
+            fails_clean = DH.validate_generated(cleaned, omit_ok=omit_ok)
         elif category == "edit":
             before = case["before"]["html"]
             fails_raw = DH.validate_edited(case["target"], before, html)
