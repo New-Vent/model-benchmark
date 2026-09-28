@@ -5,6 +5,16 @@ v1~v7은 로컬 Ollama, **v8부터는 AWS Bedrock**입니다.
 버전이 바뀌어도 변하지 않는 원칙은 [docs/common/methodology.md](docs/common/methodology.md)에 있습니다.
 `docs/` 전체를 어떤 순서로 읽으면 되는지는 [docs/README.md](docs/README.md)에 정리되어 있습니다.
 
+## 전체 구조 한눈에 보기
+
+v1~v11 전체가 GEN(생성)/EDIT(수정)/CROSS(교차축) 세 갈래로 어떻게 나뉘고,
+각 축·버전에서 어떤 모델로 몇 건이 hard_fail/soft_fail로 갈렸는지를 한 장에 정리한 다이어그램입니다.
+
+![v1~v11 전체 구조 및 실패 분포](docs/img/flow.png)
+
+축별 실패 유형 전체 목록·버전별 실패 통계(v1~v11)·버전별 시스템 프롬프트 원문은
+[docs/gen_edit_실패분석.xlsx](docs/gen_edit_실패분석.xlsx)에 정리되어 있습니다.
+
 ## v8~v9 결론 — Bedrock
 
 - **1순위: `google.gemma-3-27b-it`.** 전 축 만점(v8 45/45, v9 60/60)이고
